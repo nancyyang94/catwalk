@@ -9,7 +9,7 @@ class RatingsReviews extends React.Component {
   }
   render() {
     return (
-      <div>Ratings Reviews
+      <div>Ratings Reviews - Nancy change
       </div>
     )
   }
