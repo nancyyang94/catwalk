@@ -9,7 +9,7 @@ class ProductDetail extends React.Component {
   }
   render() {
     return (
-      <div>Product Detail
+      <div>Product Detail hi from michaeL!
       </div>
     )
   }
