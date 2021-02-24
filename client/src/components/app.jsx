@@ -1,8 +1,7 @@
 import React from 'react';
 import ProductDetail from './ProductDetail.jsx';
-import RatingsReviews from './RatingsReviews.jsx';
 import RelatedItemsOutfit from './RelatedItemsOutfit.jsx';
-
+import RatingsReviews from './RatingsReviews.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,8 +15,8 @@ class App extends React.Component {
       <div>
         Product Page
         <ProductDetail/>
-        <RatingsReviews/>
         <RelatedItemsOutfit/>
+        <RatingsReviews/>
       </div>
     )
   }
