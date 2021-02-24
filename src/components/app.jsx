@@ -1,7 +1,7 @@
 import React from 'react';
-// import Overview from './Overview';
-// import RatingsReviews from './RatingsReviews.jsx';
-// import RelatedItemsComparisons from './RelatedItemsComparisons.jsx';
+import ProductDetail from './ProductDetail.jsx';
+import RatingsReviews from './RatingsReviews.jsx';
+import RelatedItemsOutfit from './RelatedItemsOutfit.jsx';
 
 
 class App extends React.Component {
@@ -14,10 +14,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        HI
-        {/* <Overview/>
+        Product Page
+        <ProductDetail/>
         <RatingsReviews/>
-        <RelatedItemsComparisons/> */}
+        <RelatedItemsOutfit/>
       </div>
     )
   }

@@ -10,7 +10,6 @@ public/
 server/
 |---index.js
 |---api/
-package.json
 client/
 |--src/
     |
@@ -21,3 +20,8 @@ client/
             |--- componentA.tests.jest
         |-- componentB/
         |-- componentC/
+package.json
+babel.config.json
+package-lock.json
+README.md
+webpack.config.js
