@@ -1,12 +1,10 @@
 const path = require('path');
-
-const SRC_DIR = path.join(__dirname, '/src/index.js')
-const DIST_DIR = path.join(__dirname, '..', 'public');
+const webpack = require("webpack");
 
 module.exports = {
-  entry: SRC_DIR,
+  entry: './src/index.js',
   output: {
-    path: DIST_DIR,
+    path: path.resolve(__dirname, './public'),
     filename: 'bundle.js',
   },
   mode: 'development',
