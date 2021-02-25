@@ -12,13 +12,6 @@
     "type": "git",
     "url": "git+https://github.com/Tranquil-Tucans/catwalk.git"
   },
-  "jest": {
-    "setupFilesAfterEnv": ["jest-enzyme"],
-    "testEnvironment": "enzyme",
-    "testEnvironmentOptions": {
-      "enzymeAdapter": "react16"
-    }
-  },
   "author": "",
   "license": "ISC",
   "bugs": {
