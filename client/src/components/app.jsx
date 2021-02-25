@@ -1,24 +1,24 @@
 import React from 'react';
-import ProductDetail from './ProductDetail.jsx';
-import RelatedItemsOutfit from './RelatedItemsOutfit.jsx';
-import RatingsReviews from './RatingsReviews.jsx';
+import ProductDetail from './ProductDetail';
+import RelatedItemsOutfit from './RelatedItemsOutfit';
+import RatingsReviews from './RatingsReviews';
 
 class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-
-    }
+    };
   }
+
   render() {
     return (
       <div>
         Product Page
-        <ProductDetail/>
-        <RelatedItemsOutfit/>
-        <RatingsReviews/>
+        <ProductDetail />
+        <RelatedItemsOutfit />
+        <RatingsReviews />
       </div>
-    )
+    );
   }
 }
 

@@ -1,12 +1,12 @@
 const path = require('path');
-const webpack = require("webpack");
 
 module.exports = {
-  entry: './client/src/index.js',
+  entry: './client/src/index.jsx',
   output: {
     path: path.resolve(__dirname, './public'),
     filename: 'bundle.js',
   },
+  resolve: { extensions: ['.js', '.jsx'] },
   mode: 'development',
   module: {
     rules: [
@@ -16,10 +16,10 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
-          }
-        }
-      }
-    ]
-  }
-}
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
+        },
+      },
+    ],
+  },
+};
