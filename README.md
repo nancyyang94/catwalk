@@ -20,7 +20,7 @@ client/src
       |-- App.jsx
       |-- ProductDetail.jsx/
       |-- RatingsReviews.jsx/
-      |-- RelatedItemsOutfit.jsx/
+      |-- Overview.jsx/
   |--- index.js
 package.json
 babel.config.json

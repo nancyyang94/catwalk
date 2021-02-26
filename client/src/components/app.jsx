@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 import React from 'react';
 import axios from 'axios';
-import ProductDetail from './ProductDetail';
-import RelatedItemsOutfit from './RelatedItemsOutfit';
-import RatingsReviews from './RatingsReviews';
+import Overview from './Overview/Overview';
+import RelatedItemsOutfit from './RelatedItemsOutfit/RelatedItemsOutfit';
+import RatingsReviews from './RatingsReviews/RatingsReviews';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,19 +11,19 @@ class App extends React.Component {
     this.state = {
       product: {},
     };
+    this.getProduct = this.getProduct.bind(this);
   }
 
   componentDidMount() {
-    this.getProduct();
+    this.getProduct('14931');
   }
 
-  getProduct() {
-    axios.get('/products/14931')
+  getProduct(id) {
+    axios.get(`/products/${id}`)
       .then((response) => {
-        console.log(response.data);
-        this.setState({
+        this.setState(({
           product: response.data,
-        });
+        }));
       })
       .catch((error) => {
         console.log(error);
@@ -35,9 +35,9 @@ class App extends React.Component {
     return (
       <div>
         Product Page
-        <ProductDetail product_id={product} />
-        <RelatedItemsOutfit product_id={product} />
-        <RatingsReviews product_id={product} />
+        <Overview product_id={product} getProduct={this.getProduct} />
+        <RelatedItemsOutfit product_id={product} getProduct={this.getProduct} />
+        <RatingsReviews product_id={product} getProduct={this.getProduct} />
       </div>
     );
   }
