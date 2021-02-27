@@ -9,7 +9,7 @@ const Descriptions = ({ productInfo }) => (
     <div>{productInfo.description}</div>
     <div>{productInfo.defaultPrice}</div>
     <div>{productInfo.salePrice}</div>
-    <div>{productInfo.styleId}</div>
+    <div>5 Stars review</div>
   </div>
 );
 

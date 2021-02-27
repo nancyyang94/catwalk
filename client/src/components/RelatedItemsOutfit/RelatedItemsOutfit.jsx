@@ -8,7 +8,6 @@ class RelatedItemsOutfit extends React.Component {
     super(props);
     this.state = {
       related: [],
-      // i need to get all the styles of the related items....
     };
     // this.getRelated = this.getRelated.bind(this);
   }
@@ -36,9 +35,10 @@ class RelatedItemsOutfit extends React.Component {
     const { related } = this.state;
     return (
       <div>
-        {/* <button>LEFT</button> */}
+        Related List
+        <button type="button">LEFT</button>
         <RelatedItemsList related={related} />
-        {/* <button>Right</button> */}
+        <button type="button">Right</button>
       </div>
     );
   }

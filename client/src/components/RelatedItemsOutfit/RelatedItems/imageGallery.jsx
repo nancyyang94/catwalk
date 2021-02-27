@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ImageContainer from '../styledComponents/imageContainer';
+import Image from '../styledComponents/image';
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -13,12 +15,12 @@ class ImageGallery extends React.Component {
     const { photos } = this.props;
     return (
       <div>
-        <div>
-          <img src={photos[0].url} alt="sweater" />
-        </div>
-        <div>
+        <ImageContainer>
+          <Image src={photos[0].url} alt="sweater" />
+        </ImageContainer>
+        {/* <div>
           <img src={photos[0].thumbnail_url} alt="sweater" />
-        </div>
+        </div> */}
       </div>
     );
   }

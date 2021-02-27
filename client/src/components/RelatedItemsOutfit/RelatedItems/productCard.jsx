@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ImageGallery from './imageGallery';
 import Descriptions from './descriptions';
+import ProductContainer from '../styledComponents/productContainer';
 
-const ProductCard = ({ productInfo }) => (
-  <div>
-    <ImageGallery photos={productInfo.photos} />
-    <Descriptions productInfo={productInfo} />
-  </div>
-);
+const ProductCard = ({ productInfo }) => {
+  const [isPressed, setPressed] = useState(false);
+
+  const comparisonModal = (bool) => (
+    bool ? setPressed(false) : setPressed(true)
+  );
+
+  return (
+    <ProductContainer>
+      <button type="button" onClick={() => comparisonModal(isPressed)}>Star</button>
+      <ImageGallery photos={productInfo.photos} />
+      <Descriptions productInfo={productInfo} />
+    </ProductContainer>
+  );
+};
 
 export default ProductCard;
 
