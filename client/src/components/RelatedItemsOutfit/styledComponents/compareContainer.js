@@ -7,7 +7,7 @@ const CompareContainer = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
   column-gap: 10px;
-  row-gap: 10px;
+  row-gap: 20px;
   overflow: auto;
   justify-items: center;
 `;
