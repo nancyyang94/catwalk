@@ -31,5 +31,5 @@ RelatedItemsList.defaultProps = {
   related: null,
   getProduct: PropTypes.func,
   mainFeatures: null,
-  mainName: PropTypes.string,
+  mainName: null,
 };

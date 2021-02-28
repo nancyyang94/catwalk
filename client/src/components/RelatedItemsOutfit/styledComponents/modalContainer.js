@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 
-const CompareContainer = styled.div`
-  height: 100px;
-  width: auto;
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: auto;
-  overflow: auto;
+const ModalContainer = styled.div`
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
-export default CompareContainer;
+export default ModalContainer;

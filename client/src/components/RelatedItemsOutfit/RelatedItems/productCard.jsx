@@ -10,12 +10,8 @@ const ProductCard = ({
 }) => {
   const [isPressed, setPressed] = useState(false);
   const [combinedFeatures, setCombinedFeatures] = useState([]);
-  // const [relatedFeature, setRelatedFeature] = useState(productInfo.features);
-  // console.log(mainFeature);
-  // console.log(relatedFeature);
+
   const combiner = (feat1, feat2) => {
-    // console.log(feat1);
-    // console.log(feat2);
     const combined = {};
     for (let i = 0; i < feat1.length; i += 1) {
       if (combined[feat1[i].feature] === undefined) {
@@ -29,18 +25,13 @@ const ProductCard = ({
         combined[feat2[j].feature][1] = feat2[j].value;
       }
     }
-    // console.log(combined);
     const final = [];
-    // for (const feature in combined) {
-    //   final.push(combined[feature][0], feature, combined[feature][1]);
-    // }
     const feats = Object.keys(combined);
     const values = Object.values(combined);
     for (let k = 0; k < feats.length; k += 1) {
       final.push(values[k][0], feats[k], values[k][1]);
     }
     setCombinedFeatures(final);
-    console.log(final);
   };
 
   const comparisonModal = (event, bool, mainFeat, relatedFeat) => {
@@ -49,7 +40,9 @@ const ProductCard = ({
     } else {
       setPressed(true);
     }
-    combiner(mainFeat, relatedFeat);
+    if (!combinedFeatures.length) {
+      combiner(mainFeat, relatedFeat);
+    }
     event.stopPropagation();
   };
 
@@ -63,6 +56,7 @@ const ProductCard = ({
           combinedFeatures={combinedFeatures}
           product1={mainName}
           product2={productInfo.name}
+          comparisonModal={comparisonModal}
         />
       ) : null}
     </ProductContainer>
