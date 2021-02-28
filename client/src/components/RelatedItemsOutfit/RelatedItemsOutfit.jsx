@@ -8,8 +8,13 @@ class RelatedItemsOutfit extends React.Component {
     super(props);
     this.state = {
       related: [],
+      shifted: [],
+      isPrevious: false,
+      isNext: true,
     };
     // this.getRelated = this.getRelated.bind(this);
+    this.right = this.right.bind(this);
+    this.left = this.left.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -31,14 +36,56 @@ class RelatedItemsOutfit extends React.Component {
       });
   }
 
+  right() {
+    const {
+      related, shifted,
+    } = this.state;
+    if (related.length > 5) {
+      const copy = related.slice();
+      const shift = copy.shift();
+      this.setState({
+        related: copy,
+        shifted: shifted.concat(shift),
+        isPrevious: true,
+      });
+      if (related.length === 6) {
+        this.setState({
+          isNext: false,
+        });
+      }
+    }
+  }
+
+  left() {
+    const {
+      related, shifted,
+    } = this.state;
+    if (shifted.length) {
+      const copy = related.slice();
+      const copyShifted = shifted.slice();
+      const popped = copyShifted.pop();
+      copy.unshift(popped);
+      this.setState({
+        related: copy,
+        shifted: copyShifted,
+        isNext: true,
+      });
+      if (copyShifted.length === 0) {
+        this.setState({
+          isPrevious: false,
+        });
+      }
+    }
+  }
+
   render() {
-    const { related } = this.state;
+    const { related, isPrevious, isNext } = this.state;
     return (
       <div>
         Related List
-        <button type="button">LEFT</button>
+        {isPrevious ? <button type="button" onClick={this.left}>LEFT</button> : null}
         <RelatedItemsList related={related} />
-        <button type="button">Right</button>
+        {isNext ? <button type="button" onClick={this.right}>Right</button> : null}
       </div>
     );
   }
