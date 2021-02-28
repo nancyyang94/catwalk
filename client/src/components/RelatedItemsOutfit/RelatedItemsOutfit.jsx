@@ -2,6 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import RelatedItemsList from './RelatedItems/relatedItemsList';
+import Left from './styledComponents/left';
+import Right from './styledComponents/right';
+import RelatedContainer from './styledComponents/relatedContainer';
 
 class RelatedItemsOutfit extends React.Component {
   constructor(props) {
@@ -85,17 +88,17 @@ class RelatedItemsOutfit extends React.Component {
     const { related, isPrevious, isNext } = this.state;
     const { getProduct, product } = this.props;
     return (
-      <div>
+      <RelatedContainer>
         Related List
-        {isPrevious ? <button type="button" onClick={this.left}>LEFT</button> : null}
+        {isPrevious ? <Left type="button" onClick={this.left}>Left</Left> : null}
         <RelatedItemsList
           related={related}
           getProduct={getProduct}
           mainFeatures={product.features}
           mainName={product.name}
         />
-        {isNext ? <button type="button" onClick={this.right}>Right</button> : null}
-      </div>
+        {isNext ? <Right type="button" onClick={this.right}>Right</Right> : null}
+      </RelatedContainer>
     );
   }
 }

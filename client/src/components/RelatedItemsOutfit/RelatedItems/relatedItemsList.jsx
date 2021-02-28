@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from './productCard';
-import RelatedContainer from '../styledComponents/relatedContainer';
+import RelatedItemsContainer from '../styledComponents/relatedItemsContainer';
 
 const RelatedItemsList = ({
   related, getProduct, mainFeatures, mainName,
 }) => (
-  <RelatedContainer>
+  <RelatedItemsContainer>
     {related.map((productInfo) => (
       <ProductCard
         key={productInfo.styleId}
@@ -16,7 +16,7 @@ const RelatedItemsList = ({
         mainName={mainName}
       />
     ))}
-  </RelatedContainer>
+  </RelatedItemsContainer>
 );
 export default RelatedItemsList;
 
