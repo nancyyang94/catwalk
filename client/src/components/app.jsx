@@ -35,9 +35,9 @@ class App extends React.Component {
     return (
       <div>
         Product Page
-        <Overview product_id={product} getProduct={this.getProduct} />
-        <RelatedItemsOutfit product_id={product} getProduct={this.getProduct} />
-        <RatingsReviews product_id={product} getProduct={this.getProduct} />
+        <Overview product={product} getProduct={this.getProduct} />
+        <RelatedItemsOutfit product={product} getProduct={this.getProduct} />
+        <RatingsReviews product={product} getProduct={this.getProduct} />
       </div>
     );
   }
