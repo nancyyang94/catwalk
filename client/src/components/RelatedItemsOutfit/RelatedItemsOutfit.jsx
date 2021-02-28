@@ -32,6 +32,9 @@ class RelatedItemsOutfit extends React.Component {
       .then((response) => {
         this.setState({
           related: response.data,
+          isPrevious: false,
+          isNext: true,
+          shifted: [],
         });
       });
   }
@@ -80,11 +83,17 @@ class RelatedItemsOutfit extends React.Component {
 
   render() {
     const { related, isPrevious, isNext } = this.state;
+    const { getProduct, product } = this.props;
     return (
       <div>
         Related List
         {isPrevious ? <button type="button" onClick={this.left}>LEFT</button> : null}
-        <RelatedItemsList related={related} />
+        <RelatedItemsList
+          related={related}
+          getProduct={getProduct}
+          mainFeatures={product.features}
+          mainName={product.name}
+        />
         {isNext ? <button type="button" onClick={this.right}>Right</button> : null}
       </div>
     );
@@ -106,8 +115,10 @@ RelatedItemsOutfit.propTypes = {
     updated_at: PropTypes.string,
     features: PropTypes.arrayOf(PropTypes.object),
   }),
+  getProduct: PropTypes.func,
 };
 
 RelatedItemsOutfit.defaultProps = {
   product: null,
+  getProduct: PropTypes.func,
 };

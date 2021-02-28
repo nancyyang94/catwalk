@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const ProductContainer = styled.div`
   flex-basis: 30%
-  height: 450px;
+  height: auto;
   width: 300px;
   border: 1px solid black;
   flex-shrink: 0;
