@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ProductContainer = styled.div`
+const ProductContainer = styled.li`
   flex-basis: 30%
   height: auto;
   width: 300px;
@@ -11,6 +11,7 @@ const ProductContainer = styled.div`
   margin-left: 5px;
   margin-right: 5px;
   position: relative;
+  list-style-type: none;
 `;
 
 export default ProductContainer;

@@ -5,17 +5,17 @@ import RelatedItemsList from './RelatedItems/relatedItemsList';
 import Left from './styledComponents/left';
 import Right from './styledComponents/right';
 import RelatedContainer from './styledComponents/relatedContainer';
+import SvgArrowR from './styledComponents/svgArrowR';
+import SvgArrowL from './styledComponents/svgArrowL';
 
 class RelatedItemsOutfit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       related: [],
-      shifted: [],
       isPrevious: false,
       isNext: true,
     };
-    // this.getRelated = this.getRelated.bind(this);
     this.right = this.right.bind(this);
     this.left = this.left.bind(this);
   }
@@ -25,9 +25,6 @@ class RelatedItemsOutfit extends React.Component {
     if (product !== prevProps.product) {
       this.getRelated(product.id);
     }
-    // if (prevState.input !== this.state.input) {
-
-    // }
   }
 
   getRelated(id) {
@@ -37,50 +34,36 @@ class RelatedItemsOutfit extends React.Component {
           related: response.data,
           isPrevious: false,
           isNext: true,
-          shifted: [],
         });
       });
+    const slider = document.getElementById('slider');
+    slider.scrollLeft = 0;
   }
 
   right() {
-    const {
-      related, shifted,
-    } = this.state;
-    if (related.length > 5) {
-      const copy = related.slice();
-      const shift = copy.shift();
+    const slider = document.getElementById('slider');
+    this.setState({
+      isPrevious: true,
+    });
+    const scrollLeftMax = slider.scrollWidth - slider.clientWidth;
+    slider.scrollLeft += 312;
+    if (slider.scrollLeft >= scrollLeftMax - 312) {
       this.setState({
-        related: copy,
-        shifted: shifted.concat(shift),
-        isPrevious: true,
+        isNext: false,
       });
-      if (related.length === 6) {
-        this.setState({
-          isNext: false,
-        });
-      }
     }
   }
 
   left() {
-    const {
-      related, shifted,
-    } = this.state;
-    if (shifted.length) {
-      const copy = related.slice();
-      const copyShifted = shifted.slice();
-      const popped = copyShifted.pop();
-      copy.unshift(popped);
+    const slider = document.getElementById('slider');
+    slider.scrollLeft -= 312;
+    this.setState({
+      isNext: true,
+    });
+    if (slider.scrollLeft <= 312) {
       this.setState({
-        related: copy,
-        shifted: copyShifted,
-        isNext: true,
+        isPrevious: false,
       });
-      if (copyShifted.length === 0) {
-        this.setState({
-          isPrevious: false,
-        });
-      }
     }
   }
 
@@ -88,16 +71,16 @@ class RelatedItemsOutfit extends React.Component {
     const { related, isPrevious, isNext } = this.state;
     const { getProduct, product } = this.props;
     return (
-      <RelatedContainer>
+      <RelatedContainer className="carousel">
         Related List
-        {isPrevious ? <Left type="button" onClick={this.left}>Left</Left> : null}
+        {isPrevious ? <Left type="button" id="goLeft" onClick={this.left}><SvgArrowL width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowL></Left> : null}
         <RelatedItemsList
           related={related}
           getProduct={getProduct}
           mainFeatures={product.features}
           mainName={product.name}
         />
-        {isNext ? <Right type="button" onClick={this.right}>Right</Right> : null}
+        {isNext ? <Right type="button" id="goRight" onClick={this.right}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
       </RelatedContainer>
     );
   }

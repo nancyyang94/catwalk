@@ -6,7 +6,7 @@ import RelatedItemsContainer from '../styledComponents/relatedItemsContainer';
 const RelatedItemsList = ({
   related, getProduct, mainFeatures, mainName,
 }) => (
-  <RelatedItemsContainer>
+  <RelatedItemsContainer id="slider">
     {related.map((productInfo) => (
       <ProductCard
         key={productInfo.styleId}
@@ -14,6 +14,7 @@ const RelatedItemsList = ({
         getProduct={getProduct}
         mainFeatures={mainFeatures}
         mainName={mainName}
+        className="slide"
       />
     ))}
   </RelatedItemsContainer>

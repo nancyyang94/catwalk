@@ -5,7 +5,7 @@ import DescriptionsContainer from '../styledComponents/descriptionsContainer';
 
 const Descriptions = ({ productInfo }) => (
   <DescriptionsContainer>
-    <div>{productInfo.category}</div>
+    <div>{productInfo.category.toUpperCase()}</div>
     <div><b>{productInfo.name}</b></div>
     <div>{productInfo.style}</div>
     <div>{productInfo.description}</div>

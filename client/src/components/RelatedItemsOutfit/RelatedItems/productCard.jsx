@@ -49,7 +49,7 @@ const ProductCard = ({
 
   return (
     <ProductContainer onClick={() => getProduct(productInfo.id)}>
-      <RelatedAction type="button" onClick={(event) => comparisonModal(event, isPressed, mainFeatures, productInfo.features)}>★</RelatedAction>
+      <RelatedAction type="button" onClick={(event) => comparisonModal(event, isPressed, mainFeatures, productInfo.features)}>☆</RelatedAction>
       <ImageGallery photos={productInfo.photos} />
       <Descriptions productInfo={productInfo} />
       {isPressed ? (
