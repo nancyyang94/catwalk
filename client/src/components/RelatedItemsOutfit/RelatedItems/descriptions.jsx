@@ -1,40 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SalePrice from '../styledComponents/salePrice';
+import DescriptionsContainer from '../styledComponents/descriptionsContainer';
 
 const Descriptions = ({ productInfo }) => (
-  <div>
+  <DescriptionsContainer>
     <div>{productInfo.category}</div>
-    <div>{productInfo.name}</div>
+    <div><b>{productInfo.name}</b></div>
     <div>{productInfo.style}</div>
     <div>{productInfo.description}</div>
     {productInfo.default
       ? (
         <div>
-          Default Price:
-          {' '}
           {`$${productInfo.defaultPrice}`}
         </div>
       )
       : (
         <div>
-          Sale:
-          {' '}
           <SalePrice>
             {productInfo.salePrice ? `$${productInfo.salePrice}` : 'Sold Out'}
           </SalePrice>
-          {' '}
-          Original Price:
           {' '}
           <strike>
             {`$${productInfo.defaultPrice}`}
           </strike>
         </div>
       )}
-    {/* <div>{productInfo.defaultPrice}</div>
-    <div>{productInfo.salePrice}</div> */}
     <div>5 Stars review</div>
-  </div>
+  </DescriptionsContainer>
 );
 
 export default Descriptions;

@@ -5,9 +5,10 @@ const RelatedContainer = styled.div`
   height: auto;
   display: flex;
   flex-direction: row;
-  /* flex-wrap: wrap; */
   margin: auto;
   max-width: 1560px;
+  position: relative;
+  z-index: 1;
 `;
 
 export default RelatedContainer;

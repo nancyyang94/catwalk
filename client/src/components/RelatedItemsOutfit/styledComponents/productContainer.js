@@ -10,6 +10,7 @@ const ProductContainer = styled.div`
   margin-bottom: 5px;
   margin-left: 5px;
   margin-right: 5px;
+  position: relative;
 `;
 
 export default ProductContainer;

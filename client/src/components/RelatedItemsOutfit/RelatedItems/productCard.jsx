@@ -4,6 +4,7 @@ import ImageGallery from './imageGallery';
 import Descriptions from './descriptions';
 import ComparissonModal from './comparissonModal';
 import ProductContainer from '../styledComponents/productContainer';
+import RelatedAction from '../styledComponents/relatedAction';
 
 const ProductCard = ({
   productInfo, getProduct, mainFeatures, mainName,
@@ -48,7 +49,7 @@ const ProductCard = ({
 
   return (
     <ProductContainer onClick={() => getProduct(productInfo.id)}>
-      <button type="button" onClick={(event) => comparisonModal(event, isPressed, mainFeatures, productInfo.features)}>Star</button>
+      <RelatedAction type="button" onClick={(event) => comparisonModal(event, isPressed, mainFeatures, productInfo.features)}>★</RelatedAction>
       <ImageGallery photos={productInfo.photos} />
       <Descriptions productInfo={productInfo} />
       {isPressed ? (

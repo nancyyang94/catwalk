@@ -5,6 +5,7 @@ const Modal = styled.div`
   padding: 20px;
   border: 1px solid black;
   height: 300px;
+  overflow: auto;
 `;
 
 export default Modal;

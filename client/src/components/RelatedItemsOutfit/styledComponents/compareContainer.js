@@ -10,6 +10,8 @@ const CompareContainer = styled.div`
   row-gap: 20px;
   overflow: auto;
   justify-items: center;
+  position: relative;
+  z-index: 1000;
 `;
 
 export default CompareContainer;
