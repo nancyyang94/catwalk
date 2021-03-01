@@ -1,16 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Ratings from './Ratings';
 import ReviewsList from './ReviewsList';
-
-const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: auto auto auto;
-  grid-gap: 60px;
-  height: 150px;
-`;
-// props.product = { id: 14931, name: Manuela Pants}
+import RatingsReviewsContainer from './styledComponents/RatingsReviewsContainer';
 
 class RatingsReviews extends React.Component {
   constructor(props) {
@@ -27,10 +19,10 @@ class RatingsReviews extends React.Component {
 
   render() {
     return (
-      <Wrapper>
+      <RatingsReviewsContainer>
         <Ratings />
         <ReviewsList />
-      </Wrapper>
+      </RatingsReviewsContainer>
     );
   }
 }

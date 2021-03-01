@@ -1,20 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import mockData from './mockData';
 import IndividualReview from './IndividualReview';
+import ReviewListContainer from './styledComponents/ReviewListContainer';
 
 console.log(mockData);
-
-const ReviewListContainer = styled.div`
-  background-color: #ffffff;
-  color: #525252;
-  grid-column: 2 / 4;
-  padding: 25px;
-
-  .sort {
-    display: flex;
-  }
-`;
 
 const ReviewsList = () => (
   <ReviewListContainer>

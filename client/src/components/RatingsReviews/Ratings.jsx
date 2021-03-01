@@ -1,22 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import ReactStars from 'react-rating-stars-component';
-
-const RatingsContainer = styled.div`
-  background-color: #ffffff;
-  color: #525252;
-  padding: 25px;
-
-  h1 {
-    font-size: 50px;
-    margin-top: 0px;
-    margin-right: 20px;
-  }
-
-  .star-summary {
-    display: flex;
-  }
-`;
+import RatingsContainer from './styledComponents/RatingsContainer';
 
 class Ratings extends React.Component {
   constructor(props) {
