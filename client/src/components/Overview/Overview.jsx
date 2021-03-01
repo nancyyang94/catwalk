@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import config from '../../../../config';
+import ProductInfo from './ProductInfo/ProductInfo';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -45,6 +46,9 @@ class Overview extends React.Component {
         </div>
         <div>
           {styles[0].name}
+        </div>
+        <div>
+          <ProductInfo />
         </div>
       </div>
     );
