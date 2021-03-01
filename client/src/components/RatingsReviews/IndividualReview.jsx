@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactStars from 'react-rating-stars-component';
-// import styled from 'styled-components';
 
 const IndividualReview = ({ review }) => {
   const {
@@ -23,11 +22,11 @@ const IndividualReview = ({ review }) => {
         isHalf
         edit={false}
       />
-      <p>{reviewerName}</p>
       <p>{date}</p>
       <h3>{ summary }</h3>
       <p>{body}</p>
-      <p>{`helpful? yes ${helpfulness}`}</p>
+      <p>{reviewerName}</p>
+      <p>{`Was this review helpful? Yes ${helpfulness}`}</p>
     </div>
   );
 };

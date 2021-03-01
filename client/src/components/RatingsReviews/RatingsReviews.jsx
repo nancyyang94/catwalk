@@ -18,10 +18,11 @@ class RatingsReviews extends React.Component {
   }
 
   render() {
+    const { product } = this.props;
     return (
       <RatingsReviewsContainer>
         <Ratings />
-        <ReviewsList />
+        <ReviewsList product={product} productName={product.name} />
       </RatingsReviewsContainer>
     );
   }
