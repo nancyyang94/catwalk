@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+// import ProductContainer from './productContainer';
 
 const RelatedItemsContainer = styled.ul`
   overflow: auto;
@@ -14,3 +15,9 @@ const RelatedItemsContainer = styled.ul`
 `;
 
 export default RelatedItemsContainer;
+
+// &:hover {
+//   ${ProductContainer} {
+//     box-shadow: 10px 10px 8px #888888;
+//   }
+// }

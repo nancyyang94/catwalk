@@ -13,8 +13,8 @@ class RelatedItemsOutfit extends React.Component {
     super(props);
     this.state = {
       related: [],
-      isPrevious: false,
-      isNext: true,
+      hasPrevious: false,
+      hasNext: true,
     };
     this.right = this.right.bind(this);
     this.left = this.left.bind(this);
@@ -32,8 +32,8 @@ class RelatedItemsOutfit extends React.Component {
       .then((response) => {
         this.setState({
           related: response.data,
-          isPrevious: false,
-          isNext: true,
+          hasPrevious: false,
+          hasNext: true,
         });
       });
     const slider = document.getElementById('slider');
@@ -43,13 +43,13 @@ class RelatedItemsOutfit extends React.Component {
   right() {
     const slider = document.getElementById('slider');
     this.setState({
-      isPrevious: true,
+      hasPrevious: true,
     });
     const scrollLeftMax = slider.scrollWidth - slider.clientWidth;
     slider.scrollLeft += 312;
     if (slider.scrollLeft >= scrollLeftMax - 312) {
       this.setState({
-        isNext: false,
+        hasNext: false,
       });
     }
   }
@@ -58,29 +58,29 @@ class RelatedItemsOutfit extends React.Component {
     const slider = document.getElementById('slider');
     slider.scrollLeft -= 312;
     this.setState({
-      isNext: true,
+      hasNext: true,
     });
     if (slider.scrollLeft <= 312) {
       this.setState({
-        isPrevious: false,
+        hasPrevious: false,
       });
     }
   }
 
   render() {
-    const { related, isPrevious, isNext } = this.state;
+    const { related, hasPrevious, hasNext } = this.state;
     const { getProduct, product } = this.props;
     return (
       <RelatedContainer className="carousel">
         Related List
-        {isPrevious ? <Left type="button" id="goLeft" onClick={this.left}><SvgArrowL width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowL></Left> : null}
+        {hasPrevious ? <Left type="button" id="goLeft" onClick={this.left}><SvgArrowL width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowL></Left> : null}
         <RelatedItemsList
           related={related}
           getProduct={getProduct}
           mainFeatures={product.features}
           mainName={product.name}
         />
-        {isNext ? <Right type="button" id="goRight" onClick={this.right}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
+        {hasNext ? <Right type="button" id="goRight" onClick={this.right}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
       </RelatedContainer>
     );
   }
