@@ -21,6 +21,7 @@ class App extends React.Component {
   getProduct(id) {
     axios.get(`/products/${id}`)
       .then((response) => {
+        console.log(response.data);
         this.setState(({
           product: response.data,
         }));
