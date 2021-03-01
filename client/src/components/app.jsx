@@ -10,8 +10,17 @@ class App extends React.Component {
     super(props);
     this.state = {
       product: {},
+      currentStyle: {
+        // style name
+        // default price
+        // default is true or false
+        // sale price
+        // style id
+        // photos
+      },
     };
     this.getProduct = this.getProduct.bind(this);
+    this.updateCurrentStyle = this.updateCurrentStyle.bind(this);
   }
 
   componentDidMount() {
@@ -31,13 +40,27 @@ class App extends React.Component {
       });
   }
 
+  updateCurrentStyle(styleInfo) {
+    this.state({
+      currentStyle: styleInfo,
+    });
+  }
+
   render() {
-    const { product } = this.state;
+    const { product, currentStyle } = this.state;
     return (
       <div>
         Product Page
-        <Overview product={product} getProduct={this.getProduct} />
-        <RelatedItemsOutfit product={product} getProduct={this.getProduct} />
+        <Overview
+          product={product}
+          getProduct={this.getProduct}
+          updateCurrentStyle={this.updateCurrentStyle}
+        />
+        <RelatedItemsOutfit
+          product={product}
+          getProduct={this.getProduct}
+          currentStyle={currentStyle}
+        />
         <RatingsReviews product={product} getProduct={this.getProduct} />
       </div>
     );
