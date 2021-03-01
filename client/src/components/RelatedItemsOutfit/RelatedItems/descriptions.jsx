@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SalePrice from '../styledComponents/salePrice';
-import DescriptionsContainer from '../styledComponents/descriptionsContainer';
+import SalePrice from '../styledComponents/styledRelated/salePrice';
+import DescriptionsContainer from '../styledComponents/styledRelated/descriptionsContainer';
 
 const Descriptions = ({ productInfo }) => (
   <DescriptionsContainer>

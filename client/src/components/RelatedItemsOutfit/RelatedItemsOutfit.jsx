@@ -2,11 +2,13 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import RelatedItemsList from './RelatedItems/relatedItemsList';
-import Left from './styledComponents/left';
-import Right from './styledComponents/right';
-import RelatedContainer from './styledComponents/relatedContainer';
-import SvgArrowR from './styledComponents/svgArrowR';
-import SvgArrowL from './styledComponents/svgArrowL';
+import Left from './styledComponents/styledRelated/left';
+import Right from './styledComponents/styledRelated/right';
+import RelatedContainer from './styledComponents/styledRelated/relatedContainer';
+import SvgArrowR from './styledComponents/styledRelated/svgArrowR';
+import SvgArrowL from './styledComponents/styledRelated/svgArrowL';
+import OutfitContainer from './styledComponents/styledOutfit/outfitContainer';
+import OutfitList from './Outfit/outfitList';
 
 class RelatedItemsOutfit extends React.Component {
   constructor(props) {
@@ -69,19 +71,27 @@ class RelatedItemsOutfit extends React.Component {
 
   render() {
     const { related, hasPrevious, hasNext } = this.state;
-    const { getProduct, product } = this.props;
+    const { getProduct, product, currentStyle } = this.props;
     return (
-      <RelatedContainer className="carousel">
-        Related List
-        {hasPrevious ? <Left type="button" id="goLeft" onClick={this.left}><SvgArrowL width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowL></Left> : null}
-        <RelatedItemsList
-          related={related}
-          getProduct={getProduct}
-          mainFeatures={product.features}
-          mainName={product.name}
-        />
-        {hasNext ? <Right type="button" id="goRight" onClick={this.right}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
-      </RelatedContainer>
+      <div>
+        <RelatedContainer className="carousel">
+          <h2>Related List</h2>
+          {hasPrevious ? <Left type="button" id="goLeft" onClick={this.left}><SvgArrowL width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowL></Left> : null}
+          <RelatedItemsList
+            related={related}
+            getProduct={getProduct}
+            mainFeatures={product.features}
+            mainName={product.name}
+          />
+          {hasNext ? <Right type="button" id="goRight" onClick={this.right}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
+        </RelatedContainer>
+        <OutfitContainer>
+          <h2>Outfit List</h2>
+          {hasPrevious ? <Left type="button" id="goLeft" onClick={this.left}><SvgArrowL width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowL></Left> : null}
+          <OutfitList currentStyle={currentStyle} />
+          {hasNext ? <Right type="button" id="goRight" onClick={this.right}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
+        </OutfitContainer>
+      </div>
     );
   }
 }
@@ -101,10 +111,19 @@ RelatedItemsOutfit.propTypes = {
     updated_at: PropTypes.string,
     features: PropTypes.arrayOf(PropTypes.object),
   }),
+  currentStyle: PropTypes.shape({
+    style_id: PropTypes.string,
+    name: PropTypes.string,
+    original_price: PropTypes.string,
+    sale_price: PropTypes.string,
+    'default?': PropTypes.bool,
+    photos: PropTypes.arrayOf(PropTypes.object),
+  }),
   getProduct: PropTypes.func,
 };
 
 RelatedItemsOutfit.defaultProps = {
   product: null,
   getProduct: PropTypes.func,
+  currentStyle: null,
 };

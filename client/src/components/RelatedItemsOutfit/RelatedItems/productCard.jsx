@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import ImageGallery from './imageGallery';
 import Descriptions from './descriptions';
 import ComparissonModal from './comparissonModal';
-import ProductContainer from '../styledComponents/productContainer';
-import RelatedAction from '../styledComponents/relatedAction';
+import ProductContainer from '../styledComponents/styledRelated/productContainer';
+import RelatedAction from '../styledComponents/styledRelated/relatedAction';
 
 const ProductCard = ({
   productInfo, getProduct, mainFeatures, mainName,
@@ -50,7 +50,7 @@ const ProductCard = ({
   return (
     <ProductContainer onClick={() => getProduct(productInfo.id)}>
       <RelatedAction type="button" onClick={(event) => comparisonModal(event, isPressed, mainFeatures, productInfo.features)}>☆</RelatedAction>
-      <ImageGallery photos={productInfo.photos} />
+      <ImageGallery photos={productInfo.photos} category={productInfo.category} />
       <Descriptions productInfo={productInfo} />
       {isPressed ? (
         <ComparissonModal
