@@ -48,20 +48,20 @@ const ProductCard = ({
     event.stopPropagation();
   };
 
-  const addShadow = (event) => {
-    if (event.target.className.split(' ').indexOf('productContainer') > -1) {
-      event.target.style.boxShadow = '0 0 5px #999999';
-    }
-  };
+  // const addShadow = (event) => {
+  //   if (event.target.id === 'productContainer') {
+  //     event.target.style.boxShadow = '0 0 5px #999999';
+  //   }
+  // };
 
-  const removeShadow = (event) => {
-    if (event.target.className.split(' ').indexOf('productContainer') > -1) {
-      event.target.style.boxShadow = '';
-    }
-  };
+  // const removeShadow = (event) => {
+  //   if (event.target.id === 'productContainer') {
+  //     event.target.style.boxShadow = '';
+  //   }
+  // };
 
   return (
-    <ProductContainer className="productContainer" onClick={() => getProduct(productInfo.id)} onMouseEnter={(event) => addShadow(event)} onMouseLeave={(event) => removeShadow(event)}>
+    <ProductContainer id="productContainer" onClick={() => getProduct(productInfo.id)}>
       <RelatedAction type="button" onClick={(event) => comparisonModal(event, isPressed, mainFeatures, productInfo.features)}>☆</RelatedAction>
       <ImageGallery photos={productInfo.photos} category={productInfo.category} />
       <Descriptions productInfo={productInfo} />

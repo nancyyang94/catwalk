@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 const ButtonContainer = styled.div`
   position: absolute;
-  right: -1%;
-  top: 2%;
+  right: -3%;
+  top: 4%;
   padding-left: 230px;
-  height: 100%;
+  height: 99%;
   background-color: white;
   filter:blur(5px);
   background-image: linear-gradient(to left,  rgba(255,255,255,1), rgba(255,255,255,0));

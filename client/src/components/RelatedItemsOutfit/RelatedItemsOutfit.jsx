@@ -86,10 +86,15 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
     let slider;
     if (event.target.name === 'relatedLeft') {
       slider = document.getElementById('slider');
-      slider.scrollLeft -= 312;
-      setHasRelatedNext(true);
-      if (slider.scrollLeft <= 312) {
-        setHasRelatedPrevious(false);
+      if (slider.scrollLeft >= slider.scrollWidth - slider.clientWidth - 312) {
+        slider.scrollLeft -= 307;
+        setHasRelatedNext(true);
+      } else {
+        slider.scrollLeft -= 312;
+        setHasRelatedNext(true);
+        if (slider.scrollLeft <= 312) {
+          setHasRelatedPrevious(false);
+        }
       }
     } else {
       slider = document.getElementById('slider2');
