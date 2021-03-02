@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 const Right = styled.button`
   position: absolute;
-  right: 2%;
-  top: 45%;
+  right: 4%;
+  top: 0%;
+  height: 100%;
   background: none;
   border: none;
-  color: black;
   cursor: pointer;
-  z-index: 100;
+  z-index: 1000;
   outline: 0;
 `;
 

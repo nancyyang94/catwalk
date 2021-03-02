@@ -1,10 +1,11 @@
+/* eslint-disable no-param-reassign */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ImageGallery from './imageGallery';
 import Descriptions from './descriptions';
 import ComparissonModal from './comparissonModal';
-import ProductContainer from '../styledComponents/productContainer';
-import RelatedAction from '../styledComponents/relatedAction';
+import ProductContainer from '../styledComponents/styledRelated/productContainer';
+import RelatedAction from '../styledComponents/styledRelated/relatedAction';
 
 const ProductCard = ({
   productInfo, getProduct, mainFeatures, mainName,
@@ -47,10 +48,22 @@ const ProductCard = ({
     event.stopPropagation();
   };
 
+  // const addShadow = (event) => {
+  //   if (event.target.id === 'productContainer') {
+  //     event.target.style.boxShadow = '0 0 5px #999999';
+  //   }
+  // };
+
+  // const removeShadow = (event) => {
+  //   if (event.target.id === 'productContainer') {
+  //     event.target.style.boxShadow = '';
+  //   }
+  // };
+
   return (
-    <ProductContainer onClick={() => getProduct(productInfo.id)}>
+    <ProductContainer id="productContainer" onClick={() => getProduct(productInfo.id)}>
       <RelatedAction type="button" onClick={(event) => comparisonModal(event, isPressed, mainFeatures, productInfo.features)}>☆</RelatedAction>
-      <ImageGallery photos={productInfo.photos} />
+      <ImageGallery photos={productInfo.photos} category={productInfo.category} />
       <Descriptions productInfo={productInfo} />
       {isPressed ? (
         <ComparissonModal
