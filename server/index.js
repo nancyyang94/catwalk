@@ -94,13 +94,17 @@ app.get('/products/:product_id/related', (req, res) => {
     });
 });
 
+app.get('/getOutfits', (req, res) => {
+  res.status(200).send(outfit.outfits);
+});
+
 app.post('/addOutfit', (req, res) => {
   // console.log(outfit);
   res.status(201).send(outfit.addOutfits(req.body));
 });
 
-app.get('/getOutfits', (req, res) => {
-  res.status(200).send(outfit.outfits);
+app.delete('/deleteOutfit', (req, res) => {
+  res.status(200).send(outfit.deleteOutfit(req.body.id));
 });
 
 app.listen(port, () => {

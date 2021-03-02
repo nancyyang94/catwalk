@@ -41,9 +41,24 @@ const OutfitList = ({
     axios.post('/addOutfit', outfit)
       .then((response) => {
         setOutfits(outfits.concat(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
       });
     console.log(outfits);
     updateButton();
+    event.stopPropagation();
+  };
+
+  const deleteOutfit = (event) => {
+    console.log(event.target.name);
+    axios.delete('/deleteOutfit', { data: { id: event.target.name } })
+      .then((response) => {
+        setOutfits([].concat(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     event.stopPropagation();
   };
 
@@ -57,7 +72,14 @@ const OutfitList = ({
               Add Outfit
             </div>
           </AddOutfitContainer>
-        ) : <OutfitCard productInfo={outfit} key={outfit.id} getProduct={getProduct} />
+        ) : (
+          <OutfitCard
+            productInfo={outfit}
+            key={outfit.id}
+            getProduct={getProduct}
+            deleteOutfit={deleteOutfit}
+          />
+        )
       ))}
     </OutfitItemsContainer>
   );

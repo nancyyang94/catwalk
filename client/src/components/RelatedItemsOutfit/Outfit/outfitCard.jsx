@@ -5,21 +5,13 @@ import Descriptions from '../RelatedItems/descriptions';
 import RelatedAction from '../styledComponents/styledRelated/relatedAction';
 import ProductContainer from '../styledComponents/styledRelated/productContainer';
 
-const OutfitCard = ({
-  productInfo, getProduct,
-}) => {
-  const deleteOutfit = (event) => {
-    event.stopPropagation();
-  };
-
-  return (
-    <ProductContainer onClick={() => getProduct(productInfo.id)}>
-      <RelatedAction type="button" onClick={(event) => deleteOutfit(event)}>X</RelatedAction>
-      <ImageGallery photos={productInfo.photos} category={productInfo.category} />
-      <Descriptions productInfo={productInfo} />
-    </ProductContainer>
-  );
-};
+const OutfitCard = ({ productInfo, getProduct, deleteOutfit }) => (
+  <ProductContainer onClick={() => getProduct(productInfo.id)}>
+    <RelatedAction type="button" name={productInfo.id} onClick={(event) => deleteOutfit(event)}>X</RelatedAction>
+    <ImageGallery photos={productInfo.photos} category={productInfo.category} />
+    <Descriptions productInfo={productInfo} />
+  </ProductContainer>
+);
 
 export default OutfitCard;
 
@@ -39,9 +31,11 @@ OutfitCard.propTypes = {
     style: PropTypes.string,
   }),
   getProduct: PropTypes.func,
+  deleteOutfit: PropTypes.func,
 };
 
 OutfitCard.defaultProps = {
   productInfo: null,
   getProduct: PropTypes.func,
+  deleteOutfit: PropTypes.func,
 };
