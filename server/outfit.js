@@ -3,8 +3,7 @@ let outfits = [{
   id: 'addCard',
 }];
 const outfitRecord = {};
-console.log(outfits);
-const addOutfits = (outfit) => {
+const addOutfit = (outfit) => {
   if (outfitRecord[outfit.id] === undefined) {
     outfits.push(outfit);
     outfitRecord[outfit.id] = outfit.id;
@@ -18,12 +17,11 @@ const deleteOutfit = (outfitId) => {
     delete outfitRecord[outfitId];
     outfits = outfits.filter((outfit) => outfit.id !== outfitId);
   }
-  console.log(outfits);
   return outfits;
 };
 
 const getOutfits = () => outfits;
 
-module.exports.addOutfits = addOutfits;
+module.exports.addOutfit = addOutfit;
 module.exports.getOutfits = getOutfits;
 module.exports.deleteOutfit = deleteOutfit;
