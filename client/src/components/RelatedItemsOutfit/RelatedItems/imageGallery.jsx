@@ -14,14 +14,9 @@ class ImageGallery extends React.Component {
   render() {
     const { photos, category } = this.props;
     return (
-      <div>
-        <ImageContainer>
-          <Image src={photos[0].url} alt={category} />
-        </ImageContainer>
-        {/* <div>
-          <img src={photos[0].thumbnail_url} alt="sweater" />
-        </div> */}
-      </div>
+      <ImageContainer>
+        <Image src={photos[0].url} alt={category} />
+      </ImageContainer>
     );
   }
 }

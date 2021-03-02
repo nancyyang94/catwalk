@@ -6,6 +6,7 @@ const DescriptionsContainer = styled.div`
   line-height: 150%;
   position: relative;
   z-index: 2;
+  padding-bottom: 10px;
 `;
 
 export default DescriptionsContainer;
