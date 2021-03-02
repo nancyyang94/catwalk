@@ -5,7 +5,7 @@ const ModalContainer = styled.div`
     left: 0;
     top: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     transform: scale(1.1);
     display: flex;
@@ -21,7 +21,7 @@ const ModalContainer = styled.div`
       padding: 1rem 1.5rem;
       width: 24rem;
       border-radius: 0.5rem;
-      z-index: 9999;
+
   }
 
     .close-button {

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ModalContainer from './styledComponents/ModalContainer';
+import NewReviewForm from './NewReviewForm';
 
 class NewReview extends React.Component {
   constructor(props) {
@@ -8,11 +9,11 @@ class NewReview extends React.Component {
     this.state = {
       showModal: false,
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
-  handleClick() {
+  openModal() {
     this.setState({
       showModal: true,
     });
@@ -28,7 +29,7 @@ class NewReview extends React.Component {
     if (!showModal) {
       return (
         <div>
-          <button type="button" onClick={this.handleClick}>Write New Review</button>
+          <button type="button" onClick={this.openModal}>Write New Review</button>
         </div>
       );
     }
@@ -37,11 +38,12 @@ class NewReview extends React.Component {
         <div className="show-modal">
           <div className="modal-content">
             <button type="button" className="close-button" onClick={this.closeModal}>&times;</button>
-            <h1>Write Your Review</h1>
-            <h3>
-              About the
+            <h3>Write Your Review</h3>
+            <p>
+              About the &nbsp;
               { productName}
-            </h3>
+            </p>
+            <NewReviewForm />
           </div>
         </div>
       </ModalContainer>
