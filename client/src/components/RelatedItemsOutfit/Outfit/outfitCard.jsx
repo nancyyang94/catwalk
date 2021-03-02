@@ -5,7 +5,7 @@ import Descriptions from '../RelatedItems/descriptions';
 import RelatedAction from '../styledComponents/styledRelated/relatedAction';
 import ProductContainer from '../styledComponents/styledRelated/productContainer';
 
-const ProductCard = ({
+const OutfitCard = ({
   productInfo, getProduct,
 }) => {
   const deleteOutfit = (event) => {
@@ -21,9 +21,9 @@ const ProductCard = ({
   );
 };
 
-export default ProductCard;
+export default OutfitCard;
 
-ProductCard.propTypes = {
+OutfitCard.propTypes = {
   productInfo: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
@@ -41,7 +41,7 @@ ProductCard.propTypes = {
   getProduct: PropTypes.func,
 };
 
-ProductCard.defaultProps = {
+OutfitCard.defaultProps = {
   productInfo: null,
   getProduct: PropTypes.func,
 };

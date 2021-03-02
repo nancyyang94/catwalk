@@ -5,7 +5,9 @@ import OutfitCard from './outfitCard';
 import OutfitItemsContainer from '../styledComponents/styledOutfit/outfitItemsContainer';
 import AddOutfitContainer from '../styledComponents/styledOutfit/addOutfitContainer';
 
-const OutfitList = ({ product, getProduct, currentStyle, updateOutfitButton }) => {
+const OutfitList = ({
+  product, getProduct, currentStyle, updateButton,
+}) => {
   const addOutfitCard = {
     isOutfitCard: true,
   };
@@ -17,6 +19,10 @@ const OutfitList = ({ product, getProduct, currentStyle, updateOutfitButton }) =
         setOutfits(response.data);
       });
   }, []);
+
+  useEffect(() => {
+    updateButton();
+  }, [outfits]);
 
   const addOutfit = (event) => {
     const outfit = {
@@ -36,7 +42,8 @@ const OutfitList = ({ product, getProduct, currentStyle, updateOutfitButton }) =
       .then((response) => {
         setOutfits(outfits.concat(response.data));
       });
-    updateOutfitButton();
+    console.log(outfits);
+    updateButton();
     event.stopPropagation();
   };
 
@@ -81,12 +88,12 @@ OutfitList.propTypes = {
     updated_at: PropTypes.string,
     features: PropTypes.arrayOf(PropTypes.object),
   }),
-  updateOutfitButton: PropTypes.func,
+  updateButton: PropTypes.func,
 };
 
 OutfitList.defaultProps = {
   currentStyle: null,
   getProduct: PropTypes.func,
   product: null,
-  updateOutfitButton: PropTypes.func,
+  updateButton: PropTypes.func,
 };

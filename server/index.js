@@ -104,6 +104,5 @@ app.get('/getOutfits', (req, res) => {
 });
 
 app.listen(port, () => {
-  // eslint-disable-next-line no-console
   console.log(`listening on port ${port}`);
 });
