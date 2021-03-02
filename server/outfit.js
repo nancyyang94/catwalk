@@ -1,17 +1,13 @@
-let index = 1;
-
-const outfits = [{
+let outfits = [{
   isOutfitCard: true,
+  id: 'addCard',
 }];
 const outfitRecord = {};
-
+console.log(outfits);
 const addOutfits = (outfit) => {
   if (outfitRecord[outfit.id] === undefined) {
-    outfits[index] = outfit;
-    outfitRecord[outfit.id] = index;
-    while (outfits[index] !== undefined) {
-      index += 1;
-    }
+    outfits.push(outfit);
+    outfitRecord[outfit.id] = outfit.id;
     return outfit;
   }
   return [];
@@ -19,14 +15,15 @@ const addOutfits = (outfit) => {
 
 const deleteOutfit = (outfitId) => {
   if (outfitRecord[outfitId] !== undefined) {
-    const i = outfitRecord[outfitId];
     delete outfitRecord[outfitId];
-    outfits.splice(i, 1);
-    index = i;
+    outfits = outfits.filter((outfit) => outfit.id !== outfitId);
   }
+  console.log(outfits);
   return outfits;
 };
 
+const getOutfits = () => outfits;
+
 module.exports.addOutfits = addOutfits;
-module.exports.outfits = outfits;
+module.exports.getOutfits = getOutfits;
 module.exports.deleteOutfit = deleteOutfit;

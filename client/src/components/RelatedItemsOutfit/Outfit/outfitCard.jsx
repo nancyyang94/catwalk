@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImageGallery from '../RelatedItems/imageGallery';
 import Descriptions from '../RelatedItems/descriptions';
-import RelatedAction from '../styledComponents/styledRelated/relatedAction';
+import OutfitAction from '../styledComponents/styledOutfit/outfitAction';
 import ProductContainer from '../styledComponents/styledRelated/productContainer';
 
 const OutfitCard = ({ productInfo, getProduct, deleteOutfit }) => (
   <ProductContainer onClick={() => getProduct(productInfo.id)}>
-    <RelatedAction type="button" name={productInfo.id} onClick={(event) => deleteOutfit(event)}>X</RelatedAction>
+    <OutfitAction type="button" name={productInfo.id} onClick={(event) => deleteOutfit(event)}>X</OutfitAction>
     <ImageGallery photos={productInfo.photos} category={productInfo.category} />
     <Descriptions productInfo={productInfo} />
   </ProductContainer>

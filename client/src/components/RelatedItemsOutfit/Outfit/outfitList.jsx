@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -45,16 +46,15 @@ const OutfitList = ({
       .catch((error) => {
         console.log(error);
       });
-    console.log(outfits);
     updateButton();
     event.stopPropagation();
   };
 
   const deleteOutfit = (event) => {
-    console.log(event.target.name);
-    axios.delete('/deleteOutfit', { data: { id: event.target.name } })
+    axios.delete('/deleteOutfit', { data: { id: Number(event.target.name) } })
       .then((response) => {
         setOutfits([].concat(response.data));
+        updateButton();
       })
       .catch((error) => {
         console.log(error);

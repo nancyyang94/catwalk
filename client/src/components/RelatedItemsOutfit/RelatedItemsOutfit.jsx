@@ -9,6 +9,7 @@ import SvgArrowR from './styledComponents/styledRelated/svgArrowR';
 import SvgArrowL from './styledComponents/styledRelated/svgArrowL';
 import OutfitContainer from './styledComponents/styledOutfit/outfitContainer';
 import OutfitList from './Outfit/outfitList';
+import Title from './styledComponents/styledRelated/title';
 
 const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
   const [related, setRelated] = useState([]);
@@ -36,9 +37,15 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
     const relatedWidth = relatedSlider.scrollWidth - relatedSlider.clientWidth;
     if (outfitWidth) {
       setHasOutfitNext(true);
+    } else {
+      setHasOutfitPrevious(false);
+      setHasOutfitNext(false);
     }
     if (relatedWidth) {
       setHasRelatedNext(true);
+    } else {
+      setHasRelatedPrevious(false);
+      setHasRelatedNext(false);
     }
   };
 
@@ -55,7 +62,6 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
 
   const right = (event) => {
     let slider;
-    console.log(event.target);
     if (event.target.name === 'relatedRight') {
       slider = document.getElementById('slider');
       setHasRelatedPrevious(true);
@@ -97,7 +103,7 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
   return (
     <div>
       <RelatedContainer className="carousel">
-        <h2>Related List</h2>
+        <Title>RELATED PRODUCTS</Title>
         {hasRelatedPrevious ? <Left type="button" name="relatedLeft" onClick={(event) => left(event)}><SvgArrowL width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowL></Left> : null}
         <RelatedItemsList
           related={related}
@@ -108,7 +114,7 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
         {hasRelatedNext ? <Right type="button" name="relatedRight" onClick={(event) => right(event)}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
       </RelatedContainer>
       <OutfitContainer>
-        <h2>Outfit List</h2>
+        <Title>YOUR OUTFIT</Title>
         {hasOutfitPrevious ? <Left type="button" id="goLeft" onClick={left}><SvgArrowL width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowL></Left> : null}
         <OutfitList
           currentStyle={currentStyle}

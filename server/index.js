@@ -95,7 +95,7 @@ app.get('/products/:product_id/related', (req, res) => {
 });
 
 app.get('/getOutfits', (req, res) => {
-  res.status(200).send(outfit.outfits);
+  res.status(200).send(outfit.getOutfits());
 });
 
 app.post('/addOutfit', (req, res) => {
