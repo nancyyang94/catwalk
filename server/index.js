@@ -99,7 +99,6 @@ app.get('/getOutfits', (req, res) => {
 });
 
 app.post('/addOutfit', (req, res) => {
-  // console.log(outfit);
   res.status(201).send(outfit.addOutfit(req.body));
 });
 

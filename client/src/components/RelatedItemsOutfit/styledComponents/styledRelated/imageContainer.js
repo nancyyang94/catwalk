@@ -5,6 +5,7 @@ const ImageContainer = styled.div`
   width: auto;
   margin-bottom: 10px;
   background-color: black;
+  border-bottom: 1px solid black;
 `;
 
 export default ImageContainer;
