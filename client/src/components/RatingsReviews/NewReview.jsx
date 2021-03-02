@@ -9,18 +9,16 @@ class NewReview extends React.Component {
       showModal: false,
     };
     this.handleClick = this.handleClick.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   handleClick() {
-    const { productName } = this.props;
-    console.log('this should be Manuela pants:', { productName });
     this.setState({
       showModal: true,
     });
   }
 
-  toggleModal() {
+  closeModal() {
     this.setState({ showModal: false });
   }
 
@@ -38,7 +36,7 @@ class NewReview extends React.Component {
       <ModalContainer>
         <div className="show-modal">
           <div className="modal-content">
-            <button type="button" className="close-button" onClick={this.toggleModal}>&times;</button>
+            <button type="button" className="close-button" onClick={this.closeModal}>&times;</button>
             <h1>Write Your Review</h1>
             <h3>
               About the
