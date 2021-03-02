@@ -4,15 +4,9 @@ import GalleryListEntryContainer from '../StyledComponents/ImageGallery/GalleryL
 
 const GalleryListEntry = (props) => {
   const { url, imgClickHandler } = props;
-  const myStyle = {
-    height: 'auto',
-    width: '100px',
-  };
 
   return (
-    <GalleryListEntryContainer onClick={imgClickHandler}>
-      <img src={url} alt="full size style" style={myStyle} />
-    </GalleryListEntryContainer>
+    <GalleryListEntryContainer src={url} alt="full size style" onClick={imgClickHandler} />
   );
 };
 

@@ -6,7 +6,7 @@ import ImageGallery from './ImageGallery/ImageGallery';
 import ProductInfo from './ProductInfo/ProductInfo';
 import StyleSelector from './StyleSelector/StyleSelector';
 import OverviewContainer from './StyledComponents/OverviewContainer';
-import GalleryContainer from './StyledComponents/ImageGallery/GalleryContainer';
+import GalleryContainer from './StyledComponents/GalleryContainer';
 import InfoContainer from './StyledComponents/InfoContainer';
 
 class Overview extends React.Component {

@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import GalleryViewerImg from '../StyledComponents/ImageGallery/GalleryViewerImg';
+import ViewerContainer from '../StyledComponents/ImageGallery/ViewerContainer';
 
 class GalleryViewer extends React.Component {
   constructor(props) {
@@ -12,9 +14,9 @@ class GalleryViewer extends React.Component {
   render() {
     const { clicked: url } = this.props;
     return (
-      <div>
-        <img src={url} alt="clicked img" />
-      </div>
+      <ViewerContainer>
+        <GalleryViewerImg src={url} alt="clicked img" />
+      </ViewerContainer>
     );
   }
 }
