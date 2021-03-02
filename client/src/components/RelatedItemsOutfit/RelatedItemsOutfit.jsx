@@ -92,7 +92,7 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
       } else {
         slider.scrollLeft -= 312;
         setHasRelatedNext(true);
-        if (slider.scrollLeft <= 312) {
+        if (slider.scrollLeft <= 317) {
           setHasRelatedPrevious(false);
         }
       }
