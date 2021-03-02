@@ -2,8 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import config from '../../../../config';
+import ImageGallery from './ImageGallery/ImageGallery';
 import ProductInfo from './ProductInfo/ProductInfo';
 import StyleSelector from './StyleSelector/StyleSelector';
+import OverviewContainer from './StyledComponents/OverviewContainer';
+import GalleryContainer from './StyledComponents/ImageGallery/GalleryContainer';
+import InfoContainer from './StyledComponents/InfoContainer';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -66,18 +70,26 @@ class Overview extends React.Component {
     }
 
     return (
-      <div>
-        <div>
-          <ProductInfo product={product} styles={styles} currentStyle={currentStyle} />
-        </div>
-        <div>
-          <StyleSelector
-            styles={styles}
-            currentStyle={currentStyle}
-            updateCurrentStyle={updateCurrentStyle}
-          />
-        </div>
-      </div>
+      <OverviewContainer>
+        <GalleryContainer>
+          <ImageGallery currentStyle={currentStyle} />
+        </GalleryContainer>
+        <InfoContainer>
+          <div>
+            <ProductInfo product={product} styles={styles} currentStyle={currentStyle} />
+          </div>
+          <div>
+            <StyleSelector
+              styles={styles}
+              currentStyle={currentStyle}
+              updateCurrentStyle={updateCurrentStyle}
+            />
+          </div>
+          <div>
+            Add To Cart
+          </div>
+        </InfoContainer>
+      </OverviewContainer>
     );
   }
 }
