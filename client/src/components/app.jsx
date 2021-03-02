@@ -41,7 +41,7 @@ class App extends React.Component {
   }
 
   updateCurrentStyle(styleInfo) {
-    this.state({
+    this.setState({
       currentStyle: styleInfo,
     });
   }
@@ -53,6 +53,7 @@ class App extends React.Component {
         Product Page
         <Overview
           product={product}
+          currentStyle={currentStyle}
           getProduct={this.getProduct}
           updateCurrentStyle={this.updateCurrentStyle}
         />

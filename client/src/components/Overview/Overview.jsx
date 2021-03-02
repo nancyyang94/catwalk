@@ -3,12 +3,13 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import config from '../../../../config';
 import ProductInfo from './ProductInfo/ProductInfo';
+import StyleSelector from './StyleSelector/StyleSelector';
 
 class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      styles: [{ name: 'no name yet!' }],
+      styles: [],
     };
   }
 
@@ -29,26 +30,52 @@ class Overview extends React.Component {
             styles: response.data.results,
           });
         })
+        .then(() => {
+          this.setDefaultStyle();
+        })
         .catch((err) => {
           throw err;
         });
     }
   }
 
+  setDefaultStyle() {
+    const { updateCurrentStyle } = this.props;
+    const { currentStyle } = this.props;
+    const { name: currentStyleName } = currentStyle;
+    const { styles } = this.state;
+
+    if (!currentStyleName) {
+      for (let i = 0; i < styles.length; i += 1) {
+        const style = styles[i];
+        if (style['default?'] === true) {
+          updateCurrentStyle(style);
+          break;
+        }
+      }
+    }
+  }
+
   render() {
     const { styles } = this.state;
+    const { currentStyle } = this.props;
+    const { updateCurrentStyle } = this.props;
     const { product } = this.props;
-    const { id } = product;
+    if (styles.length < 1) {
+      return (<div>loading...</div>);
+    }
+
     return (
       <div>
         <div>
-          {id}
+          <ProductInfo product={product} styles={styles} currentStyle={currentStyle} />
         </div>
         <div>
-          {styles[0].name}
-        </div>
-        <div>
-          <ProductInfo />
+          <StyleSelector
+            styles={styles}
+            currentStyle={currentStyle}
+            updateCurrentStyle={updateCurrentStyle}
+          />
         </div>
       </div>
     );
@@ -67,10 +94,20 @@ Overview.propTypes = {
     updated_at: PropTypes.string,
     features: PropTypes.arrayOf(PropTypes.object),
   }),
+  currentStyle: PropTypes.shape({ // left skus and default? out for now
+    style_id: PropTypes.number,
+    name: PropTypes.string,
+    original_price: PropTypes.string,
+    sale_price: PropTypes.string,
+    photos: PropTypes.arrayOf(PropTypes.object),
+  }),
+  updateCurrentStyle: PropTypes.func,
 };
 
 Overview.defaultProps = {
   product: null,
+  currentStyle: {},
+  updateCurrentStyle: null,
 };
 
 export default Overview;
