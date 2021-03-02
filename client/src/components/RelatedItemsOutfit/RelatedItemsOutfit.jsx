@@ -10,6 +10,7 @@ import SvgArrowL from './styledComponents/styledRelated/svgArrowL';
 import OutfitContainer from './styledComponents/styledOutfit/outfitContainer';
 import OutfitList from './Outfit/outfitList';
 import Title from './styledComponents/styledRelated/title';
+import ButtonContainer from './styledComponents/sharedStyledC/buttonContainer';
 
 const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
   const [related, setRelated] = useState([]);
@@ -111,6 +112,7 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
           mainFeatures={product.features}
           mainName={product.name}
         />
+        {hasRelatedNext ? <ButtonContainer /> : null}
         {hasRelatedNext ? <Right type="button" name="relatedRight" onClick={(event) => right(event)}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
       </RelatedContainer>
       <OutfitContainer>
@@ -122,6 +124,7 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
           product={product}
           updateButton={updateButton}
         />
+        {hasOutfitNext ? <ButtonContainer /> : null}
         {hasOutfitNext ? <Right type="button" id="goRight" onClick={right}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
       </OutfitContainer>
     </div>
