@@ -5,10 +5,12 @@ const RelatedItemsContainer = styled.div`
   height: auto;
   display: flex;
   flex-direction: row;
-  margin: auto;
+  transition: .5s;
   max-width: 1560px;
   overflow-x: hidden;
-  transition: smooth;
+  margin: auto;
+  padding: 0;
+  scroll-behavior: smooth;
 `;
 
 export default RelatedItemsContainer;

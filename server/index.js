@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const axios = require('axios');
 const config = require('../config');
+const outfit = require('./outfit');
 
 const app = express();
 const port = 3000;
@@ -91,6 +92,15 @@ app.get('/products/:product_id/related', (req, res) => {
     .catch((error) => {
       res.status(400).send(error);
     });
+});
+
+app.post('/addOutfit', (req, res) => {
+  // console.log(outfit);
+  res.status(201).send(outfit.addOutfits(req.body));
+});
+
+app.get('/getOutfits', (req, res) => {
+  res.status(200).send(outfit.outfits);
 });
 
 app.listen(port, () => {

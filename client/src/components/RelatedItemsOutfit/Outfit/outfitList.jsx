@@ -1,20 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-// import OutfitCard from './outfitCard';
+import axios from 'axios';
+import OutfitCard from './outfitCard';
 import OutfitItemsContainer from '../styledComponents/styledOutfit/outfitItemsContainer';
-import AddOutfitContainer from '../styledComponents/styledOutfit/AddOutfitContainer';
+import AddOutfitContainer from '../styledComponents/styledOutfit/addOutfitContainer';
 
-const OutfitList = ({ product, getProduct, currentStyle }) => {
+const OutfitList = ({ product, getProduct, currentStyle, updateOutfitButton }) => {
   const addOutfitCard = {
     isOutfitCard: true,
   };
   const [outfits, setOutfits] = useState([addOutfitCard]);
 
-  const addOutfit = () => {
+  useEffect(() => {
+    axios.get('/getOutfits')
+      .then((response) => {
+        setOutfits(response.data);
+      });
+  }, []);
+
+  const addOutfit = (event) => {
     const outfit = {
       isOutfitCard: false,
       name: product.name,
-      productId: product.id,
+      id: product.id,
       category: product.category,
       description: product.description,
       default: currentStyle['default?'],
@@ -22,15 +30,28 @@ const OutfitList = ({ product, getProduct, currentStyle }) => {
       styleId: currentStyle.style_id,
       defaultPrice: currentStyle.original_price,
       salePrice: currentStyle.sale_price,
+      photos: currentStyle.photos,
     };
-    setOutfits([...outfits, outfit]);
+    axios.post('/addOutfit', outfit)
+      .then((response) => {
+        setOutfits(outfits.concat(response.data));
+      });
+    updateOutfitButton();
+    event.stopPropagation();
   };
 
   return (
-    <OutfitItemsContainer>
-      {/* {outfits.map((outfit) => {
-        outfit.isOutfitCard ? <AddOutfitContainer> </AddOutfitContainer>
-      })} */}
+    <OutfitItemsContainer id="slider2">
+      {outfits.map((outfit) => (
+        outfit.isOutfitCard ? (
+          <AddOutfitContainer key="addOutfit" onClick={(event) => addOutfit(event)}>
+            <h1>+</h1>
+            <div>
+              Add Outfit
+            </div>
+          </AddOutfitContainer>
+        ) : <OutfitCard productInfo={outfit} key={outfit.id} getProduct={getProduct} />
+      ))}
     </OutfitItemsContainer>
   );
 };
@@ -41,7 +62,7 @@ OutfitList.propTypes = {
   // related: PropTypes.arrayOf(PropTypes.object),
   getProduct: PropTypes.func,
   currentStyle: PropTypes.shape({
-    style_id: PropTypes.string,
+    style_id: PropTypes.number,
     name: PropTypes.string,
     original_price: PropTypes.string,
     sale_price: PropTypes.string,
@@ -60,12 +81,12 @@ OutfitList.propTypes = {
     updated_at: PropTypes.string,
     features: PropTypes.arrayOf(PropTypes.object),
   }),
+  updateOutfitButton: PropTypes.func,
 };
 
 OutfitList.defaultProps = {
   currentStyle: null,
   getProduct: PropTypes.func,
   product: null,
-  // mainFeatures: null,
-  // mainName: null,
+  updateOutfitButton: PropTypes.func,
 };

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const AddOutfitContainer = styled.li`
+const AddOutfitContainer = styled.div`
   flex-basis: 30%
   height: auto;
   width: 300px;
@@ -11,7 +11,12 @@ const AddOutfitContainer = styled.li`
   margin-left: 5px;
   margin-right: 5px;
   position: relative;
-  list-style-type: none;
+  text-align: center;
+  padding-bottom: 150px;
+  padding-top: 100px;
+  /* display: flex; */
+  /* align-items: center;
+  justify-content: center; */
 `;
 
 export default AddOutfitContainer;
