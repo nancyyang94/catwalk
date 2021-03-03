@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from './productCard';
-import RelatedItemsContainer from '../styledComponents/relatedItemsContainer';
+import RelatedItemsContainer from '../styledComponents/styledRelated/relatedItemsContainer';
 
 const RelatedItemsList = ({
   related, getProduct, mainFeatures, mainName,

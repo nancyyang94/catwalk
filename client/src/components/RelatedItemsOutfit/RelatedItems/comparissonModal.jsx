@@ -1,10 +1,10 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import PropTypes from 'prop-types';
-import CompareContainer from '../styledComponents/compareContainer';
-import TitleContainer from '../styledComponents/titleContainer';
-import ModalContainer from '../styledComponents/modalContainer';
-import Modal from '../styledComponents/modal';
+import CompareContainer from '../styledComponents/styledRelated/compareContainer';
+import TitleContainer from '../styledComponents/styledRelated/titleContainer';
+import ModalContainer from '../styledComponents/styledRelated/modalContainer';
+import Modal from '../styledComponents/styledRelated/modal';
 
 const ComparissonModal = ({
   combinedFeatures, product1, product2, comparisonModal,
