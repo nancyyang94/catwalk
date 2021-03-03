@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const axios = require('axios');
 const config = require('../config');
+const outfit = require('./outfit');
 
 const app = express();
 const port = 3000;
@@ -93,7 +94,18 @@ app.get('/products/:product_id/related', (req, res) => {
     });
 });
 
+app.get('/getOutfits', (req, res) => {
+  res.status(200).send(outfit.getOutfits());
+});
+
+app.post('/addOutfit', (req, res) => {
+  res.status(201).send(outfit.addOutfit(req.body));
+});
+
+app.delete('/deleteOutfit', (req, res) => {
+  res.status(200).send(outfit.deleteOutfit(req.body.id));
+});
+
 app.listen(port, () => {
-  // eslint-disable-next-line no-console
   console.log(`listening on port ${port}`);
 });

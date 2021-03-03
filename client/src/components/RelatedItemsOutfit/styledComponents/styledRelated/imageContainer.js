@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 const ImageContainer = styled.div`
-  height: 200px;
+  height: 250px;
   width: auto;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   background-color: black;
+  border-bottom: 1px solid black;
 `;
 
 export default ImageContainer;

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-// import ProductContainer from './productContainer';
 
-const RelatedItemsContainer = styled.ul`
+const RelatedItemsContainer = styled.div`
   overflow: auto;
   height: auto;
   display: flex;
@@ -9,15 +8,9 @@ const RelatedItemsContainer = styled.ul`
   transition: .5s;
   max-width: 1560px;
   overflow-x: hidden;
-  margin: auto;
+  margin-left: 130px;
   padding: 0;
   scroll-behavior: smooth;
 `;
 
 export default RelatedItemsContainer;
-
-// &:hover {
-//   ${ProductContainer} {
-//     box-shadow: 10px 10px 8px #888888;
-//   }
-// }
