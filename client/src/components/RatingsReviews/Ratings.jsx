@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactStars from 'react-rating-stars-component';
 import RatingsContainer from './styledComponents/RatingsContainer';
+import Rating from './StarRatings';
 
 class Ratings extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class Ratings extends React.Component {
       reviews: [],
       average: 2.0,
     };
-    this.starRating = this.starRating.bind(this);
+    // this.starRating = this.starRating.bind(this);
     this.ratingsBreakdown = this.ratingsBreakdown.bind(this);
   }
 
@@ -24,19 +25,20 @@ class Ratings extends React.Component {
     );
   }
 
-  starRating() {
-    const { average } = this.state;
-    return (
-      <ReactStars
-        count={5}
-        value={average}
-        size={24}
-        activeColor="#525252"
-        isHalf
-        edit={false}
-      />
-    );
-  }
+  // starRating() {
+  //   const { average } = this.state;
+  //   return (
+  //     // <ReactStars
+  //     //   count={5}
+  //     //   value={average}
+  //     //   size={24}
+  //     //   activeColor="#525252"
+  //     //   isHalf
+  //     //   edit={false}
+  //     // />
+  //     <Rating />
+  //   );
+  // }
 
   render() {
     const { reviews, average } = this.state;
@@ -45,8 +47,9 @@ class Ratings extends React.Component {
       <RatingsContainer>
         <p>Ratings and Reviews</p>
         <div className="star-summary">
-          <h1>{average}</h1>
-          {this.starRating()}
+          <h1>3.5</h1>
+          <Rating avg={3.5}/>
+          {/* {this.starRating()} */}
         </div>
         {this.ratingsBreakdown()}
         <div> User Recommendations </div>
