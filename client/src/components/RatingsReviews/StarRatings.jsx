@@ -1,23 +1,30 @@
-import React from 'react';
-import Star from './Star';
+import React, { useState } from 'react';
 
-// const getAverageRating = (product) => {
+const wholeStar = '★';
+const quarterStar = '#';
+const halfStar = '%';
+const threeQuarterStar = '@';
+const emptyStar = '☆';
 
-// };
-
-class StarRatings extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      averageRating: 0,
-    };
+function getStars(value) {
+  const stars = [];
+  let [whole, part] = parseFloat(value).toString().split('.');
+  for (let i = 0; i < whole; i += 1) stars.push(wholeStar);
+  if (part) {
+    part = parseFloat(`.${part}`);
+    if (part <= 0.33) {
+      stars.push(quarterStar);
+    }
+    if (part <= 0.66) {
+      stars.push(halfStar);
+    } else {
+      stars.push(threeQuarterStar);
+    }
   }
-
-  render() {
-    return (
-      <p>Should be our five stars</p>
-    );
-  }
+  for (let i = whole; i < (part ? 4 : 5); i += 1) stars.push(emptyStar);
+  return stars;
 }
 
-export default StarRatings;
+const Rating = ({ avg }) => <div>{getStars(avg).map((star) => <div>{star}</div>)}</div>;
+
+export default Rating;

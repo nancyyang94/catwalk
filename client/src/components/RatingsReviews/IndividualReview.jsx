@@ -26,7 +26,7 @@ const IndividualReview = ({ review }) => {
       <h3>{ summary }</h3>
       <p>{body}</p>
       <p>{reviewerName}</p>
-      <p>{`Was this review helpful? Yes ${helpfulness}`}</p>
+      <p>{`Was this review helpful? Yes (${helpfulness})`}</p>
     </div>
   );
 };

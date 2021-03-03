@@ -31,7 +31,6 @@ High Level Plan:
     if (remainder < 1) {
        return {threeQuarterStar}
      }
-
    }
 
 3. Fill/Gradient
