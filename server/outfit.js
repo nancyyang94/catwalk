@@ -7,24 +7,24 @@ const outfitRecord = {};
 const updateOutfits = (newOutfits) => {
   outfits = newOutfits;
   for (let i = 0; i < outfits.length; i += 1) {
-    outfitRecord[outfits[i].id] = outfits[i].id;
+    outfitRecord[outfits[i].styleId] = outfits[i].styleId;
   }
   return 'success';
 };
 
 const addOutfit = (outfit) => {
-  if (outfitRecord[outfit.id] === undefined) {
+  if (outfitRecord[outfit.styleId] === undefined) {
     outfits.push(outfit);
-    outfitRecord[outfit.id] = outfit.id;
+    outfitRecord[outfit.styleId] = outfit.styleId;
     return outfit;
   }
   return [];
 };
 
-const deleteOutfit = (outfitId) => {
-  if (outfitRecord[outfitId] !== undefined) {
-    delete outfitRecord[outfitId];
-    outfits = outfits.filter((outfit) => outfit.id !== outfitId);
+const deleteOutfit = (outfitStyleId) => {
+  if (outfitRecord[outfitStyleId] !== undefined) {
+    delete outfitRecord[outfitStyleId];
+    outfits = outfits.filter((outfit) => outfit.styleId !== outfitStyleId);
   }
   return outfits;
 };

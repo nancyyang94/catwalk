@@ -107,7 +107,7 @@ app.put('/updateOutfits', (req, res) => {
 });
 
 app.delete('/deleteOutfit', (req, res) => {
-  res.status(200).send(outfit.deleteOutfit(req.body.id));
+  res.status(200).send(outfit.deleteOutfit(req.body.styleId));
 });
 
 app.listen(port, () => {

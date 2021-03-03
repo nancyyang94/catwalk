@@ -23,7 +23,6 @@ const OutfitList = ({
 
   const [outfits, setOutfits] = useState(() => {
     const localData = localStorage.getItem('outfits');
-    console.log(localData);
     return localData ? JSON.parse(localData) : [addOutfitCard];
   });
 
@@ -68,9 +67,16 @@ const OutfitList = ({
   };
 
   const deleteOutfit = (event) => {
-    axios.delete('/deleteOutfit', { data: { id: Number(event.target.name) } })
+    axios.put('/updateOutfits', { user: outfits })
       .then((response) => {
-        setOutfits([].concat(response.data));
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    axios.delete('/deleteOutfit', { data: { styleId: Number(event.target.name) } })
+      .then((response) => {
+        setOutfits(response.data);
         updateButton();
       })
       .catch((error) => {
@@ -92,7 +98,7 @@ const OutfitList = ({
         ) : (
           <OutfitCard
             productInfo={outfit}
-            key={outfit.id}
+            key={outfit.styleId}
             getProduct={getProduct}
             deleteOutfit={deleteOutfit}
           />
