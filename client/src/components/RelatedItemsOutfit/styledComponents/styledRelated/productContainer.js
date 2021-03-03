@@ -12,6 +12,7 @@ const ProductContainer = styled.div`
   margin-right: 5px;
   position: relative;
   box-shadow: 3px 3px 3px #999999;
+  border-radius: 1%
 `;
 
 export default ProductContainer;

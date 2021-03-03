@@ -18,6 +18,7 @@ const AddOutfitContainer = styled.div`
   /* align-items: center;
   justify-content: center; */
   box-shadow: 3px 3px 3px #999999;
+  border-radius: 1%
 `;
 
 export default AddOutfitContainer;

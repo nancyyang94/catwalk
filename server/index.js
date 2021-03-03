@@ -99,8 +99,7 @@ app.get('/getOutfits', (req, res) => {
 });
 
 app.post('/addOutfit', (req, res) => {
-  // console.log(outfit);
-  res.status(201).send(outfit.addOutfits(req.body));
+  res.status(201).send(outfit.addOutfit(req.body));
 });
 
 app.delete('/deleteOutfit', (req, res) => {
