@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Price from './Price';
+import InnerContainer from '../StyledComponents/ProductInfo/InnerContainer';
+import StarsContainer from '../StyledComponents/ProductInfo/StarsContainer';
+import CategoryContainer from '../StyledComponents/ProductInfo/CategoryContainer';
+import NameContainer from '../StyledComponents/ProductInfo/NameContainer';
+import NameText from '../StyledComponents/ProductInfo/NameText';
 
 class ProductInfo extends React.Component {
   constructor(props) {
@@ -20,12 +25,12 @@ class ProductInfo extends React.Component {
     const { name } = product;
 
     return (
-      <div>
-        <div>Stars Stars Stars</div>
-        <div>{category}</div>
-        <div>{name}</div>
-        <div><Price originalPrice={originalPrice} salePrice={salePrice} /></div>
-      </div>
+      <InnerContainer>
+        <StarsContainer>Stars Stars Stars</StarsContainer>
+        <CategoryContainer><div>{category}</div></CategoryContainer>
+        <NameContainer><NameText>{name}</NameText></NameContainer>
+        <Price originalPrice={originalPrice} salePrice={salePrice} />
+      </InnerContainer>
     );
   }
 }

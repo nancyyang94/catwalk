@@ -1,19 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import PriceText from '../StyledComponents/ProductInfo/PriceText';
+import OnSaleText from '../StyledComponents/ProductInfo/OnSaleText';
+import PriceContainer from '../StyledComponents/ProductInfo/PriceContainer';
 
 const Price = (props) => {
   const { originalPrice, salePrice } = props;
   if (salePrice === null) {
     return (
-      <div>
-        <div>{`$${originalPrice}`}</div>
-      </div>
+      <PriceContainer>
+        <PriceText>{`$${originalPrice}`}</PriceText>
+      </PriceContainer>
     );
   }
   return (
-    <div>
-      <div>{`$${originalPrice} SALE: $${salePrice}`}</div>
-    </div>
+    <PriceContainer>
+      <OnSaleText>{`$${originalPrice}`}</OnSaleText>
+      <PriceText>{`$${salePrice}`}</PriceText>
+    </PriceContainer>
   );
 };
 
