@@ -6,10 +6,11 @@ const GalleryList = (props) => {
   const { photos, imgClickHandler } = props;
   return (
     <div>
-      {photos.map((photo) => {
+      {photos.map((photo, index) => {
         const { url } = photo;
+        const key = index;
         return (
-          <GalleryListEntry url={url} imgClickHandler={imgClickHandler} />
+          <GalleryListEntry key={key} url={url} imgClickHandler={imgClickHandler} />
         );
       })}
     </div>
