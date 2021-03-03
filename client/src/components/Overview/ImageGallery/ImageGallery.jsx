@@ -14,8 +14,22 @@ class ImageGallery extends React.Component {
     this.imgClickHandler = this.imgClickHandler.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    const { currentStyle: prevStyle } = prevProps;
+    const { style_id: prevId } = prevStyle;
+    const { currentStyle } = this.props;
+    const { style_id: currentId } = currentStyle;
+    if (currentId !== prevId && currentId) {
+      const { photos } = currentStyle;
+      const defaultPhotoObj = photos[0];
+      const { url: defaultUrl } = defaultPhotoObj;
+      this.setState({
+        clicked: defaultUrl,
+      });
+    }
+  }
+
   imgClickHandler(e) {
-    console.log(e.target.getAttribute('src'));
     this.setState({
       clicked: e.target.getAttribute('src'),
     });
