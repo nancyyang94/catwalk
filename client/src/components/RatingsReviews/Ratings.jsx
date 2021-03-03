@@ -16,7 +16,6 @@ class Ratings extends React.Component {
 
   ratingsBreakdown() {
     const { reviews } = this.state;
-    console.log({ reviews });
     return (
       <div>
         ratings breakdown....
@@ -42,7 +41,6 @@ class Ratings extends React.Component {
 
   render() {
     const { reviews, average } = this.state;
-    console.log({ reviews, average });
     return (
       <RatingsContainer>
         <p>Ratings and Reviews</p>

@@ -108,7 +108,7 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
 
   return (
     <div>
-      <RelatedContainer className="carousel">
+      <RelatedContainer id="carousel">
         <Title>RELATED PRODUCTS</Title>
         {hasRelatedPrevious ? <Left type="button" name="relatedLeft" onClick={(event) => left(event)}><SvgArrowL width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowL></Left> : null}
         <RelatedItemsList

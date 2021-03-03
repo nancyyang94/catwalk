@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const RelatedItemsContainer = styled.div`
+  min-height: 450px;
   overflow: auto;
   height: auto;
   display: flex;

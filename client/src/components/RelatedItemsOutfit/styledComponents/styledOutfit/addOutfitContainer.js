@@ -12,11 +12,8 @@ const AddOutfitContainer = styled.div`
   margin-right: 5px;
   position: relative;
   text-align: center;
-  padding-bottom: 150px;
-  padding-top: 100px;
-  /* display: flex; */
-  /* align-items: center;
-  justify-content: center; */
+  padding-top: 125px;
+  min-height: 275px;
   box-shadow: 3px 3px 3px #999999;
   border-radius: 1%
 `;
