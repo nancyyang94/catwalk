@@ -2,6 +2,7 @@ import React from 'react';
 import ReactStars from 'react-rating-stars-component';
 import RatingsContainer from './styledComponents/RatingsContainer';
 import Rating from './StarRatings';
+import StarRatingContainer from './styledComponents/StarRatingContainer';
 
 class Ratings extends React.Component {
   constructor(props) {
@@ -31,7 +32,9 @@ class Ratings extends React.Component {
         <p>Ratings and Reviews</p>
         <div className="star-summary">
           <h1>3.5</h1>
-          <Rating avg={3.5} />
+          <StarRatingContainer>
+            <Rating avg={3.5} />
+          </StarRatingContainer>
         </div>
         {this.ratingsBreakdown()}
         <div> User Recommendations </div>
