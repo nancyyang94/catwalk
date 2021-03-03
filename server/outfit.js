@@ -6,7 +6,9 @@ const outfitRecord = {};
 
 const updateOutfits = (newOutfits) => {
   outfits = newOutfits;
-  console.log(outfits);
+  for (let i = 0; i < outfits.length; i += 1) {
+    outfitRecord[outfits[i].id] = outfits[i].id;
+  }
   return 'success';
 };
 
@@ -20,6 +22,7 @@ const addOutfit = (outfit) => {
 };
 
 const deleteOutfit = (outfitId) => {
+  console.log(outfits);
   if (outfitRecord[outfitId] !== undefined) {
     delete outfitRecord[outfitId];
     outfits = outfits.filter((outfit) => outfit.id !== outfitId);

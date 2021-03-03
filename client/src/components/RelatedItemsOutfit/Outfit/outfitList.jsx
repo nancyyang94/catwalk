@@ -69,6 +69,7 @@ const OutfitList = ({
   };
 
   const deleteOutfit = (event) => {
+    console.log(event.target.name);
     axios.delete('/deleteOutfit', { data: { id: Number(event.target.name) } })
       .then((response) => {
         setOutfits([].concat(response.data));
