@@ -5,8 +5,6 @@ import IndividualReview from './IndividualReview';
 import ReviewListContainer from './styledComponents/ReviewListContainer';
 import NewReview from './NewReview';
 
-console.log(mockData);
-
 const ReviewsList = (props) => {
   const { productName } = props;
   return (
