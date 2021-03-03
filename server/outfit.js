@@ -3,6 +3,13 @@ let outfits = [{
   id: 'addCard',
 }];
 const outfitRecord = {};
+
+const updateOutfits = (newOutfits) => {
+  outfits = newOutfits;
+  console.log(outfits);
+  return 'success';
+};
+
 const addOutfit = (outfit) => {
   if (outfitRecord[outfit.id] === undefined) {
     outfits.push(outfit);
@@ -25,3 +32,4 @@ const getOutfits = () => outfits;
 module.exports.addOutfit = addOutfit;
 module.exports.getOutfits = getOutfits;
 module.exports.deleteOutfit = deleteOutfit;
+module.exports.updateOutfits = updateOutfits;

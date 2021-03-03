@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import OutfitCard from './outfitCard';
@@ -11,15 +11,33 @@ const OutfitList = ({
 }) => {
   const addOutfitCard = {
     isOutfitCard: true,
+    id: 'addOutfitCard',
   };
-  const [outfits, setOutfits] = useState([addOutfitCard]);
+  const useStateReducer = (prevState, dispatchArg) => (typeof dispatchArg === 'function' ? dispatchArg(prevState) : dispatchArg);
+
+  const useStateInitializer = (initialArg) => (typeof initialArg === 'function' ? initialArg() : initialArg
+  );
+
+  const useState = (initialValue = [addOutfitCard]) => (
+    useReducer(useStateReducer, initialValue, useStateInitializer));
+
+  // const [outfits, setOutfits] = useState([addOutfitCard]);
+  const [outfits, setOutfits] = useState(() => {
+    const localData = localStorage.getItem('outfits');
+    console.log(localData);
+    return localData ? JSON.parse(localData) : [addOutfitCard];
+  });
 
   useEffect(() => {
-    axios.get('/getOutfits')
+    localStorage.setItem('outfits', JSON.stringify(outfits));
+    axios.put('/updateOutfits', { user: outfits })
       .then((response) => {
-        setOutfits(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
       });
-  }, []);
+  }, [outfits]);
 
   useEffect(() => {
     updateButton();
@@ -54,6 +72,7 @@ const OutfitList = ({
     axios.delete('/deleteOutfit', { data: { id: Number(event.target.name) } })
       .then((response) => {
         setOutfits([].concat(response.data));
+        // localStorage.setItem('outfits', JSON.stringify(outfits));
         updateButton();
       })
       .catch((error) => {

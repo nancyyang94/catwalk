@@ -102,6 +102,10 @@ app.post('/addOutfit', (req, res) => {
   res.status(201).send(outfit.addOutfit(req.body));
 });
 
+app.put('/updateOutfits', (req, res) => {
+  res.status(201).send(outfit.updateOutfits(req.body.user));
+});
+
 app.delete('/deleteOutfit', (req, res) => {
   res.status(200).send(outfit.deleteOutfit(req.body.id));
 });
