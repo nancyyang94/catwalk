@@ -8,6 +8,9 @@ import StyleSelector from './StyleSelector/StyleSelector';
 import OverviewContainer from './StyledComponents/OverviewContainer';
 import GalleryContainer from './StyledComponents/GalleryContainer';
 import InfoContainer from './StyledComponents/InfoContainer';
+import StyleSelectorContainer from './StyledComponents/StyleSelectorContainer';
+import AddToCartContainer from './StyledComponents/AddToCartContainer';
+import ProductInfoContainer from './StyledComponents/ProductInfoContainer';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -75,19 +78,19 @@ class Overview extends React.Component {
           <ImageGallery currentStyle={currentStyle} />
         </GalleryContainer>
         <InfoContainer>
-          <div>
+          <ProductInfoContainer>
             <ProductInfo product={product} styles={styles} currentStyle={currentStyle} />
-          </div>
-          <div>
+          </ProductInfoContainer>
+          <StyleSelectorContainer>
             <StyleSelector
               styles={styles}
               currentStyle={currentStyle}
               updateCurrentStyle={updateCurrentStyle}
             />
-          </div>
-          <div>
+          </StyleSelectorContainer>
+          <AddToCartContainer>
             Add To Cart
-          </div>
+          </AddToCartContainer>
         </InfoContainer>
       </OverviewContainer>
     );

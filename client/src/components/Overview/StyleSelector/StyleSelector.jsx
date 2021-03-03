@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import StyleSelectorEntry from './StyleSelectorEntry';
+import InnerContainer from '../StyledComponents/StyleSelector/InnerContainer';
+import TextWrapper from '../StyledComponents/StyleSelector/TextWrapper';
+import ListContainer from '../StyledComponents/StyleSelector/ListContainer';
 
 class StyleSelector extends React.Component {
   constructor(props) {
@@ -15,9 +18,9 @@ class StyleSelector extends React.Component {
     const { name: currentStyleName } = currentStyle;
 
     return (
-      <div>
-        <div>{`Style > ${currentStyleName}`}</div>
-        <div>
+      <InnerContainer>
+        <TextWrapper>{`Style > ${currentStyleName}`}</TextWrapper>
+        <ListContainer>
           {styles.map((style) => (
             <StyleSelectorEntry
               style={style}
@@ -25,8 +28,8 @@ class StyleSelector extends React.Component {
               updateCurrentStyle={() => { updateCurrentStyle(style); }}
             />
           ))}
-        </div>
-      </div>
+        </ListContainer>
+      </InnerContainer>
     );
   }
 }

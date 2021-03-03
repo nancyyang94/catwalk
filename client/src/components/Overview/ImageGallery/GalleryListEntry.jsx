@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import GalleryListEntryContainer from '../StyledComponents/ImageGallery/GalleryListEntryContainer';
+import GalleryListEntryImg from '../StyledComponents/ImageGallery/GalleryListEntryImg';
 
 const GalleryListEntry = (props) => {
   const { url, imgClickHandler } = props;
 
   return (
-    <GalleryListEntryContainer src={url} alt="full size style" onClick={imgClickHandler} />
+    <GalleryListEntryImg src={url} alt="full size style" onClick={imgClickHandler} />
   );
 };
 

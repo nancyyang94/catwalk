@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import StyleImg from '../StyledComponents/StyleSelector/StyleImg';
+import ImgContainer from '../StyledComponents/StyleSelector/ImgContainer';
 
 class StyleSelectorEntry extends React.Component {
   constructor(props) {
@@ -27,9 +29,9 @@ class StyleSelectorEntry extends React.Component {
     const photoObj = photos[0];
     const { thumbnail_url: thumbnail } = photoObj;
     return (
-      <div>
-        <img src={`${thumbnail}`} alt="style_thumbnail" onClick={updateCurrentStyle} />
-      </div>
+      <ImgContainer>
+        <StyleImg src={`${thumbnail}`} alt="style_thumbnail" onClick={updateCurrentStyle} />
+      </ImgContainer>
     );
   }
 }
