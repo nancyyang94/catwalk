@@ -24,7 +24,6 @@ class Characteristics extends React.Component {
   render() {
     const { state } = this.props;
     const { handleChange } = this.props;
-    console.log('should be our original state obj:', state);
     const characteristic = 'size';
     const { size } = this.state;
     const { width } = this.state;

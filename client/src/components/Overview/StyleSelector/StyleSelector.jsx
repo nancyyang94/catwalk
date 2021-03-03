@@ -21,13 +21,17 @@ class StyleSelector extends React.Component {
       <InnerContainer>
         <TextWrapper>{`Style > ${currentStyleName}`}</TextWrapper>
         <ListContainer>
-          {styles.map((style) => (
-            <StyleSelectorEntry
-              style={style}
-              currentStyle={currentStyle}
-              updateCurrentStyle={() => { updateCurrentStyle(style); }}
-            />
-          ))}
+          {styles.map((style) => {
+            const { style_id: key } = style;
+            return (
+              <StyleSelectorEntry
+                key={key}
+                style={style}
+                currentStyle={currentStyle}
+                updateCurrentStyle={() => { updateCurrentStyle(style); }}
+              />
+            );
+          })}
         </ListContainer>
       </InnerContainer>
     );

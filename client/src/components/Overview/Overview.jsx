@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import config from '../../../../config';
 import ImageGallery from './ImageGallery/ImageGallery';
 import ProductInfo from './ProductInfo/ProductInfo';
 import StyleSelector from './StyleSelector/StyleSelector';
@@ -29,8 +28,7 @@ class Overview extends React.Component {
     if (prevId !== currentId) {
       axios({
         method: 'GET',
-        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${currentId}/styles`,
-        headers: { Authorization: config.TOKEN },
+        url: `/products/${currentId}/styles`,
       })
         .then((response) => {
           this.setState({
@@ -48,17 +46,13 @@ class Overview extends React.Component {
 
   setDefaultStyle() {
     const { updateCurrentStyle } = this.props;
-    const { currentStyle } = this.props;
-    const { name: currentStyleName } = currentStyle;
     const { styles } = this.state;
 
-    if (!currentStyleName) {
-      for (let i = 0; i < styles.length; i += 1) {
-        const style = styles[i];
-        if (style['default?'] === true) {
-          updateCurrentStyle(style);
-          break;
-        }
+    for (let i = 0; i < styles.length; i += 1) {
+      const style = styles[i];
+      if (style['default?'] === true) {
+        updateCurrentStyle(style);
+        break;
       }
     }
   }

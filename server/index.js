@@ -110,6 +110,20 @@ app.delete('/deleteOutfit', (req, res) => {
   res.status(200).send(outfit.deleteOutfit(req.body.styleId));
 });
 
+app.get('/products/:product_id/styles', (req, res) => {
+  axios({
+    method: 'GET',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${req.params.product_id}/styles`,
+    headers: { Authorization: config.TOKEN },
+  })
+    .then((response) => {
+      res.status(200).send(response.data);
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    });
+});
+
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
