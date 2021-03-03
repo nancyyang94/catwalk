@@ -22,7 +22,6 @@ const addOutfit = (outfit) => {
 };
 
 const deleteOutfit = (outfitId) => {
-  console.log(outfits);
   if (outfitRecord[outfitId] !== undefined) {
     delete outfitRecord[outfitId];
     outfits = outfits.filter((outfit) => outfit.id !== outfitId);

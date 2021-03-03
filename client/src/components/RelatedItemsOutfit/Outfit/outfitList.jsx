@@ -21,7 +21,6 @@ const OutfitList = ({
   const useState = (initialValue = [addOutfitCard]) => (
     useReducer(useStateReducer, initialValue, useStateInitializer));
 
-  // const [outfits, setOutfits] = useState([addOutfitCard]);
   const [outfits, setOutfits] = useState(() => {
     const localData = localStorage.getItem('outfits');
     console.log(localData);
@@ -69,11 +68,9 @@ const OutfitList = ({
   };
 
   const deleteOutfit = (event) => {
-    console.log(event.target.name);
     axios.delete('/deleteOutfit', { data: { id: Number(event.target.name) } })
       .then((response) => {
         setOutfits([].concat(response.data));
-        // localStorage.setItem('outfits', JSON.stringify(outfits));
         updateButton();
       })
       .catch((error) => {
