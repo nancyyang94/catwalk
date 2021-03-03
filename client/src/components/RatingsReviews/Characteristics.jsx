@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Characteristics extends React.Component {
   constructor(props) {
@@ -11,16 +12,19 @@ class Characteristics extends React.Component {
       length: 'None selected',
       fit: 'None selected',
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.setCurrentSelection = this.setCurrentSelection.bind(this);
   }
 
-  handleChange(e) {
+  setCurrentSelection(e) {
     const { name } = e.target;
     const { value } = e.target;
     this.setState({ [name]: value });
   }
 
   render() {
+    const { state } = this.props;
+    const { handleChange } = this.props;
+    console.log('should be our original state obj:', state);
     const characteristic = 'size';
     const { size } = this.state;
     const { width } = this.state;
@@ -77,7 +81,6 @@ class Characteristics extends React.Component {
       5: 'Runs long',
     };
 
-    console.log('current state:', this.state);
     return (
       <>
         <h4>Size</h4>
@@ -87,35 +90,35 @@ class Characteristics extends React.Component {
           id="1"
           name={characteristic}
           value={sizeOptions[1]}
-          onChange={this.handleChange}
+          onChange={(e) => { this.setCurrentSelection(e); handleChange(e); }}
         />
         <input
           type="radio"
           id="2"
           name={characteristic}
           value={sizeOptions[2]}
-          onChange={this.handleChange}
+          onChange={(e) => { this.setCurrentSelection(e); handleChange(e); }}
         />
         <input
           type="radio"
           id="3"
           name={characteristic}
           value={sizeOptions[3]}
-          onChange={this.handleChange}
+          onChange={(e) => { this.setCurrentSelection(e); handleChange(e); }}
         />
         <input
           type="radio"
           id="4"
           name={characteristic}
           value={sizeOptions[4]}
-          onChange={this.handleChange}
+          onChange={(e) => { this.setCurrentSelection(e); handleChange(e); }}
         />
         <input
           type="radio"
           id="5"
           name={characteristic}
           value={sizeOptions[5]}
-          onChange={this.handleChange}
+          onChange={(e) => { this.setCurrentSelection(e); handleChange(e); }}
         />
 
         <h4>Width</h4>
@@ -125,35 +128,35 @@ class Characteristics extends React.Component {
           id="1"
           name="width"
           value={widthOptions[1]}
-          onChange={this.handleChange}
+          onChange={(e) => { this.setCurrentSelection(e); handleChange(e); }}
         />
         <input
           type="radio"
           id="2"
           name="width"
           value={widthOptions[2]}
-          onChange={this.handleChange}
+          onChange={(e) => { this.setCurrentSelection(e); handleChange(e); }}
         />
         <input
           type="radio"
           id="3"
           name="width"
           value={widthOptions[3]}
-          onChange={this.handleChange}
+          onChange={(e) => { this.setCurrentSelection(e); handleChange(e); }}
         />
         <input
           type="radio"
           id="4"
           name="width"
           value={widthOptions[4]}
-          onChange={this.handleChange}
+          onChange={(e) => { this.setCurrentSelection(e); handleChange(e); }}
         />
         <input
           type="radio"
           id="5"
           name="width"
           value={widthOptions[5]}
-          onChange={this.handleChange}
+          onChange={(e) => { this.setCurrentSelection(e); handleChange(e); }}
         />
 
         <h4>Comfort</h4>
@@ -163,35 +166,35 @@ class Characteristics extends React.Component {
           id="1"
           name="comfort"
           value={comfortOptions[1]}
-          onChange={this.handleChange}
+          onChange={(e) => { this.setCurrentSelection(e); handleChange(e); }}
         />
         <input
           type="radio"
           id="2"
           name="comfort"
           value={comfortOptions[2]}
-          onChange={this.handleChange}
+          onChange={(e) => { this.setCurrentSelection(e); handleChange(e); }}
         />
         <input
           type="radio"
           id="3"
           name="comfort"
           value={comfortOptions[3]}
-          onChange={this.handleChange}
+          onChange={(e) => { this.setCurrentSelection(e); handleChange(e); }}
         />
         <input
           type="radio"
           id="4"
           name="comfort"
           value={comfortOptions[4]}
-          onChange={this.handleChange}
+          onChange={(e) => { this.setCurrentSelection(e); handleChange(e); }}
         />
         <input
           type="radio"
           id="5"
           name="comfort"
           value={comfortOptions[5]}
-          onChange={this.handleChange}
+          onChange={(e) => { this.setCurrentSelection(e); handleChange(e); }}
         />
 
         <h4>Quality</h4>
@@ -201,39 +204,49 @@ class Characteristics extends React.Component {
           id="1"
           name="quality"
           value={qualityOptions[1]}
-          onChange={this.handleChange}
+          onChange={(e) => { this.setCurrentSelection(e); handleChange(e); }}
         />
         <input
           type="radio"
           id="2"
           name="quality"
           value={qualityOptions[2]}
-          onChange={this.handleChange}
+          onChange={(e) => { this.setCurrentSelection(e); handleChange(e); }}
         />
         <input
           type="radio"
           id="3"
           name="quality"
           value={qualityOptions[3]}
-          onChange={this.handleChange}
+          onChange={(e) => { this.setCurrentSelection(e); handleChange(e); }}
         />
         <input
           type="radio"
           id="4"
           name="quality"
           value={qualityOptions[4]}
-          onChange={this.handleChange}
+          onChange={(e) => { this.setCurrentSelection(e); handleChange(e); }}
         />
         <input
           type="radio"
           id="5"
           name="quality"
           value={qualityOptions[5]}
-          onChange={this.handleChange}
+          onChange={(e) => { this.setCurrentSelection(e); handleChange(e); }}
         />
       </>
     );
   }
 }
+
+Characteristics.propTypes = {
+  state: PropTypes.shape(),
+  handleChange: PropTypes.func,
+};
+
+Characteristics.defaultProps = {
+  state: null,
+  handleChange: null,
+};
 
 export default Characteristics;

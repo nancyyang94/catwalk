@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Ratings from './Ratings';
 import ReviewsList from './ReviewsList';
 import RatingsReviewsContainer from './styledComponents/RatingsReviewsContainer';
+import Star from './Star';
 
 class RatingsReviews extends React.Component {
   constructor(props) {

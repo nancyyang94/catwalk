@@ -2,7 +2,7 @@ import React from 'react';
 
 const options = [
   {
-    featureName: 'size',
+    name: 'size',
     1: 'A size too small',
     2: '½ a size too small',
     3: 'Perfect',
@@ -10,7 +10,7 @@ const options = [
     5: 'A size too big',
   },
   {
-    featureName: 'width',
+    name: 'width',
     1: 'Too narrow',
     2: 'Slightly narrow',
     3: 'Perfect',
@@ -18,7 +18,7 @@ const options = [
     5: 'Too wide',
   },
   {
-    featureName: 'comfort',
+    name: 'comfort',
     1: 'Uncomfortable',
     2: 'Slightly uncomfortable',
     3: 'Ok',
@@ -26,7 +26,7 @@ const options = [
     5: 'Perfect',
   },
   {
-    featureName: 'quality',
+    name: 'quality',
     1: 'Poor',
     2: 'Below average',
     3: 'What I expected',
@@ -34,7 +34,7 @@ const options = [
     5: 'Perfect',
   },
   {
-    featureName: 'length',
+    name: 'length',
     1: 'Runs Short',
     2: 'Runs slightly short',
     3: 'Perfect',
@@ -42,7 +42,7 @@ const options = [
     5: 'Runs long',
   },
   {
-    featureName: 'fit',
+    name: 'fit',
     1: 'Runs tight',
     2: 'Runs slightly tight',
     3: 'Perfect',
@@ -78,15 +78,56 @@ class Characteristics extends React.Component {
     const { length } = this.state;
     const { fit } = this.state;
 
-    options.map((feature) => {
-      const { featureName } = feature;
-      console.log('feature name:', featureName)
+    const characteristics = options.map((feature) => {
+      const name = feature.featureName;
+      const { featureName } = this.state;
+      return (
+        <div>
+          <h4>{name}</h4>
+          <p>{featureName}</p>
+          <input
+            type="radio"
+            id="1"
+            name={name}
+            value={feature[1]}
+            onChange={this.handleChange}
+          />
+          <input
+            type="radio"
+            id="2"
+            name={name}
+            value={feature[2]}
+            onChange={this.handleChange}
+          />
+          <input
+            type="radio"
+            id="3"
+            name={name}
+            value={feature[3]}
+            onChange={this.handleChange}
+          />
+          <input
+            type="radio"
+            id="4"
+            name={name}
+            value={feature[4]}
+            onChange={this.handleChange}
+          />
+          <input
+            type="radio"
+            id="5"
+            name={name}
+            value={feature[5]}
+            onChange={this.handleChange}
+          />
+        </div>
+      );
     });
 
     console.log('current state:', this.state);
     return (
       <>
-        <h3>Characteristics refactored</h3>
+        {characteristics}
       </>
     );
   }

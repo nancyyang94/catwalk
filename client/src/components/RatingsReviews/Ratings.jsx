@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactStars from 'react-rating-stars-component';
 import RatingsContainer from './styledComponents/RatingsContainer';
+import StarRatings from './StarRatings';
 
 class Ratings extends React.Component {
   constructor(props) {
