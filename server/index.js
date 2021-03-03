@@ -103,7 +103,7 @@ app.post('/addOutfit', (req, res) => {
 });
 
 app.put('/updateOutfits', (req, res) => {
-  res.status(201).send(outfit.updateOutfits(req.body.user));
+  res.status(201).send(outfit.updateOutfits(req.body));
 });
 
 app.delete('/deleteOutfit', (req, res) => {

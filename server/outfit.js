@@ -5,9 +5,12 @@ let outfits = [{
 const outfitRecord = {};
 
 const updateOutfits = (newOutfits) => {
-  outfits = newOutfits;
+  outfits = newOutfits.user;
   for (let i = 0; i < outfits.length; i += 1) {
     outfitRecord[outfits[i].styleId] = outfits[i].styleId;
+  }
+  if (newOutfits.styleId !== undefined) {
+    return newOutfits.styleId.toString();
   }
   return 'success';
 };

@@ -67,21 +67,21 @@ const OutfitList = ({
   };
 
   const deleteOutfit = (event) => {
-    axios.put('/updateOutfits', { user: outfits })
+    axios.put('/updateOutfits', { user: outfits, styleId: Number(event.target.name) })
       .then((response) => {
-        console.log(response.data);
+        axios.delete('/deleteOutfit', { data: { styleId: response.data } })
+          .then((response2) => {
+            setOutfits(response2.data);
+            updateButton();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
       .catch((error) => {
         console.log(error);
       });
-    axios.delete('/deleteOutfit', { data: { styleId: Number(event.target.name) } })
-      .then((response) => {
-        setOutfits(response.data);
-        updateButton();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+
     event.stopPropagation();
   };
 
