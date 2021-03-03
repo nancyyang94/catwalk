@@ -16,7 +16,6 @@ class Ratings extends React.Component {
 
   ratingsBreakdown() {
     const { reviews } = this.state;
-    console.log({ reviews });
     return (
       <div>
         ratings breakdown....
@@ -25,31 +24,14 @@ class Ratings extends React.Component {
     );
   }
 
-  // starRating() {
-  //   const { average } = this.state;
-  //   return (
-  //     // <ReactStars
-  //     //   count={5}
-  //     //   value={average}
-  //     //   size={24}
-  //     //   activeColor="#525252"
-  //     //   isHalf
-  //     //   edit={false}
-  //     // />
-  //     <Rating />
-  //   );
-  // }
-
   render() {
     const { reviews, average } = this.state;
-    console.log({ reviews, average });
     return (
       <RatingsContainer>
         <p>Ratings and Reviews</p>
         <div className="star-summary">
           <h1>3.5</h1>
-          <Rating avg={3.5}/>
-          {/* {this.starRating()} */}
+          <Rating avg={3.5} />
         </div>
         {this.ratingsBreakdown()}
         <div> User Recommendations </div>

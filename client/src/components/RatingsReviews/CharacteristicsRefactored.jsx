@@ -123,8 +123,6 @@ class Characteristics extends React.Component {
         </div>
       );
     });
-
-    console.log('current state:', this.state);
     return (
       <>
         {characteristics}
