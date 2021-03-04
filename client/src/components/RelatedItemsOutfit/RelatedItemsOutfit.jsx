@@ -64,30 +64,42 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
 
   const right = (event) => {
     let slider;
-    if (updateButton()) {
-      return;
-    } if (event.target.name === 'relatedRight') {
+    if (event.target.name === 'relatedRight') {
       slider = document.getElementById('slider');
-      setHasRelatedPrevious(true);
-      const scrollLeftMax = slider.scrollWidth - slider.clientWidth;
-      slider.scrollLeft += 312;
-      if (slider.scrollLeft > scrollLeftMax - 312) {
-        slider.scrollLeft += scrollLeftMax - slider.scrollLeft;
-        updateButton();
-      }
-      if (slider.scrollLeft >= scrollLeftMax - 312) {
+      const relatedWidth = slider.scrollWidth - slider.clientWidth;
+      if (relatedWidth) {
+        setHasRelatedNext(true);
+        setHasRelatedPrevious(true);
+        const scrollLeftMax = slider.scrollWidth - slider.clientWidth;
+        slider.scrollLeft += 312;
+        if (slider.scrollLeft > scrollLeftMax - 312) {
+          slider.scrollLeft += scrollLeftMax - slider.scrollLeft;
+          setHasRelatedNext(false);
+        }
+        if (slider.scrollLeft >= scrollLeftMax - 312) {
+          setHasRelatedNext(false);
+        }
+      } else {
+        setHasRelatedPrevious(false);
         setHasRelatedNext(false);
       }
     } else {
       slider = document.getElementById('slider2');
-      setHasOutfitPrevious(true);
-      const scrollLeftMax = slider.scrollWidth - slider.clientWidth;
-      slider.scrollLeft += 312;
-      if (slider.scrollLeft > scrollLeftMax - 312) {
-        slider.scrollLeft += scrollLeftMax - slider.scrollLeft;
-        updateButton();
-      }
-      if (slider.scrollLeft >= scrollLeftMax - 312) {
+      const outfitWidth = slider.scrollWidth - slider.clientWidth;
+      if (outfitWidth) {
+        setHasOutfitNext(true);
+        setHasOutfitPrevious(true);
+        const scrollLeftMax = slider.scrollWidth - slider.clientWidth;
+        slider.scrollLeft += 312;
+        if (slider.scrollLeft > scrollLeftMax - 312) {
+          slider.scrollLeft += scrollLeftMax - slider.scrollLeft;
+          setHasOutfitNext(false);
+        }
+        if (slider.scrollLeft >= scrollLeftMax - 312) {
+          setHasOutfitNext(false);
+        }
+      } else {
+        setHasOutfitPrevious(false);
         setHasOutfitNext(false);
       }
     }
@@ -95,48 +107,59 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
 
   const left = (event) => {
     let slider;
-    if (updateButton()) {
-      return;
-    }
     if (event.target.name === 'relatedLeft') {
       slider = document.getElementById('slider');
-      const lastCard = slider.scrollWidth - slider.clientWidth - 312;
-      if (slider.scrollLeft > (lastCard < 0 ? 0 : lastCard)) {
-        slider.scrollLeft -= 307;
+      const relatedWidth = slider.scrollWidth - slider.clientWidth;
+      if (relatedWidth) {
         setHasRelatedNext(true);
-        if (slider.scrollLeft <= 317) {
-          setHasRelatedPrevious(false);
+        const lastCard = slider.scrollWidth - slider.clientWidth - 312;
+        if (slider.scrollLeft > (lastCard < 0 ? 0 : lastCard)) {
+          slider.scrollLeft -= 307;
+          setHasRelatedNext(true);
+          if (slider.scrollLeft <= 317) {
+            setHasRelatedPrevious(false);
+          }
+        } else {
+          slider.scrollLeft -= 312;
+          if (slider.scrollLeft < 624) {
+            slider.scrollLeft -= slider.scrollLeft;
+            setHasRelatedPrevious(false);
+          }
+          setHasRelatedNext(true);
+          if (slider.scrollLeft <= 317) {
+            setHasRelatedPrevious(false);
+          }
         }
       } else {
-        slider.scrollLeft -= 312;
-        if (slider.scrollLeft < 624) {
-          slider.scrollLeft -= slider.scrollLeft;
-          updateButton();
-        }
-        setHasRelatedNext(true);
-        if (slider.scrollLeft <= 317) {
-          setHasRelatedPrevious(false);
-        }
+        setHasRelatedPrevious(false);
+        setHasRelatedNext(false);
       }
     } else {
       slider = document.getElementById('slider2');
-      const lastCard = slider.scrollWidth - slider.clientWidth - 312;
-      if (slider.scrollLeft > (lastCard < 0 ? 0 : lastCard)) {
-        slider.scrollLeft -= 307;
+      const outfitWidth = slider.scrollWidth - slider.clientWidth;
+      if (outfitWidth) {
         setHasOutfitNext(true);
-        if (slider.scrollLeft <= 317) {
-          setHasOutfitPrevious(false);
+        const lastCard = slider.scrollWidth - slider.clientWidth - 312;
+        if (slider.scrollLeft > (lastCard < 0 ? 0 : lastCard)) {
+          slider.scrollLeft -= 307;
+          setHasOutfitNext(true);
+          if (slider.scrollLeft <= 317) {
+            setHasOutfitPrevious(false);
+          }
+        } else {
+          slider.scrollLeft -= 312;
+          if (slider.scrollLeft < 624) {
+            slider.scrollLeft -= slider.scrollLeft;
+            setHasOutfitPrevious(false);
+          }
+          setHasOutfitNext(true);
+          if (slider.scrollLeft <= 317) {
+            setHasOutfitPrevious(false);
+          }
         }
       } else {
-        slider.scrollLeft -= 312;
-        if (slider.scrollLeft < 624) {
-          slider.scrollLeft -= slider.scrollLeft;
-          updateButton();
-        }
-        setHasOutfitNext(true);
-        if (slider.scrollLeft <= 317) {
-          setHasOutfitPrevious(false);
-        }
+        setHasOutfitPrevious(false);
+        setHasOutfitNext(false);
       }
     }
   };

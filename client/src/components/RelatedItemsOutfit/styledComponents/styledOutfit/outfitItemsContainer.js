@@ -12,7 +12,7 @@ const OutfitItemsContainer = styled.div`
   margin-left: 130px;
   padding: 0;
   scroll-behavior: smooth;
-  min-height: 430px;
+  min-height: 450px;
 `;
 
 export default OutfitItemsContainer;
