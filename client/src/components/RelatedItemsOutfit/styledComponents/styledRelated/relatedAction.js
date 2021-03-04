@@ -15,6 +15,7 @@ const RelatedAction = styled.button`
   text-shadow: 1px 1px black;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: white;
+  z-index: 15;
 `;
 
 export default RelatedAction;

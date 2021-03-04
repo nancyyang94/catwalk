@@ -5,7 +5,7 @@ height: 5px;
 display: flex;
 justify-content: flex-start;
 flex-direction: row;
-background-color: #ffffff;
+background-color: #ebedee;
 color: #525252;
 align-content: center;
 position: absolute;

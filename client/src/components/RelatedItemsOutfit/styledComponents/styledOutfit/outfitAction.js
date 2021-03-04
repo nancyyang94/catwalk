@@ -15,6 +15,7 @@ const OutfitAction = styled.button`
   font-size: 12px;
   display: flex;
   text-shadow: 1px 1px black;
+  z-index: 15;
 `;
 
 export default OutfitAction;
