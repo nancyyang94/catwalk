@@ -48,6 +48,7 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
       setHasRelatedPrevious(false);
       setHasRelatedNext(false);
     }
+    return !outfitWidth && !relatedWidth;
   };
 
   useEffect(() => {
@@ -61,22 +62,58 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
     updateButton();
   }, [related]);
 
+  useEffect(() => {
+    let unmounted = false;
+    setTimeout(() => {
+      if (!unmounted) {
+        window.addEventListener('resize', updateButton);
+      }
+    }, 50);
+
+    return () => {
+      unmounted = true;
+      window.removeEventListener('resize', updateButton);
+    };
+  }, []);
+
   const right = (event) => {
     let slider;
     if (event.target.name === 'relatedRight') {
       slider = document.getElementById('slider');
-      setHasRelatedPrevious(true);
-      const scrollLeftMax = slider.scrollWidth - slider.clientWidth;
-      slider.scrollLeft += 312;
-      if (slider.scrollLeft >= scrollLeftMax - 312) {
+      const relatedWidth = slider.scrollWidth - slider.clientWidth;
+      if (relatedWidth) {
+        setHasRelatedNext(true);
+        setHasRelatedPrevious(true);
+        const scrollLeftMax = slider.scrollWidth - slider.clientWidth;
+        slider.scrollLeft += 312;
+        if (slider.scrollLeft > scrollLeftMax - 312) {
+          slider.scrollLeft += scrollLeftMax - slider.scrollLeft;
+          setHasRelatedNext(false);
+        }
+        if (slider.scrollLeft >= scrollLeftMax - 312) {
+          setHasRelatedNext(false);
+        }
+      } else {
+        setHasRelatedPrevious(false);
         setHasRelatedNext(false);
       }
     } else {
       slider = document.getElementById('slider2');
-      setHasOutfitPrevious(true);
-      const scrollLeftMax = slider.scrollWidth - slider.clientWidth;
-      slider.scrollLeft += 312;
-      if (slider.scrollLeft >= scrollLeftMax - 312) {
+      const outfitWidth = slider.scrollWidth - slider.clientWidth;
+      if (outfitWidth) {
+        setHasOutfitNext(true);
+        setHasOutfitPrevious(true);
+        const scrollLeftMax = slider.scrollWidth - slider.clientWidth;
+        slider.scrollLeft += 312;
+        if (slider.scrollLeft > scrollLeftMax - 312) {
+          slider.scrollLeft += scrollLeftMax - slider.scrollLeft;
+          setHasOutfitNext(false);
+        }
+        if (slider.scrollLeft >= scrollLeftMax - 312) {
+          setHasOutfitNext(false);
+        }
+      } else {
+        setHasOutfitPrevious(false);
         setHasOutfitNext(false);
       }
     }
@@ -86,29 +123,64 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
     let slider;
     if (event.target.name === 'relatedLeft') {
       slider = document.getElementById('slider');
-      if (slider.scrollLeft >= slider.scrollWidth - slider.clientWidth - 312) {
-        slider.scrollLeft -= 307;
+      const relatedWidth = slider.scrollWidth - slider.clientWidth;
+      if (relatedWidth) {
         setHasRelatedNext(true);
-      } else {
-        slider.scrollLeft -= 312;
-        setHasRelatedNext(true);
-        if (slider.scrollLeft <= 317) {
-          setHasRelatedPrevious(false);
+        const lastCard = slider.scrollWidth - slider.clientWidth - 312;
+        if (slider.scrollLeft > (lastCard < 0 ? 0 : lastCard)) {
+          slider.scrollLeft -= 307;
+          setHasRelatedNext(true);
+          if (slider.scrollLeft <= 317) {
+            setHasRelatedPrevious(false);
+          }
+        } else {
+          slider.scrollLeft -= 312;
+          if (slider.scrollLeft < 624) {
+            slider.scrollLeft -= slider.scrollLeft;
+            setHasRelatedPrevious(false);
+          }
+          setHasRelatedNext(true);
+          if (slider.scrollLeft <= 317) {
+            setHasRelatedPrevious(false);
+          }
         }
+      } else {
+        setHasRelatedPrevious(false);
+        setHasRelatedNext(false);
       }
     } else {
       slider = document.getElementById('slider2');
-      slider.scrollLeft -= 312;
-      setHasOutfitNext(true);
-      if (slider.scrollLeft <= 312) {
+      const outfitWidth = slider.scrollWidth - slider.clientWidth;
+      if (outfitWidth) {
+        setHasOutfitNext(true);
+        const lastCard = slider.scrollWidth - slider.clientWidth - 312;
+        if (slider.scrollLeft > (lastCard < 0 ? 0 : lastCard)) {
+          slider.scrollLeft -= 307;
+          setHasOutfitNext(true);
+          if (slider.scrollLeft <= 317) {
+            setHasOutfitPrevious(false);
+          }
+        } else {
+          slider.scrollLeft -= 312;
+          if (slider.scrollLeft < 624) {
+            slider.scrollLeft -= slider.scrollLeft;
+            setHasOutfitPrevious(false);
+          }
+          setHasOutfitNext(true);
+          if (slider.scrollLeft <= 317) {
+            setHasOutfitPrevious(false);
+          }
+        }
+      } else {
         setHasOutfitPrevious(false);
+        setHasOutfitNext(false);
       }
     }
   };
 
   return (
     <div>
-      <RelatedContainer className="carousel">
+      <RelatedContainer id="carousel">
         <Title>RELATED PRODUCTS</Title>
         {hasRelatedPrevious ? <Left type="button" name="relatedLeft" onClick={(event) => left(event)}><SvgArrowL width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowL></Left> : null}
         <RelatedItemsList

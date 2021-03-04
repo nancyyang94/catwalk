@@ -12,19 +12,18 @@ const ProductCard = ({
 }) => {
   const [isPressed, setPressed] = useState(false);
   const [combinedFeatures, setCombinedFeatures] = useState([]);
-
   const combiner = (feat1, feat2) => {
     const combined = {};
     for (let i = 0; i < feat1.length; i += 1) {
       if (combined[feat1[i].feature] === undefined) {
-        combined[feat1[i].feature] = [feat1[i].value, null];
+        combined[feat1[i].feature] = [(feat1[i].value ? feat1[i].value : '✓'), null];
       }
     }
     for (let j = 0; j < feat2.length; j += 1) {
       if (combined[feat2[j].feature] === undefined) {
-        combined[feat2[j].feature] = [null, feat2[j].value];
+        combined[feat2[j].feature] = [null, (feat2[j].value ? feat2[j].value : '✓')];
       } else {
-        combined[feat2[j].feature][1] = feat2[j].value;
+        combined[feat2[j].feature][1] = (feat2[j].value ? feat2[j].value : '✓');
       }
     }
     const final = [];
@@ -93,6 +92,7 @@ ProductCard.propTypes = {
     photos: PropTypes.arrayOf(PropTypes.object),
     styleId: PropTypes.number,
     style: PropTypes.string,
+    reviews: PropTypes.arrayOf(PropTypes.object),
   }),
   getProduct: PropTypes.func,
   mainFeatures: PropTypes.arrayOf(PropTypes.object),
