@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import PropTypes from 'prop-types';
 import StarRatingContainer from '../styledComponents/sharedStyledC/StarRatingContainer';
@@ -53,9 +54,9 @@ function getStars(value) {
   for (let i = 0; i < whole; i += 1) stars.push(wholeStar);
   if (part) {
     const parts = Number(`.${part}`);
-    if (parts <= 0.33) {
+    if (parts <= 0.49) {
       stars.push(quarterStar);
-    } else if (parts <= 0.66 && parts > 0.33) {
+    } else if (parts <= 0.75 && parts > 0.49) {
       stars.push(halfStar);
     } else {
       stars.push(threeQuarterStar);
@@ -67,7 +68,7 @@ function getStars(value) {
 
 const StarRating = ({ avg }) => (
   <StarRatingContainer>
-    {getStars(avg).map((star) => <IndividualStarContainer>{star}</IndividualStarContainer>)}
+    {getStars(avg).map((star, i) => <IndividualStarContainer key={`${star}${i}`}>{star}</IndividualStarContainer>)}
   </StarRatingContainer>
 );
 
