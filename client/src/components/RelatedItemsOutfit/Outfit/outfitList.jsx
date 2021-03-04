@@ -54,6 +54,8 @@ const OutfitList = ({
       defaultPrice: currentStyle.original_price,
       salePrice: currentStyle.sale_price,
       photos: currentStyle.photos,
+      slogan: product.slogan,
+      reviews: product.reviews,
     };
     axios.post('/addOutfit', outfit)
       .then((response) => {
@@ -132,6 +134,7 @@ OutfitList.propTypes = {
     created_at: PropTypes.string,
     updated_at: PropTypes.string,
     features: PropTypes.arrayOf(PropTypes.object),
+    reviews: PropTypes.arrayOf(PropTypes.object),
   }),
   updateButton: PropTypes.func,
 };

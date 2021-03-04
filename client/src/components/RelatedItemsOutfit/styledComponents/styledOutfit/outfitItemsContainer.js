@@ -8,9 +8,11 @@ const OutfitItemsContainer = styled.div`
   transition: .5s;
   max-width: 1560px;
   overflow-x: hidden;
+  overflow-y: hidden;
   margin-left: 130px;
   padding: 0;
   scroll-behavior: smooth;
+  min-height: 430px;
 `;
 
 export default OutfitItemsContainer;

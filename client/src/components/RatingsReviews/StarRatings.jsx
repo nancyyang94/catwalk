@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import StarRatingContainer from './styledComponents/StarRatingContainer';
 import IndividualStarContainer from './styledComponents/IndividualStarContainer';
 
