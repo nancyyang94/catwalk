@@ -50,7 +50,7 @@ app.get('/products/:product_id/related', (req, res) => {
             })
               .then((styles) => {
                 const allRelatedItems = [];
-                for (let j = 0; j < styles.data.results.length; j += 1) {
+                // for (let j = 0; j < styles.data.results.length; j += 1) {
                   const productCard = {
                     id: product.data.id,
                     category: product.data.category,
@@ -60,13 +60,13 @@ app.get('/products/:product_id/related', (req, res) => {
                     defaultPrice: product.data.default_price,
                     features: product.data.features,
                   };
-                  productCard.salePrice = styles.data.results[j].sale_price;
-                  productCard.default = styles.data.results[j]['default?'];
-                  productCard.photos = styles.data.results[j].photos;
-                  productCard.styleId = styles.data.results[j].style_id;
-                  productCard.style = styles.data.results[j].name;
+                  productCard.salePrice = styles.data.results[0].sale_price;
+                  productCard.default = styles.data.results[0]['default?'];
+                  productCard.photos = styles.data.results[0].photos;
+                  productCard.styleId = styles.data.results[0].style_id;
+                  productCard.style = styles.data.results[0].name;
                   allRelatedItems.push(productCard);
-                }
+                // }
                 return allRelatedItems;
               })
               .catch((error) => {
