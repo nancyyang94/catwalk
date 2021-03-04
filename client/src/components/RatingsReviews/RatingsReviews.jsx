@@ -14,7 +14,6 @@ class RatingsReviews extends React.Component {
 
   componentDidUpdate() {
     const { product } = this.props;
-    console.log('should be our product object:', { product });
   }
 
   render() {

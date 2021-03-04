@@ -5,6 +5,8 @@ const path = require('path');
 const axios = require('axios');
 const config = require('../config');
 const outfit = require('./outfit');
+const getRelatedProductData = require('./getRelatedProduct');
+const getReviews = require('./getReviews');
 
 const app = express();
 const port = 3000;
@@ -20,8 +22,13 @@ app.get('/products/:product_id', (req, res) => {
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${req.params.product_id}`,
     headers: { Authorization: config.TOKEN },
   })
-    .then((response) => {
-      res.status(200).send(response.data);
+    .then((product) => {
+      getReviews(req.params.product_id)
+        .then((review) => {
+          const productInfo = product.data;
+          productInfo.reviews = review.data.results;
+          res.status(200).send(productInfo);
+        });
     })
     .catch((error) => {
       res.status(400).send(error);
@@ -38,42 +45,12 @@ app.get('/products/:product_id/related', (req, res) => {
       const result = [];
       for (let i = 0; i < relatedProducts.data.length; i += 1) {
         result.push(
-          axios({
-            method: 'GET',
-            url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${relatedProducts.data[i]}`,
-            headers: { Authorization: config.TOKEN },
-          })
-            .then((product) => axios({
-              method: 'GET',
-              url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${product.data.id}/styles`,
-              headers: { Authorization: config.TOKEN },
-            })
-              .then((styles) => {
-                const allRelatedItems = [];
-                for (let j = 0; j < styles.data.results.length; j += 1) {
-                  const productCard = {
-                    id: product.data.id,
-                    category: product.data.category,
-                    name: product.data.name,
-                    description: product.data.description,
-                    slogan: product.data.slogan,
-                    defaultPrice: product.data.default_price,
-                    features: product.data.features,
-                  };
-                  productCard.salePrice = styles.data.results[j].sale_price;
-                  productCard.default = styles.data.results[j]['default?'];
-                  productCard.photos = styles.data.results[j].photos;
-                  productCard.styleId = styles.data.results[j].style_id;
-                  productCard.style = styles.data.results[j].name;
-                  allRelatedItems.push(productCard);
-                }
-                return allRelatedItems;
-              })
-              .catch((error) => {
-                console.log(error);
-              }))
-            .catch((error) => {
-              console.log(error);
+          Promise.all([
+            getRelatedProductData(relatedProducts.data[i]), getReviews(relatedProducts.data[i])])
+            .then((values) => {
+              const data = values;
+              data[0][0].reviews = data[1].data.results;
+              return values[0];
             }),
         );
       }
@@ -102,8 +79,12 @@ app.post('/addOutfit', (req, res) => {
   res.status(201).send(outfit.addOutfit(req.body));
 });
 
+app.put('/updateOutfits', (req, res) => {
+  res.status(201).send(outfit.updateOutfits(req.body));
+});
+
 app.delete('/deleteOutfit', (req, res) => {
-  res.status(200).send(outfit.deleteOutfit(req.body.id));
+  res.status(200).send(outfit.deleteOutfit(req.body.styleId));
 });
 
 app.get('/products/:product_id/styles', (req, res) => {

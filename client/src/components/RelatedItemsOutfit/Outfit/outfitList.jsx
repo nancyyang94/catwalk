@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import OutfitCard from './outfitCard';
@@ -11,15 +11,31 @@ const OutfitList = ({
 }) => {
   const addOutfitCard = {
     isOutfitCard: true,
+    id: 'addOutfitCard',
   };
-  const [outfits, setOutfits] = useState([addOutfitCard]);
+  const useStateReducer = (prevState, dispatchArg) => (typeof dispatchArg === 'function' ? dispatchArg(prevState) : dispatchArg);
+
+  const useStateInitializer = (initialArg) => (typeof initialArg === 'function' ? initialArg() : initialArg
+  );
+
+  const useState = (initialValue = [addOutfitCard]) => (
+    useReducer(useStateReducer, initialValue, useStateInitializer));
+
+  const [outfits, setOutfits] = useState(() => {
+    const localData = localStorage.getItem('outfits');
+    return localData ? JSON.parse(localData) : [addOutfitCard];
+  });
 
   useEffect(() => {
-    axios.get('/getOutfits')
+    localStorage.setItem('outfits', JSON.stringify(outfits));
+    axios.put('/updateOutfits', { user: outfits })
       .then((response) => {
-        setOutfits(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
       });
-  }, []);
+  }, [outfits]);
 
   useEffect(() => {
     updateButton();
@@ -38,27 +54,43 @@ const OutfitList = ({
       defaultPrice: currentStyle.original_price,
       salePrice: currentStyle.sale_price,
       photos: currentStyle.photos,
+      slogan: product.slogan,
+      reviews: product.reviews,
     };
-    axios.post('/addOutfit', outfit)
-      .then((response) => {
-        setOutfits(outfits.concat(response.data));
-      })
-      .catch((error) => {
-        console.log(error);
+    setOutfits(() => {
+      const localData = localStorage.getItem('outfits');
+      return localData ? JSON.parse(localData) : [addOutfitCard];
+    });
+    axios.put('/updateOutfits', { user: outfits })
+      .then(() => {
+        axios.post('/addOutfit', outfit)
+          .then((response) => {
+            setOutfits(outfits.concat(response.data));
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       });
     updateButton();
     event.stopPropagation();
   };
 
   const deleteOutfit = (event) => {
-    axios.delete('/deleteOutfit', { data: { id: Number(event.target.name) } })
+    axios.put('/updateOutfits', { user: outfits, styleId: Number(event.target.name) })
       .then((response) => {
-        setOutfits([].concat(response.data));
-        updateButton();
+        axios.delete('/deleteOutfit', { data: { styleId: response.data } })
+          .then((response2) => {
+            setOutfits(response2.data);
+            updateButton();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
       .catch((error) => {
         console.log(error);
       });
+
     event.stopPropagation();
   };
 
@@ -75,7 +107,7 @@ const OutfitList = ({
         ) : (
           <OutfitCard
             productInfo={outfit}
-            key={outfit.id}
+            key={outfit.styleId}
             getProduct={getProduct}
             deleteOutfit={deleteOutfit}
           />
@@ -109,6 +141,7 @@ OutfitList.propTypes = {
     created_at: PropTypes.string,
     updated_at: PropTypes.string,
     features: PropTypes.arrayOf(PropTypes.object),
+    reviews: PropTypes.arrayOf(PropTypes.object),
   }),
   updateButton: PropTypes.func,
 };

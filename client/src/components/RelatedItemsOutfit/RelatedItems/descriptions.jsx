@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SalePrice from '../styledComponents/styledRelated/salePrice';
 import DescriptionsContainer from '../styledComponents/styledRelated/descriptionsContainer';
+import StarReviews from '../sharedComponents/starReviews';
 
 const Descriptions = ({ productInfo }) => (
   <DescriptionsContainer>
@@ -26,7 +27,7 @@ const Descriptions = ({ productInfo }) => (
           </strike>
         </div>
       )}
-    <div>5 Stars review</div>
+    <StarReviews reviews={productInfo.reviews} />
   </DescriptionsContainer>
 );
 
@@ -46,6 +47,7 @@ Descriptions.propTypes = {
     photos: PropTypes.arrayOf(PropTypes.object),
     styleId: PropTypes.number,
     style: PropTypes.string,
+    reviews: PropTypes.arrayOf(PropTypes.object),
   }),
 };
 
