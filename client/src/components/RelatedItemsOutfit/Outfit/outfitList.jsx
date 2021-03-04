@@ -57,12 +57,19 @@ const OutfitList = ({
       slogan: product.slogan,
       reviews: product.reviews,
     };
-    axios.post('/addOutfit', outfit)
-      .then((response) => {
-        setOutfits(outfits.concat(response.data));
-      })
-      .catch((error) => {
-        console.log(error);
+    setOutfits(() => {
+      const localData = localStorage.getItem('outfits');
+      return localData ? JSON.parse(localData) : [addOutfitCard];
+    });
+    axios.put('/updateOutfits', { user: outfits })
+      .then(() => {
+        axios.post('/addOutfit', outfit)
+          .then((response) => {
+            setOutfits(outfits.concat(response.data));
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       });
     updateButton();
     event.stopPropagation();

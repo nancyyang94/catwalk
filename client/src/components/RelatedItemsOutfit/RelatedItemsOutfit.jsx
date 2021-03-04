@@ -62,6 +62,20 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
     updateButton();
   }, [related]);
 
+  useEffect(() => {
+    let unmounted = false;
+    setTimeout(() => {
+      if (!unmounted) {
+        window.addEventListener('resize', updateButton);
+      }
+    }, 50);
+
+    return () => {
+      unmounted = true;
+      window.removeEventListener('resize', updateButton);
+    };
+  }, []);
+
   const right = (event) => {
     let slider;
     if (event.target.name === 'relatedRight') {

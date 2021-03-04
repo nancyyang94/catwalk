@@ -4,12 +4,12 @@ import StarRatingContainer from '../styledComponents/sharedStyledC/StarRatingCon
 import IndividualStarContainer from '../styledComponents/sharedStyledC/IndividualStarContainer';
 
 const wholeStar = (
-  <svg width="300" height="300">
+  <svg width="100" height="100">
     <polygon points="50,9 60.5,39.5 92.7,40.1 67,59.5 76.4,90.3 50,71.9 23.6,90.3 32.9,59.5 7.2,40.1 39.4,39.5" stroke="black" strokeWidth="5" fill="black" />
   </svg>
 );
 const quarterStar = (
-  <svg width="300" height="300">
+  <svg width="100" height="100">
     <polygon points="50,9 60.5,39.5 92.7,40.1 67,59.5 76.4,90.3 50,71.9 23.6,90.3 32.9,59.5 7.2,40.1 39.4,39.5" stroke="black" strokeWidth="5" fill="url(#grad1)" />
     <defs>
       <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -20,7 +20,7 @@ const quarterStar = (
   </svg>
 );
 const halfStar = (
-  <svg width="300" height="300">
+  <svg width="100" height="100">
     <polygon points="50,9 60.5,39.5 92.7,40.1 67,59.5 76.4,90.3 50,71.9 23.6,90.3 32.9,59.5 7.2,40.1 39.4,39.5" stroke="black" strokeWidth="5" fill="url(#grad1)" />
     <defs>
       <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -31,7 +31,7 @@ const halfStar = (
   </svg>
 );
 const threeQuarterStar = (
-  <svg width="300" height="300">
+  <svg width="100" height="100">
     <polygon points="50,9 60.5,39.5 92.7,40.1 67,59.5 76.4,90.3 50,71.9 23.6,90.3 32.9,59.5 7.2,40.1 39.4,39.5" stroke="black" strokeWidth="5" fill="url(#grad1)" />
     <defs>
       <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -42,7 +42,7 @@ const threeQuarterStar = (
   </svg>
 );
 const emptyStar = (
-  <svg width="300" height="300">
+  <svg width="100" height="100">
     <polygon points="50,9 60.5,39.5 92.7,40.1 67,59.5 76.4,90.3 50,71.9 23.6,90.3 32.9,59.5 7.2,40.1 39.4,39.5" stroke="black" strokeWidth="5" fill="white" />
   </svg>
 );

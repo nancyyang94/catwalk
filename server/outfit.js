@@ -2,10 +2,11 @@ let outfits = [{
   isOutfitCard: true,
   id: 'addCard',
 }];
-const outfitRecord = {};
+let outfitRecord = {};
 
 const updateOutfits = (newOutfits) => {
   outfits = newOutfits.user;
+  outfitRecord = {};
   for (let i = 0; i < outfits.length; i += 1) {
     outfitRecord[outfits[i].styleId] = outfits[i].styleId;
   }
