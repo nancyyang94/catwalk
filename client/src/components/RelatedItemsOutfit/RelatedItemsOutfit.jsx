@@ -69,7 +69,6 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
         window.addEventListener('resize', updateButton);
       }
     }, 50);
-
     return () => {
       unmounted = true;
       window.removeEventListener('resize', updateButton);
