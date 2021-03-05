@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ImageGallery from './ImageGallery/ImageGallery';
 import ProductInfo from './ProductInfo/ProductInfo';
 import StyleSelector from './StyleSelector/StyleSelector';
+import AddToCart from './AddToCart/AddToCart';
 import OverviewContainer from './StyledComponents/OverviewContainer';
 import GalleryContainer from './StyledComponents/GalleryContainer';
 import InfoContainer from './StyledComponents/InfoContainer';
@@ -83,7 +84,7 @@ class Overview extends React.Component {
             />
           </StyleSelectorContainer>
           <AddToCartContainer>
-            Add To Cart
+            <AddToCart currentStyle={currentStyle} />
           </AddToCartContainer>
         </InfoContainer>
       </OverviewContainer>
@@ -109,6 +110,12 @@ Overview.propTypes = {
     original_price: PropTypes.string,
     sale_price: PropTypes.string,
     photos: PropTypes.arrayOf(PropTypes.object),
+    skus: PropTypes.objectOf(
+      PropTypes.shape({
+        quantity: PropTypes.number,
+        size: PropTypes.string,
+      }),
+    ),
   }),
   updateCurrentStyle: PropTypes.func,
 };
