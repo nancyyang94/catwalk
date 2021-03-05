@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Characteristics from './Characteristics';
-import CharacteristicsRefactored from './CharacteristicsRefactored';
+import Characteristics from './CharacteristicsRefactored';
 
 class NewReviewForm extends React.Component {
   constructor(props) {
