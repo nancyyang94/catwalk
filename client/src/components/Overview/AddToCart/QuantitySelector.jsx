@@ -14,17 +14,12 @@ class QuantitySelector extends React.Component {
   // componentDidUpdate(prevProps) {
   //   const { currentStyle: prevStyle } = prevProps;
   //   const { style_id: prevId } = prevStyle;
-  //   const { currentStyle, selectedSkuId} = this.props;
+  //   const { currentStyle, selectedSkuId } = this.props;
   //   const { style_id: currentId } = currentStyle;
 
   //   if (prevId !== currentId && currentId) {
-  //     const { skus } = currentStyle;
-  //     const currentSkuObj = skus[selectedSkuId];
-
-  //     this.setState({
-  //       currentSkuObj: currentSkuObj,
-
-  //     });
+  //     const { setSelectedSkuId } = this.props;
+  //     setSelectedSkuId('default');
   //   }
   // }
 
@@ -37,6 +32,12 @@ class QuantitySelector extends React.Component {
     const { currentStyle, selectedSkuId } = this.props;
     const { skus } = currentStyle;
     const currentSkuObj = skus[selectedSkuId];
+    if (!currentSkuObj) {
+      const { setSelectedSkuId } = this.props;
+      setSelectedSkuId('default');
+      return;
+    }
+
     const { quantity } = currentSkuObj;
     const quantityArr = [];
 
@@ -58,7 +59,8 @@ class QuantitySelector extends React.Component {
 
   render() {
     const { selectedSkuId } = this.props;
-    if (selectedSkuId === 'default') {
+
+    if (selectedSkuId === 'default' || !selectedSkuId) {
       return (
         <select defaultValue="default" disabled={selectedSkuId === 'default'}>
           <option value="default">-</option>
@@ -90,12 +92,14 @@ QuantitySelector.propTypes = {
   }),
   setCount: PropTypes.func,
   selectedSkuId: PropTypes.string,
+  setSelectedSkuId: PropTypes.func,
 };
 
 QuantitySelector.defaultProps = {
   currentStyle: {},
   setCount: null,
   selectedSkuId: 'default',
+  setSelectedSkuId: null,
 };
 
 export default QuantitySelector;

@@ -16,6 +16,21 @@ class AddToCart extends React.Component {
     this.setCount = this.setCount.bind(this);
   }
 
+  // componentDidUpdate(prevProps, prevState) {
+  //   const { currentStyle: prevStyle } = prevProps;
+  //   const { style_id: prevStyleId } = prevStyle;
+  //   // const { selectedSkuId: prevSku_id } = prevState;
+  //   const { currentStyle } = this.props;
+  //   const { style_id: currentStyleId } = currentStyle;
+  //   // const { selectedSkuId: currentSkuId } = this.state;
+
+  //   if (prevStyleId !== currentStyleId) {
+  //     this.setState({
+  //       selectedSkuId: 'default',
+  //     });
+  //   }
+  // }
+
   setSelectedSkuId(key) {
     this.setState({
       selectedSkuId: key,
@@ -31,7 +46,10 @@ class AddToCart extends React.Component {
   render() {
     const { currentStyle } = this.props;
     const { selectedSkuId, count } = this.state;
-    console.log('count: ' + count);
+    console.log('-------rendering addToCart------');
+    console.log('currentStyle: ' + currentStyle.name);
+    console.log('skuId: ' + selectedSkuId);
+
     return (
       <div>
         <SizeSelector setSelectedSkuId={this.setSelectedSkuId} currentStyle={currentStyle} />
@@ -39,6 +57,7 @@ class AddToCart extends React.Component {
           currentStyle={currentStyle}
           selectedSkuId={selectedSkuId}
           setCount={this.setCount}
+          setSelectedSkuId={this.setSelectedSkuId}
         />
       </div>
     );
