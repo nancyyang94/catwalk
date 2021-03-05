@@ -22,7 +22,7 @@ const ModalContainer = styled.div`
       transform: translate(-50%, -50%);
       background-color: white;
       padding: 1rem 1.5rem;
-      width: 24rem;
+      width: 48em;
       border-radius: 0.5rem;
       z-index: 10000000000;
   }

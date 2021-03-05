@@ -1,18 +1,20 @@
 import React, { useState} from 'react';
 import PropTypes from 'prop-types';
 
-function IndividualCharacteristic(props) {
-  const { feature } = props;
+function IndividualCharacteristic({ feature, handleChange }) {
   const [currentSelection, setCurrentSelection] = useState('None selected');
 
   function updateCurrentSelection(e) {
     const { value } = e.target;
     setCurrentSelection(value);
+    handleChange(e);
   }
+
   return (
     <div>
       <h3>{feature.name}</h3>
       {currentSelection}
+      <br />
       <br />
       <input
         type="radio"
@@ -55,10 +57,12 @@ function IndividualCharacteristic(props) {
 
 IndividualCharacteristic.propTypes = {
   feature: PropTypes.shape(),
+  handleChange: PropTypes.func,
 };
 
 IndividualCharacteristic.defaultProps = {
   feature: null,
+  handleChange: null,
 };
 
 export default IndividualCharacteristic;

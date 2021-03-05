@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import mockData from './mockData';
 import IndividualReview from './IndividualReview';
 import ReviewListContainer from './styledComponents/ReviewListContainer';
 import NewReview from './NewReview';
 
-const ReviewsList = (props) => {
-  const { productName } = props;
+const ReviewsList = ({ product }) => {
+  const { reviews } = product;
+  let list;
+
+  if (reviews) {
+    list = reviews.map((review) => <IndividualReview review={review} />);
+  }
+
   return (
     <ReviewListContainer>
       <h3>Reviews List</h3>
@@ -17,22 +22,20 @@ const ReviewsList = (props) => {
             relevance
           </button>
         </p>
+        {list}
       </div>
-      {mockData.map((review) => (
-        <IndividualReview review={review} key={review.review_id} />
-      ))}
       <button type="button">More Reviews</button>
-      <NewReview productName={productName} />
+      <NewReview productName={product.name} />
     </ReviewListContainer>
   );
 };
 
 ReviewsList.propTypes = {
-  productName: PropTypes.string,
+  product: PropTypes.shape(),
 };
 
 ReviewsList.defaultProps = {
-  productName: null,
+  product: null,
 };
 
 export default ReviewsList;

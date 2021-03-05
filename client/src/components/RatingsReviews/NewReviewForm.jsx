@@ -72,6 +72,7 @@ class NewReviewForm extends React.Component {
   }
 
   render() {
+    console.log('state of new review form:', this.state);
     return (
       <>
         <form onSubmit={this.submitHandler}>

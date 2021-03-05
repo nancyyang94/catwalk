@@ -29,9 +29,9 @@ class Ratings extends React.Component {
     const { reviews, average } = this.state;
     return (
       <RatingsContainer>
-        <p>Ratings and Reviews</p>
+        <h5>Ratings and Reviews</h5>
         <div className="star-summary">
-          <h1>3.5</h1>
+          <div className="average-rating">3.5</div>
           <StarRatingContainer>
             <Rating avg={3.5} />
           </StarRatingContainer>

@@ -1,18 +1,28 @@
 import React, { useState} from 'react';
+import PropTypes from 'prop-types';
 import options from './charOptions';
 import IndividualCharacteristic from './IndividualCharacteristic';
 
-function Characteristics() {
-  const [state, setState] = useState({ currentSelection: 'None selected' });
-  const { currentSelection } = state;
-
-  const arr = options.map((feature) => <IndividualCharacteristic feature={feature} />);
+function Characteristics(props) {
+  const { handleChange } = props;
+  const mappedOptions = options.map(
+    (feature) => <IndividualCharacteristic feature={feature} handleChange={handleChange} />,
+  );
 
   return (
     <>
-      {arr}
+      {mappedOptions}
     </>
   );
 }
+
+Characteristics.propTypes = {
+  handleChange: PropTypes.func,
+};
+
+Characteristics.defaultProps = {
+  handleChange: null,
+};
+
 
 export default Characteristics;
