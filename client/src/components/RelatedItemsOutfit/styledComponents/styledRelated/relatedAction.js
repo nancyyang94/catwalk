@@ -16,6 +16,10 @@ const RelatedAction = styled.button`
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: white;
   z-index: 15;
+  &:hover {
+    -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  }
 `;
 
 export default RelatedAction;

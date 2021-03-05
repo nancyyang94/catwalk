@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+// import ProductContainer from './productContainer';
 
 const RelatedItemsContainer = styled.div`
-  min-height: 450px;
+  min-height: 330px;
   height: auto;
   display: flex;
   flex-direction: row;
@@ -12,6 +13,9 @@ const RelatedItemsContainer = styled.div`
   margin-left: 130px;
   padding: 0;
   scroll-behavior: smooth;
+  & .productContainer:hover {
+    border: 1px solid black;
+  }
 `;
 
 export default RelatedItemsContainer;

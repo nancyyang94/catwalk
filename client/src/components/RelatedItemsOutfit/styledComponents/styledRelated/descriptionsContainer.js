@@ -7,7 +7,9 @@ const DescriptionsContainer = styled.div`
   position: relative;
   z-index: 2;
   padding-bottom: 10px;
-  min-height: 145px;
+  min-height: 70px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
 `;
 
 export default DescriptionsContainer;

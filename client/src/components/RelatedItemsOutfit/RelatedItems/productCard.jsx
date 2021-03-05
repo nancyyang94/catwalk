@@ -48,7 +48,7 @@ const ProductCard = ({
   };
 
   return (
-    <ProductContainer id="productContainer" onClick={() => getProduct(productInfo.id)}>
+    <ProductContainer className="productContainer" onClick={() => getProduct(productInfo.id)}>
       <RelatedAction type="button" onClick={(event) => comparisonModal(event, isPressed, mainFeatures, productInfo.features)}>☆</RelatedAction>
       <ImageGallery photos={productInfo.photos} category={productInfo.category} />
       <Descriptions productInfo={productInfo} />

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 const StarRatingContainer = styled.div`
-height: 5px;
+height: 10px;
 display: flex;
 justify-content: flex-start;
 flex-direction: row;
-background-color: #ebedee;
+background-color: inherit;
 color: #525252;
 align-content: center;
 position: absolute;

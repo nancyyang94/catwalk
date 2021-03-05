@@ -16,6 +16,11 @@ const OutfitAction = styled.button`
   display: flex;
   text-shadow: 1px 1px black;
   z-index: 15;
+
+  &:hover {
+    border: 2px solid black;
+    color: black;
+  }
 `;
 
 export default OutfitAction;

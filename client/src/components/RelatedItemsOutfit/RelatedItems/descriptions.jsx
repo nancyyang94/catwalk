@@ -9,7 +9,7 @@ const Descriptions = ({ productInfo }) => (
     <div>{productInfo.category.toUpperCase()}</div>
     <div><b>{productInfo.name}</b></div>
     <div><i>{productInfo.style}</i></div>
-    <div>{productInfo.slogan}</div>
+    {/* <div>{productInfo.slogan}</div> */}
     {productInfo.default
       ? (
         <div>
