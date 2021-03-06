@@ -29,7 +29,7 @@ function ReviewsList({ product }) {
         }
       </div>
       <br />
-      <button type="button" onClick={setIndex}>More Reviews</button>
+      {reviews && (reviews.length > 2) && (lastIndex < reviews.length) && <button className="more-reviews" type="button" onClick={setIndex}>More Reviews</button>}
       <br />
       <NewReview productName={product.name} />
     </ReviewListContainer>

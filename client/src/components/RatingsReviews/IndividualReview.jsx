@@ -17,14 +17,18 @@ const IndividualReview = ({ review }) => {
     stars = StarRating(rating);
   }
 
+  const testDate = new Date(date);
+  const stringDate = testDate.toDateString();
+
   return (
     <div>
       {stars}
-      <p>{date}</p>
+      <p>{stringDate}</p>
       <h3>{ summary }</h3>
       <p>{body}</p>
       <p>{reviewerName}</p>
       <p>{`Was this review helpful? Yes (${helpfulness})`}</p>
+      <hr />
     </div>
   );
 };
