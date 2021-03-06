@@ -1,47 +1,37 @@
 import React from 'react';
-import ReactStars from 'react-rating-stars-component';
+import PropTypes from 'prop-types';
 import RatingsContainer from './styledComponents/RatingsContainer';
-import Rating from './StarRatings';
-import StarRatingContainer from './styledComponents/StarRatingContainer';
+import StarReviews from '../RelatedItemsOutfit/sharedComponents/starReviews';
+import AverageRatingContainer from './styledComponents/AverageRatingContainer';
 
 class Ratings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       reviews: [],
-      average: 2.0,
+      average: 0,
     };
-    // this.starRating = this.starRating.bind(this);
-    this.ratingsBreakdown = this.ratingsBreakdown.bind(this);
-  }
-
-  ratingsBreakdown() {
-    const { reviews } = this.state;
-    return (
-      <div>
-        ratings breakdown....
-        <p>100% of reviews recommend this product</p>
-      </div>
-    );
   }
 
   render() {
-    const { reviews, average } = this.state;
+    const { reviews } = this.props;
     return (
       <RatingsContainer>
-        <h5>Ratings and Reviews</h5>
-        <div className="star-summary">
-          <div className="average-rating">3.5</div>
-          <StarRatingContainer>
-            <Rating avg={3.5} />
-          </StarRatingContainer>
-        </div>
-        {this.ratingsBreakdown()}
-        <div> User Recommendations </div>
-        <div> Product Breakdown </div>
+        <h3>Ratings and Reviews</h3>
+        <AverageRatingContainer>
+          <StarReviews reviews={reviews} />
+        </AverageRatingContainer>
       </RatingsContainer>
     );
   }
 }
+
+Ratings.propTypes = {
+  reviews: PropTypes.arrayOf(PropTypes.object),
+};
+
+Ratings.defaultProps = {
+  reviews: null,
+};
 
 export default Ratings;

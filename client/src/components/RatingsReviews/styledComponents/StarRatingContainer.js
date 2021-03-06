@@ -7,8 +7,7 @@ display: flex;
 justify-content: flex-start;
 flex-direction: row;
 background-color: #ebedee;
-color: #525252;
-align-content: center;
+align-content: left;
 `;
 
 export default StarRatingContainer;
