@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Ratings from './Ratings';
-import ReviewsList from './ReviewsList';
+// import ReviewsList from './ReviewsList';
+import ReviewsList from './ReviewsListRefactored';
 import RatingsReviewsContainer from './styledComponents/RatingsReviewsContainer';
 
 class RatingsReviews extends React.Component {

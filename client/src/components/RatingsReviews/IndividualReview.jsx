@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactStars from 'react-rating-stars-component';
+import StarRating from './StarRatings';
 
 const IndividualReview = ({ review }) => {
   const {
@@ -12,16 +12,14 @@ const IndividualReview = ({ review }) => {
     helpfulness,
   } = review;
 
+  let stars;
+  if (rating) {
+    stars = StarRating(rating);
+  }
+
   return (
     <div>
-      <ReactStars
-        count={5}
-        value={rating}
-        size={24}
-        activeColor="#525252"
-        isHalf
-        edit={false}
-      />
+      {stars}
       <p>{date}</p>
       <h3>{ summary }</h3>
       <p>{body}</p>
