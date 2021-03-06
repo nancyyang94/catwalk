@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Right = styled.button`
   position: absolute;
-  right: 4%;
+  right: 0%;
   top: 0%;
   height: 100%;
   background: none;

@@ -18,7 +18,7 @@ const AddOutfitContainer = styled.div`
   grid-template-rows: 1fr;
   justify-content: center;
   /* align-items: center; */
-  min-height: 330px;
+  min-height: 320px;
   background-color: #ebedee;
   /* box-shadow: 3px 3px 3px #999999; */
   border-radius: 1%;

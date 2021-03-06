@@ -48,8 +48,18 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
       setHasRelatedPrevious(false);
       setHasRelatedNext(false);
     }
-    return !outfitWidth && !relatedWidth;
   };
+
+  const updateButtonsOutfit = (direction) => {
+    const outfitSlider = document.getElementById('slider2');
+    const outfitWidth = outfitSlider.scrollWidth - outfitSlider.clientWidth;
+    if (outfitWidth) {
+      setHasOutfitNext(true);
+    } else {
+      setHasOutfitPrevious(false);
+      setHasOutfitNext(false);
+    }
+  }
 
   useEffect(() => {
     if (product.id !== undefined) {
@@ -83,13 +93,12 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
       if (relatedWidth) {
         setHasRelatedNext(true);
         setHasRelatedPrevious(true);
-        const scrollLeftMax = slider.scrollWidth - slider.clientWidth;
-        slider.scrollLeft += 312;
-        if (slider.scrollLeft > scrollLeftMax - 312) {
-          slider.scrollLeft += scrollLeftMax - slider.scrollLeft;
+        slider.scrollLeft += 262;
+        if (slider.scrollLeft > relatedWidth - 524) {
+          slider.scrollLeft += relatedWidth - slider.scrollLeft;
           setHasRelatedNext(false);
         }
-        if (slider.scrollLeft >= scrollLeftMax - 312) {
+        if (slider.scrollLeft >= relatedWidth - 262) {
           setHasRelatedNext(false);
         }
       } else {
@@ -102,13 +111,12 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
       if (outfitWidth) {
         setHasOutfitNext(true);
         setHasOutfitPrevious(true);
-        const scrollLeftMax = slider.scrollWidth - slider.clientWidth;
-        slider.scrollLeft += 312;
-        if (slider.scrollLeft > scrollLeftMax - 312) {
-          slider.scrollLeft += scrollLeftMax - slider.scrollLeft;
+        slider.scrollLeft += 262;
+        if (slider.scrollLeft > outfitWidth - 524) {
+          slider.scrollLeft += outfitWidth - slider.scrollLeft;
           setHasOutfitNext(false);
         }
-        if (slider.scrollLeft >= scrollLeftMax - 312) {
+        if (slider.scrollLeft >= outfitWidth - 262) {
           setHasOutfitNext(false);
         }
       } else {
@@ -125,23 +133,14 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
       const relatedWidth = slider.scrollWidth - slider.clientWidth;
       if (relatedWidth) {
         setHasRelatedNext(true);
-        const lastCard = slider.scrollWidth - slider.clientWidth - 312;
-        if (slider.scrollLeft > (lastCard < 0 ? 0 : lastCard)) {
-          slider.scrollLeft -= 307;
-          setHasRelatedNext(true);
-          if (slider.scrollLeft <= 317) {
-            setHasRelatedPrevious(false);
-          }
-        } else {
-          slider.scrollLeft -= 312;
-          if (slider.scrollLeft < 624) {
-            slider.scrollLeft -= slider.scrollLeft;
-            setHasRelatedPrevious(false);
-          }
-          setHasRelatedNext(true);
-          if (slider.scrollLeft <= 317) {
-            setHasRelatedPrevious(false);
-          }
+        slider.scrollLeft -= 262;
+        if (slider.scrollLeft < 524) {
+          slider.scrollLeft -= slider.scrollLeft;
+          setHasRelatedPrevious(false);
+        }
+        setHasRelatedNext(true);
+        if (slider.scrollLeft <= 267) {
+          setHasRelatedPrevious(false);
         }
       } else {
         setHasRelatedPrevious(false);
@@ -152,23 +151,14 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
       const outfitWidth = slider.scrollWidth - slider.clientWidth;
       if (outfitWidth) {
         setHasOutfitNext(true);
-        const lastCard = slider.scrollWidth - slider.clientWidth - 312;
-        if (slider.scrollLeft > (lastCard < 0 ? 0 : lastCard)) {
-          slider.scrollLeft -= 307;
-          setHasOutfitNext(true);
-          if (slider.scrollLeft <= 317) {
-            setHasOutfitPrevious(false);
-          }
-        } else {
-          slider.scrollLeft -= 312;
-          if (slider.scrollLeft < 624) {
-            slider.scrollLeft -= slider.scrollLeft;
-            setHasOutfitPrevious(false);
-          }
-          setHasOutfitNext(true);
-          if (slider.scrollLeft <= 317) {
-            setHasOutfitPrevious(false);
-          }
+        slider.scrollLeft -= 262;
+        if (slider.scrollLeft < 524) {
+          slider.scrollLeft -= slider.scrollLeft;
+          setHasOutfitPrevious(false);
+        }
+        setHasOutfitNext(true);
+        if (slider.scrollLeft <= 267) {
+          setHasOutfitPrevious(false);
         }
       } else {
         setHasOutfitPrevious(false);
@@ -193,7 +183,7 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
       </RelatedContainer>
       <OutfitContainer>
         <Title>YOUR OUTFIT</Title>
-        {hasOutfitPrevious ? <Left type="button" id="goLeft" onClick={left}><SvgArrowL width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowL></Left> : null}
+        {hasOutfitPrevious ? <Left type="button" name="outfitLeft" onClick={left}><SvgArrowL width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowL></Left> : null}
         <OutfitList
           currentStyle={currentStyle}
           getProduct={getProduct}
@@ -201,7 +191,7 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
           updateButton={updateButton}
         />
         {hasOutfitNext ? <ButtonContainer /> : null}
-        {hasOutfitNext ? <Right type="button" id="goRight" onClick={right}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
+        {hasOutfitNext ? <Right type="button" name="outfitRight" onClick={right}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
       </OutfitContainer>
     </div>
   );
