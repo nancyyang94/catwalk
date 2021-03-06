@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import ProductContainer from './productContainer';
 
 const RelatedItemsContainer = styled.div`
   min-height: 340px;
@@ -10,9 +9,10 @@ const RelatedItemsContainer = styled.div`
   max-width: 1570px;
   overflow-x: hidden;
   overflow-y: hidden;
-  margin-left: 95px;
+  margin-left: 9.1%;
   padding: 0;
   scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
   & .productContainer:hover {
     border: 1px solid black;
     transition: .5s;

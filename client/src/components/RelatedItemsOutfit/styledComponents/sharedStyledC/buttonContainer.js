@@ -4,7 +4,7 @@ const ButtonContainer = styled.div`
   position: absolute;
   right: -3%;
   top: 4%;
-  padding-left: 10%;
+  padding-left: 15%;
   height: 99%;
   background-color: white;
   filter:blur(5px);

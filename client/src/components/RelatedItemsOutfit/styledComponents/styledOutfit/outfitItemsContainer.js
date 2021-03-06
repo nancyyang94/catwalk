@@ -6,9 +6,9 @@ const OutfitItemsContainer = styled.div`
   display: flex;
   flex-direction: row;
   transition: .5s;
-  max-width: 1570px;
+  max-width: 1450px;
   overflow-x: hidden;
-  margin-left: 95px;
+  margin-left: 9.1%;
   padding: 0;
   scroll-behavior: smooth;
   min-height: 340px;

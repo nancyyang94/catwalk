@@ -5,7 +5,7 @@ const AddOutfitText = styled.div`
   font-size: 30px;
   position: absolute;
   top: 38%;
-  left: 35%;
+  left: 33%;
   text-height: 10px;
   div {
     font-size: 20px;
