@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import React from 'react';
 import axios from 'axios';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Overview from './Overview/Overview';
 import RelatedItemsOutfit from './RelatedItemsOutfit/RelatedItemsOutfit';
 import RatingsReviews from './RatingsReviews/RatingsReviews';
@@ -42,21 +43,56 @@ class App extends React.Component {
   render() {
     const { product, currentStyle } = this.state;
     return (
-      <div>
-        Product Page
-        <Overview
-          product={product}
-          currentStyle={currentStyle}
-          getProduct={this.getProduct}
-          updateCurrentStyle={this.updateCurrentStyle}
+      <Router>
+        <Route
+          path="/"
+          exact
+          strict
+          render={
+          () => (
+            <div>
+              Product Page
+              <Overview
+                product={product}
+                currentStyle={currentStyle}
+                getProduct={this.getProduct}
+                updateCurrentStyle={this.updateCurrentStyle}
+              />
+              <RelatedItemsOutfit
+                product={product}
+                getProduct={this.getProduct}
+                currentStyle={currentStyle}
+              />
+              <RatingsReviews product={product} getProduct={this.getProduct} />
+            </div>
+          )
+        }
         />
-        <RelatedItemsOutfit
-          product={product}
-          getProduct={this.getProduct}
-          currentStyle={currentStyle}
+        <Route
+          path="/product/:product_id"
+          exact
+          strict
+          render={
+          () => (
+            <div>
+              Product Page
+              <Overview
+                product={product}
+                currentStyle={currentStyle}
+                getProduct={this.getProduct}
+                updateCurrentStyle={this.updateCurrentStyle}
+              />
+              <RelatedItemsOutfit
+                product={product}
+                getProduct={this.getProduct}
+                currentStyle={currentStyle}
+              />
+              <RatingsReviews product={product} getProduct={this.getProduct} />
+            </div>
+          )
+        }
         />
-        <RatingsReviews product={product} getProduct={this.getProduct} />
-      </div>
+      </Router>
     );
   }
 }

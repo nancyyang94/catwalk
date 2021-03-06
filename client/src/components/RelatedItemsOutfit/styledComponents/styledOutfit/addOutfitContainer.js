@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const AddOutfitContainer = styled.div`
   flex-basis: 20%
   height: 100%;
-  width: 250px;
+  width: 230px;
   border: 1px solid #ebedee;
   flex-shrink: 0;
   flex-grow: 0;
@@ -19,7 +19,7 @@ const AddOutfitContainer = styled.div`
   justify-content: center;
   /* align-items: center; */
   min-height: 320px;
-  background-color: #ebedee;
+  background-color: none;
   /* box-shadow: 3px 3px 3px #999999; */
   border-radius: 1%;
   cursor: pointer;

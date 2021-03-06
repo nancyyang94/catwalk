@@ -11,9 +11,10 @@ const OutfitItemsContainer = styled.div`
   margin-left: 95px;
   padding: 0;
   scroll-behavior: smooth;
-  min-height: 320px;
+  min-height: 340px;
   & .productContainer:hover {
     border: 1px solid black;
+    transition: .5s;
   }
 `;
 

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 // import ProductContainer from './productContainer';
 
 const RelatedItemsContainer = styled.div`
-  min-height: 320px;
+  min-height: 340px;
   height: auto;
   display: flex;
   flex-direction: row;
@@ -15,6 +15,7 @@ const RelatedItemsContainer = styled.div`
   scroll-behavior: smooth;
   & .productContainer:hover {
     border: 1px solid black;
+    transition: .5s;
   }
 `;
 

@@ -7,7 +7,7 @@ import ProductContainer from '../styledComponents/styledRelated/productContainer
 
 const OutfitCard = ({ productInfo, getProduct, deleteOutfit }) => (
   <ProductContainer className="productContainer" onClick={() => getProduct(productInfo.id)}>
-    <OutfitAction type="button" name={productInfo.styleId} onClick={(event) => deleteOutfit(event)}>X</OutfitAction>
+    <OutfitAction type="button" name={productInfo.styleId} onClick={(event) => deleteOutfit(event)}>✖</OutfitAction>
     <ImageGallery photos={productInfo.photos} category={productInfo.category} />
     <Descriptions productInfo={productInfo} />
   </ProductContainer>

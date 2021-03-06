@@ -50,17 +50,6 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
     }
   };
 
-  const updateButtonsOutfit = (direction) => {
-    const outfitSlider = document.getElementById('slider2');
-    const outfitWidth = outfitSlider.scrollWidth - outfitSlider.clientWidth;
-    if (outfitWidth) {
-      setHasOutfitNext(true);
-    } else {
-      setHasOutfitPrevious(false);
-      setHasOutfitNext(false);
-    }
-  }
-
   useEffect(() => {
     if (product.id !== undefined) {
       getRelated(product.id);

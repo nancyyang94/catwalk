@@ -12,6 +12,7 @@ const CompareContainer = styled.div`
   justify-items: center;
   position: relative;
   z-index: 1000;
+  margin-left: 5px;
 `;
 
 export default CompareContainer;

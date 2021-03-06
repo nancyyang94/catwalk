@@ -3,8 +3,8 @@ import styled from 'styled-components';
 const ProductContainer = styled.div`
   flex-basis: 30%
   height: auto;
-  width: 250px;
-  border: 1px solid #ebedee;
+  width: 230px;
+  border: 1px solid white;
   flex-shrink: 0;
   flex-grow: 0;
   margin-bottom: 5px;
@@ -13,7 +13,7 @@ const ProductContainer = styled.div`
   position: relative;
   /* box-shadow: 3px 3px 3px #999999; */
   border-radius: 1%;
-  background-color: #ebedee;
+  background-color: white;
   cursor: pointer;
 `;
 
