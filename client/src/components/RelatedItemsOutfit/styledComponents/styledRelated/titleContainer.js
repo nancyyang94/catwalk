@@ -6,8 +6,10 @@ const TitleContainer = styled.div`
   grid-template-rows: auto;
   justify-items: center;
   column-gap: 10px;
-  margin-bottom: 20px;
-  font-size: 20px;
+  row-gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-family: Arial, Helvetica, sans-serif;
 `;
 
 export default TitleContainer;

@@ -11,6 +11,7 @@ const ModalContainer = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 100000;
+  backdrop-filter:blur(5px);
 `;
 
 export default ModalContainer;

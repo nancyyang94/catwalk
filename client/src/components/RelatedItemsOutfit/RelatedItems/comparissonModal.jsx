@@ -19,9 +19,11 @@ const ComparissonModal = ({
         <div>{null}</div>
         <div><b>{product2}</b></div>
       </TitleContainer>
-      <CompareContainer>
-        {combinedFeatures.map((element, i) => <div key={`modal${i}`}>{element}</div>)}
-      </CompareContainer>
+      <div className="compareBox">
+        <CompareContainer>
+          {combinedFeatures.map((element, i) => <div key={`modal${i}`}>{element}</div>)}
+        </CompareContainer>
+      </div>
     </Modal>
   </ModalContainer>
 

@@ -5,7 +5,7 @@ const Title = styled.div`
   color: black;
   margin-left: 10%;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   font-family: Arial, Helvetica, sans-serif;
 `;
 

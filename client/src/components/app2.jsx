@@ -13,7 +13,7 @@ const App = () => {
   const [show, doShow] = useState({
     itemOne: false,
     itemTwo: false,
-    itemThree: false
+    itemThree: false,
   });
   const ourRef = useRef(null),
         anotherRef = useRef(null),
