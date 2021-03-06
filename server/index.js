@@ -94,6 +94,7 @@ app.get('/products/:product_id/styles', (req, res) => {
     headers: { Authorization: config.TOKEN },
   })
     .then((response) => {
+      console.log(response.data.results[0].photos.length);
       res.status(200).send(response.data);
     })
     .catch((error) => {

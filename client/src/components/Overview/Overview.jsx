@@ -63,14 +63,15 @@ class Overview extends React.Component {
     const { currentStyle } = this.props;
     const { updateCurrentStyle } = this.props;
     const { product } = this.props;
-    if (styles.length < 1) {
+    if (styles.length < 1 || Object.keys(currentStyle).length === 0) {
       return (<div>loading...</div>);
     }
+    const { photos } = currentStyle;
 
     return (
       <OverviewContainer>
         <GalleryContainer>
-          <ImageGallery currentStyle={currentStyle} />
+          <ImageGallery photos={photos} />
         </GalleryContainer>
         <InfoContainer>
           <ProductInfoContainer>

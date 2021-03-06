@@ -56,6 +56,7 @@ class SizeSelector extends React.Component {
   }
 
   render() {
+    console.log('SIZE SELECTOR RENDERING');
     const { availableSkus } = this.state;
     if (availableSkus.length < 1) {
       return (

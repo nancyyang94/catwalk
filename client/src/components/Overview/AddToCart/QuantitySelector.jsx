@@ -59,6 +59,8 @@ class QuantitySelector extends React.Component {
 
   render() {
     const { selectedSkuId } = this.props;
+    console.log('------quant skuID---');
+    console.log(selectedSkuId);
 
     if (selectedSkuId === 'default' || !selectedSkuId) {
       return (

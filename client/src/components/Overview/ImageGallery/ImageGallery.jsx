@@ -1,64 +1,72 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import GalleryList from './GalleryList';
-import GalleryViewer from './GalleryViewer';
+import Nav from './Nav';
 import ImageGalleryContainer from '../StyledComponents/ImageGallery/ImageGalleryContainer';
+import GalleryViewerImg from '../StyledComponents/ImageGallery/GalleryViewerImg';
+import NextButtonR from '../StyledComponents/ImageGallery/NextButtonR';
+import NextButtonL from '../StyledComponents/ImageGallery/NextButtonL';
 
-class ImageGallery extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      clicked: 'src',
-    };
+const ImageGallery = ({ photos }) => {
+  const [current, setCurrent] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
 
-    this.imgClickHandler = this.imgClickHandler.bind(this);
+  const mouseEnter = () => {
+    setIsHovering(true);
+  };
+
+  const mouseLeave = () => {
+    setIsHovering(false);
+  };
+
+  const nextSlide = () => {
+    setCurrent(current === photos.length - 1 ? 0 : current + 1);
+  };
+
+  const prevSlide = () => {
+    setCurrent(current === 0 ? photos.length - 1 : current - 1);
+  };
+
+  const handleClick = (num) => {
+    setCurrent(num);
+  };
+
+  if (!Array.isArray(photos) || photos.length <= 0) {
+    return null;
   }
+  console.log(isHovering);
 
-  componentDidUpdate(prevProps) {
-    const { currentStyle: prevStyle } = prevProps;
-    const { style_id: prevId } = prevStyle;
-    const { currentStyle } = this.props;
-    const { style_id: currentId } = currentStyle;
-    if (currentId !== prevId && currentId) {
-      const { photos } = currentStyle;
-      const defaultPhotoObj = photos[0];
-      const { url: defaultUrl } = defaultPhotoObj;
-      this.setState({
-        clicked: defaultUrl,
-      });
-    }
-  }
-
-  imgClickHandler(e) {
-    this.setState({
-      clicked: e.target.getAttribute('src'),
-    });
-  }
-
-  render() {
-    const { currentStyle } = this.props;
-    const { photos } = currentStyle;
-    const { clicked } = this.state;
-    return (
-      <ImageGalleryContainer>
-        <GalleryList photos={photos} imgClickHandler={this.imgClickHandler} />
-        <GalleryViewer clicked={clicked} />
-      </ImageGalleryContainer>
-    );
-  }
-}
+  return (
+    <ImageGalleryContainer onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
+      <NextButtonL onClick={prevSlide}>
+        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd">
+          <path d="M2.117 12l7.527 6.235-.644.765-9-7.521 9-7.479.645.764-7.529 6.236h21.884v1h-21.883z" />
+        </svg>
+      </NextButtonL>
+      <NextButtonR onClick={nextSlide}>
+        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd">
+          <path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z" />
+        </svg>
+      </NextButtonR>
+      {photos.map((photoObj, index) => {
+        const { url } = photoObj;
+        const key = index;
+        if (index === current) {
+          return (
+            <GalleryViewerImg key={key} src={url} alt="active img" />
+          );
+        }
+        return null;
+      })}
+      <Nav current={current} photos={photos} handleClick={handleClick} isHovering={isHovering} />
+    </ImageGalleryContainer>
+  );
+};
 ImageGallery.propTypes = {
-  currentStyle: PropTypes.shape({ // left skus and default? out for now
-    style_id: PropTypes.number,
-    name: PropTypes.string,
-    original_price: PropTypes.string,
-    sale_price: PropTypes.string,
-    photos: PropTypes.arrayOf(PropTypes.object),
-  }),
+  photos: PropTypes.arrayOf(PropTypes.object),
 };
 
 ImageGallery.defaultProps = {
-  currentStyle: {},
+  photos: [],
 };
 
 export default ImageGallery;
