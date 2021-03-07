@@ -16,7 +16,7 @@ const Right = styled.button`
   &:hover {
     fill: white;
     background: black;
-    transition: .2s;
+    transition: .5s;
   }
 `;
 
