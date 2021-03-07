@@ -40,7 +40,11 @@ const ImageGallery = ({ photos }) => {
     return null;
   }
   return (
-    <ImageGalleryContainer isExpanded={isExpanded} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
+    <ImageGalleryContainer
+      isExpanded={isExpanded}
+      onMouseEnter={mouseEnter}
+      onMouseLeave={mouseLeave}
+    >
       <ExpandButton onClick={handleExpand}>
         <img src="https://img.icons8.com/small/32/000000/full-screen.png" alt="fullscreen" />
       </ExpandButton>
