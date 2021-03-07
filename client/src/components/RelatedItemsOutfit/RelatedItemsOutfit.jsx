@@ -23,7 +23,7 @@ const Div = styled.div`
 }
 animation: fadein 4s;
 transform: translateY(${({ animate }) => (animate ? '0vh' : '60vh')});
-transition: transform 1.8s;
+transition: transform 2s;
 
 `;
 
@@ -90,8 +90,16 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
 
     const div1Pos = topPos(ourRef.current);
     const div2Pos = topPos(anotherRef.current);
+    let scrollPos = window.scrollY + window.innerHeight;
+    if (div1Pos < scrollPos) {
+      doShow((state) => ({ ...state, itemOne: true }));
+    }
+    if (div2Pos < scrollPos) {
+      doShow((state) => ({ ...state, itemTwo: true }));
+    }
     const onScroll = () => {
-      const scrollPos = window.scrollY + window.innerHeight;
+      scrollPos = window.scrollY + window.innerHeight;
+      console.log(div1Pos, div2Pos, scrollPos);
       if (div1Pos < scrollPos) {
         doShow((state) => ({ ...state, itemOne: true }));
       } else if (div2Pos < scrollPos) {
