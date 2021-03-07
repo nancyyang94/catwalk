@@ -99,7 +99,6 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
     }
     const onScroll = () => {
       scrollPos = window.scrollY + window.innerHeight;
-      console.log(div1Pos, div2Pos, scrollPos);
       if (div1Pos < scrollPos) {
         doShow((state) => ({ ...state, itemOne: true }));
       } else if (div2Pos < scrollPos) {

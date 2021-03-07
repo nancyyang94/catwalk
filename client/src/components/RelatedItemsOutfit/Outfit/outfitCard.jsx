@@ -6,7 +6,7 @@ import OutfitAction from '../styledComponents/styledOutfit/outfitAction';
 import ProductContainer from '../styledComponents/styledRelated/productContainer';
 
 const OutfitCard = ({ productInfo, getProduct, deleteOutfit }) => (
-  <ProductContainer to={{ pathname: `/product/${productInfo.id}` }} className="productContainer" onClick={() => { window.location.reload(); getProduct(productInfo.id); }}>
+  <ProductContainer to={{ pathname: `/product/${productInfo.id}` }} className="productContainer" onClick={() => { getProduct(productInfo.id); setTimeout(() => { window.location.reload(); }, 50); }}>
     <OutfitAction type="button" name={productInfo.styleId} onClick={(event) => { event.preventDefault(); deleteOutfit(event); }}>✖</OutfitAction>
     <ImageGallery photos={productInfo.photos} category={productInfo.category} />
     <Descriptions productInfo={productInfo} />
