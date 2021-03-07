@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import StarRating from './StarRatings';
+import AverageStarRating from './AverageStarRating';
 
-const StarReviews = ({ reviews }) => {
+const RatingSummary = ({ reviews }) => {
   const [averageRating, setAverageRating] = useState(0);
   const getAverageRating = (ratings) => {
     let counter = 0;
@@ -21,23 +21,27 @@ const StarReviews = ({ reviews }) => {
           getAverageRating(reviews);
         }
       }
-    }, 10);
+    }, 50);
+
     return () => {
       unmounted = true;
     };
   }, [reviews]);
 
   return (
-    <StarRating avg={averageRating} />
+    // <div>hu</div>
+    <>
+      <AverageStarRating avg={averageRating} />
+    </>
   );
 };
 
-export default StarReviews;
+export default RatingSummary;
 
-StarReviews.propTypes = {
+RatingSummary.propTypes = {
   reviews: PropTypes.arrayOf(PropTypes.object),
 };
 
-StarReviews.defaultProps = {
+RatingSummary.defaultProps = {
   reviews: null,
 };

@@ -1,11 +1,13 @@
 /* eslint-disable no-console */
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Overview from './Overview/Overview';
 import RelatedItemsOutfit from './RelatedItemsOutfit/RelatedItemsOutfit';
 import RatingsReviews from './RatingsReviews/RatingsReviews';
 
-class App extends React.Component {
+class AppComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +19,13 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getProduct('14931');
+    const { location } = this.props;
+    if (!location.pathname.split('/')[2]) {
+      console.log('hi');
+      this.getProduct('14931');
+    } else {
+      this.getProduct(`${location.pathname.split('/')[2]}`);
+    }
   }
 
   getProduct(id) {
@@ -61,4 +69,26 @@ class App extends React.Component {
   }
 }
 
+const App = () => (
+  <Router>
+    <Switch>
+      <Route path="/product/:product_id" component={AppComponent} />
+      <Route exact path="/" component={AppComponent} />
+    </Switch>
+  </Router>
+);
+
 export default App;
+
+AppComponent.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+    search: PropTypes.string,
+    hash: PropTypes.string,
+    state: PropTypes.string,
+  }),
+};
+
+AppComponent.defaultProps = {
+  location: null,
+};

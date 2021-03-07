@@ -12,6 +12,7 @@ const app = express();
 const port = 3000;
 
 app.use(express.static(path.join(__dirname, '../public')));
+app.use('/product/*', express.static(path.join(__dirname, '../public')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

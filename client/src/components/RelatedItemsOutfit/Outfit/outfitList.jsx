@@ -5,6 +5,7 @@ import axios from 'axios';
 import OutfitCard from './outfitCard';
 import OutfitItemsContainer from '../styledComponents/styledOutfit/outfitItemsContainer';
 import AddOutfitContainer from '../styledComponents/styledOutfit/addOutfitContainer';
+import AddOutfitText from '../styledComponents/styledOutfit/addOutfitText';
 
 const OutfitList = ({
   product, getProduct, currentStyle, updateButton,
@@ -98,11 +99,15 @@ const OutfitList = ({
     <OutfitItemsContainer id="slider2">
       {outfits.map((outfit) => (
         outfit.isOutfitCard ? (
-          <AddOutfitContainer key="addOutfit" onClick={(event) => addOutfit(event)}>
-            <h1>+</h1>
-            <div>
-              Add Outfit
-            </div>
+          <AddOutfitContainer className="productContainer" key="addOutfit" onClick={(event) => addOutfit(event)}>
+            <AddOutfitText>
+              <div className="plus">
+                +
+              </div>
+              <div className="add">
+                ADD OUTFIT
+              </div>
+            </AddOutfitText>
           </AddOutfitContainer>
         ) : (
           <OutfitCard

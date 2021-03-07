@@ -7,14 +7,31 @@ class ImageGallery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      imageFocus: false,
     };
+    this.focusOn = this.focusOn.bind(this);
+    this.focusOff = this.focusOff.bind(this);
+  }
+
+  focusOn(event) {
+    event.stopPropagation();
+    this.setState({
+      imageFocus: true,
+    });
+  }
+
+  focusOff(event) {
+    event.stopPropagation();
+    this.setState({
+      imageFocus: false,
+    });
   }
 
   render() {
+    const { imageFocus } = this.state;
     const { photos, category } = this.props;
     return (
-      <ImageContainer>
+      <ImageContainer onMouseEnter={(event) => { this.focusOn(event); }} onMouseLeave={(event) => { this.focusOff(event); }} className={imageFocus ? 'action' : ''}>
         <Image src={photos[0].url} alt={category} />
       </ImageContainer>
     );

@@ -38,11 +38,11 @@ class NewReview extends React.Component {
         <div className="show-modal">
           <div className="modal-content">
             <button type="button" className="close-button" onClick={this.closeModal}>&times;</button>
-            <h3>Write Your Review</h3>
-            <p>
+            <h1>Write Your Review</h1>
+            <h3>
               About the &nbsp;
               { productName}
-            </p>
+            </h3>
             <NewReviewForm />
           </div>
         </div>

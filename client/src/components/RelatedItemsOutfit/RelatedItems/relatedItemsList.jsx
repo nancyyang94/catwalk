@@ -4,7 +4,7 @@ import ProductCard from './productCard';
 import RelatedItemsContainer from '../styledComponents/styledRelated/relatedItemsContainer';
 
 const RelatedItemsList = ({
-  related, getProduct, mainFeatures, mainName,
+  related, getProduct, comparisonModal,
 }) => (
   <RelatedItemsContainer id="slider">
     {related.map((productInfo) => (
@@ -12,8 +12,7 @@ const RelatedItemsList = ({
         key={productInfo.styleId}
         productInfo={productInfo}
         getProduct={getProduct}
-        mainFeatures={mainFeatures}
-        mainName={mainName}
+        comparisonModal={comparisonModal}
         className="slide"
       />
     ))}
@@ -24,13 +23,11 @@ export default RelatedItemsList;
 RelatedItemsList.propTypes = {
   related: PropTypes.arrayOf(PropTypes.object),
   getProduct: PropTypes.func,
-  mainFeatures: PropTypes.arrayOf(PropTypes.object),
-  mainName: PropTypes.string,
+  comparisonModal: PropTypes.func,
 };
 
 RelatedItemsList.defaultProps = {
   related: null,
   getProduct: PropTypes.func,
-  mainFeatures: null,
-  mainName: null,
+  comparisonModal: PropTypes.func,
 };

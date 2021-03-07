@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import StarRatingContainer from './styledComponents/StarRatingContainer';
-import IndividualStarContainer from './styledComponents/IndividualStarContainer';
+import AverageStarContainer from './styledComponents/AvgRatingContainer';
 
 const wholeStar = (
   <svg width="100" height="100">
@@ -64,10 +65,21 @@ function getStars(value) {
   return stars;
 }
 
-const StarRating = (rating) => (
-  <StarRatingContainer>
-    {getStars(rating).map((star, index) => <IndividualStarContainer key={`${rating}_${index}`}>{star}</IndividualStarContainer>)}
+const AverageStarRating = ({ avg }) => (
+  <StarRatingContainer className="average">
+    {getStars(avg).map((star, index) => <AverageStarContainer key={`${avg}_${index}`}>{star}</AverageStarContainer>)}
+    {/* <div className="number-rating"> */}
+    <h3 className="number-rating">{avg}</h3>
+    {/* </div> */}
   </StarRatingContainer>
 );
 
-export default StarRating;
+AverageStarRating.propTypes = {
+  avg: PropTypes.number,
+};
+
+AverageStarRating.defaultProps = {
+  avg: 0,
+};
+
+export default AverageStarRating;
