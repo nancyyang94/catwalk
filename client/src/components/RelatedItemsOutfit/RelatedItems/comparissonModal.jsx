@@ -9,7 +9,7 @@ import Modal from '../styledComponents/styledRelated/modal';
 const ComparissonModal = ({
   combinedFeatures, product1, product2, comparisonModal,
 }) => (
-  <ModalContainer onClick={(event) => { event.stopPropagation(); comparisonModal(event, true); }}>
+  <ModalContainer onClick={(event) => { event.stopPropagation(); comparisonModal(event); }}>
     <Modal>
       <TitleContainer>
         <div><small>COMPARING</small></div>
@@ -26,7 +26,6 @@ const ComparissonModal = ({
       </div>
     </Modal>
   </ModalContainer>
-
 );
 
 export default ComparissonModal;

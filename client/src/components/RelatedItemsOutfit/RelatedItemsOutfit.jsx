@@ -14,6 +14,7 @@ import OutfitContainer from './styledComponents/styledOutfit/outfitContainer';
 import OutfitList from './Outfit/outfitList';
 import Title from './styledComponents/styledRelated/title';
 import ButtonContainer from './styledComponents/sharedStyledC/buttonContainer';
+import ComparissonModal from './RelatedItems/comparissonModal';
 
 const Div = styled.div`
 transform: translateY(${({ animate }) => (animate ? '0vh' : '80vh')});
@@ -22,15 +23,55 @@ position: relative;
 `;
 
 const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
+  const [isPressed, setPressed] = useState(false);
   const [related, setRelated] = useState([]);
   const [hasRelatedNext, setHasRelatedNext] = useState(false);
   const [hasRelatedPrevious, setHasRelatedPrevious] = useState(false);
   const [hasOutfitNext, setHasOutfitNext] = useState(false);
   const [hasOutfitPrevious, setHasOutfitPrevious] = useState(false);
+  const [relatedName, setRelatedName] = useState('');
   const [show, doShow] = useState({
     itemOne: false,
     itemTwo: false,
   });
+
+  const [combinedFeatures, setCombinedFeatures] = useState([]);
+  const combiner = (feat1, feat2) => {
+    const combined = {};
+    for (let i = 0; i < feat1.length; i += 1) {
+      if (combined[feat1[i].feature] === undefined) {
+        combined[feat1[i].feature] = [(feat1[i].value ? feat1[i].value : '✓'), null];
+      }
+    }
+    for (let j = 0; j < feat2.length; j += 1) {
+      if (combined[feat2[j].feature] === undefined) {
+        combined[feat2[j].feature] = [null, (feat2[j].value ? feat2[j].value : '✓')];
+      } else {
+        combined[feat2[j].feature][1] = (feat2[j].value ? feat2[j].value : '✓');
+      }
+    }
+    const final = [];
+    const feats = Object.keys(combined);
+    const values = Object.values(combined);
+    for (let k = 0; k < feats.length; k += 1) {
+      final.push(values[k][0], feats[k], values[k][1]);
+    }
+    setCombinedFeatures(final);
+  };
+  const comparisonModal = (event, relatedFeat, relatedProduct) => {
+    event.preventDefault();
+    event.stopPropagation();
+    if (isPressed) {
+      setPressed(false);
+    } else {
+      setPressed(true);
+    }
+    setRelatedName(relatedProduct);
+    if (!combinedFeatures.length) {
+      combiner(product.features, relatedFeat);
+    }
+  };
+
   const ourRef = useRef(null);
   const anotherRef = useRef(null);
 
@@ -189,6 +230,14 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
 
   return (
     <>
+      {isPressed ? (
+        <ComparissonModal
+          combinedFeatures={combinedFeatures}
+          product1={product.name}
+          product2={relatedName}
+          comparisonModal={comparisonModal}
+        />
+      ) : null}
       <Div animate={show.itemTwo} ref={anotherRef}>
         <RelatedContainer>
           <Title>COMPLETE THE LOOK</Title>
@@ -196,8 +245,7 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
           <RelatedItemsList
             related={related}
             getProduct={getProduct}
-            mainFeatures={product.features}
-            mainName={product.name}
+            comparisonModal={comparisonModal}
           />
           {hasRelatedNext ? <ButtonContainer /> : null}
           {hasRelatedNext ? <Right type="button" onClick={() => right('relatedRight')}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
