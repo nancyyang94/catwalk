@@ -128,9 +128,6 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
           setHasRelatedPrevious(false);
         }
         setHasRelatedNext(true);
-        // if (slider.scrollLeft <= 235) {
-        //   setHasRelatedPrevious(false);
-        // }
       } else {
         setHasRelatedPrevious(false);
         setHasRelatedNext(false);
@@ -146,9 +143,6 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
           setHasOutfitPrevious(false);
         }
         setHasOutfitNext(true);
-        // if (slider.scrollLeft <= 235) {
-        //   setHasOutfitPrevious(false);
-        // }
       } else {
         setHasOutfitPrevious(false);
         setHasOutfitNext(false);

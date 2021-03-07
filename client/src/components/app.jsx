@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
 import React from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Overview from './Overview/Overview';
 import RelatedItemsOutfit from './RelatedItemsOutfit/RelatedItemsOutfit';
 import RatingsReviews from './RatingsReviews/RatingsReviews';
 
-class App extends React.Component {
+class AppComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,8 +21,7 @@ class App extends React.Component {
     this.getProduct('14931');
   }
 
-  getProduct(id, event) {
-    // event.preventDefault();
+  getProduct(id) {
     axios.get(`/products/${id}`)
       .then((response) => {
         console.log(response.data);
@@ -44,58 +43,32 @@ class App extends React.Component {
   render() {
     const { product, currentStyle } = this.state;
     return (
-      <Router>
-        <Route
-          path="/"
-          exact
-          strict
-          render={
-          () => (
-            <div>
-              Product Page
-              <Overview
-                product={product}
-                currentStyle={currentStyle}
-                getProduct={this.getProduct}
-                updateCurrentStyle={this.updateCurrentStyle}
-              />
-              <RelatedItemsOutfit
-                product={product}
-                getProduct={this.getProduct}
-                currentStyle={currentStyle}
-              />
-              <RatingsReviews product={product} getProduct={this.getProduct} />
-            </div>
-          )
-        }
+      <div>
+        Product Page
+        <Overview
+          product={product}
+          currentStyle={currentStyle}
+          getProduct={this.getProduct}
+          updateCurrentStyle={this.updateCurrentStyle}
         />
-        <Route
-          path="/product/:product_id"
-          exact
-          strict
-          render={
-          () => (
-            <div>
-              Product Page
-              <Overview
-                product={product}
-                currentStyle={currentStyle}
-                getProduct={this.getProduct}
-                updateCurrentStyle={this.updateCurrentStyle}
-              />
-              <RelatedItemsOutfit
-                product={product}
-                getProduct={this.getProduct}
-                currentStyle={currentStyle}
-              />
-              <RatingsReviews product={product} getProduct={this.getProduct} />
-            </div>
-          )
-        }
+        <RelatedItemsOutfit
+          product={product}
+          getProduct={this.getProduct}
+          currentStyle={currentStyle}
         />
-      </Router>
+        <RatingsReviews product={product} getProduct={this.getProduct} />
+      </div>
     );
   }
 }
+
+const App = () => (
+  <Router>
+    <Switch>
+      <Route path="/product/:product_id" component={AppComponent} />
+      <Route exact path="/" component={AppComponent} />
+    </Switch>
+  </Router>
+);
 
 export default App;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Left = styled.button`
   border: 1px solid black;
   position: absolute;
-  left: 9.5%;
+  left: 9.6%;
   top: 45%;
   width: 50px;
   height: 50px;

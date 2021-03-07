@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import ImageGallery from './imageGallery';
 import Descriptions from './descriptions';
 import ComparissonModal from './comparissonModal';
