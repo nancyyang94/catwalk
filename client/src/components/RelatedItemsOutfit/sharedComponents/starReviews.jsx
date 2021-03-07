@@ -21,15 +21,13 @@ const StarReviews = ({ reviews }) => {
           getAverageRating(reviews);
         }
       }
-    }, 50);
-
+    }, 10);
     return () => {
       unmounted = true;
     };
   }, [reviews]);
 
   return (
-    // <div>hu</div>
     <StarRating avg={averageRating} />
   );
 };

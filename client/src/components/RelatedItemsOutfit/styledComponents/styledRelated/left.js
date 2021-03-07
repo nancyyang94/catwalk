@@ -1,15 +1,22 @@
 import styled from 'styled-components';
 
 const Left = styled.button`
+  border: 1px solid black;
   position: absolute;
-  left: 2%;
+  left: 9.6%;
   top: 45%;
-  background: none;
-  border: none;
-  color: black;
+  width: 50px;
+  height: 50px;
+  background: white;
+  color: white;
   cursor: pointer;
   z-index: 100;
   outline: 0;
+  &:hover {
+    fill: white;
+    background: black;
+    transition: .5s;
+  }
 `;
 
 export default Left;

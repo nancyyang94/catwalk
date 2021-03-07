@@ -6,12 +6,16 @@ const OutfitItemsContainer = styled.div`
   display: flex;
   flex-direction: row;
   transition: .5s;
-  max-width: 1560px;
+  max-width: 1450px;
   overflow-x: hidden;
-  margin-left: 130px;
+  margin-left: 9.1%;
   padding: 0;
   scroll-behavior: smooth;
-  min-height: 450px;
+  min-height: 340px;
+  & .productContainer:hover {
+    border: 1px solid black;
+    transition: 1s;
+  }
 `;
 
 export default OutfitItemsContainer;
