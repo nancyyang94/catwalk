@@ -30,7 +30,6 @@ class Ratings extends React.Component {
 
   render() {
     const { reviews } = this.props;
-    console.log('reviews:', reviews);
     // const { average } = this.state;
     return (
       <RatingsContainer>

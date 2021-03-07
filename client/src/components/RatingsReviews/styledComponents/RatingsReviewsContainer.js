@@ -5,7 +5,7 @@ const RatingsReviewContainer = styled.div`
   grid-template-columns: 1fr 3fr;
   grid-gap: 30px;
   height: 150px;
-  margin-left: 172px;
+  margin-left: 8%;
   margin-right: 172px;
   font-family: Helvetica, Arial, sans-serif;
   color: #ffffff;
