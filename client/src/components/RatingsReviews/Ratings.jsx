@@ -1,47 +1,58 @@
 import React from 'react';
-import ReactStars from 'react-rating-stars-component';
+import PropTypes from 'prop-types';
 import RatingsContainer from './styledComponents/RatingsContainer';
-import Rating from './StarRatings';
-import StarRatingContainer from './styledComponents/StarRatingContainer';
+import StarReviews from '../RelatedItemsOutfit/sharedComponents/starReviews';
+import AverageRatingContainer from './styledComponents/AverageRatingContainer';
+import RatingSummary from './RatingSummary';
 
 class Ratings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviews: [],
-      average: 2.0,
+      // reviews: null,
+      // average: 0,
     };
-    // this.starRating = this.starRating.bind(this);
-    this.ratingsBreakdown = this.ratingsBreakdown.bind(this);
+    this.getPercentage = this.getPercentage.bind(this);
   }
 
-  ratingsBreakdown() {
-    const { reviews } = this.state;
-    return (
-      <div>
-        ratings breakdown....
-        <p>100% of reviews recommend this product</p>
-      </div>
-    );
+  getPercentage(reviews) {
+    let counter = 0;
+    for (let i = 0; i < reviews.length; i++) {
+      let currentReview = reviews[i];
+      let recommendation = currentReview.recommend;
+      if (recommendation) {
+        counter += 1;
+      }
+    }
+    const percentage = `${Math.floor((counter / reviews.length) * 100)}%`;
+    return percentage;
   }
 
   render() {
-    const { reviews, average } = this.state;
+    const { reviews } = this.props;
+    // const { average } = this.state;
     return (
       <RatingsContainer>
-        <p>Ratings and Reviews</p>
-        <div className="star-summary">
-          <h1>3.5</h1>
-          <StarRatingContainer>
-            <Rating avg={3.5} />
-          </StarRatingContainer>
-        </div>
-        {this.ratingsBreakdown()}
-        <div> User Recommendations </div>
-        <div> Product Breakdown </div>
+        <h3>Ratings and Reviews</h3>
+        <RatingSummary reviews={reviews} />
+        {reviews && reviews.length > 0
+        && <div>
+          <p>
+          {reviews.length} Reviews
+          </p>
+          <p>{this.getPercentage(reviews)} of reviews recommend this product</p>
+        </div>}
       </RatingsContainer>
     );
   }
 }
+
+Ratings.propTypes = {
+  reviews: PropTypes.arrayOf(PropTypes.object),
+};
+
+Ratings.defaultProps = {
+  reviews: null,
+};
 
 export default Ratings;

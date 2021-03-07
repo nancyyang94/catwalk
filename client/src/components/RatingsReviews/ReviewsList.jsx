@@ -1,38 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import mockData from './mockData';
 import IndividualReview from './IndividualReview';
 import ReviewListContainer from './styledComponents/ReviewListContainer';
 import NewReview from './NewReview';
 
-const ReviewsList = (props) => {
-  const { productName } = props;
+function ReviewsList({ product }) {
+  const { reviews } = product;
+  const { id } = product;
+  // initialize for first two reviews
+  const [lastIndex, setLastIndex] = useState(2);
+  // track when product changes
+  useEffect(() => {
+    setLastIndex(2);
+  }, [id]);
+
+  // display two more reviews
+  const setIndex = () => {
+    setLastIndex((prevIndex) => prevIndex + 2);
+  };
+
   return (
     <ReviewListContainer>
-      <h3>Reviews List</h3>
-      <div className="sort">
-        <p>
-          248 reviews sorted by
-          <button type="button">
-            relevance
-          </button>
-        </p>
+      <div className="individual">
+        {
+          reviews
+          && reviews.slice(0, lastIndex)
+            .map((review) => <IndividualReview review={review} key={review.review_id} />)
+        }
       </div>
-      {mockData.map((review) => (
-        <IndividualReview review={review} key={review.review_id} />
-      ))}
-      <button type="button">More Reviews</button>
-      <NewReview productName={productName} />
+      <br />
+      {reviews && (reviews.length > 2) && (lastIndex < reviews.length) && <button className="more-reviews" type="button" onClick={setIndex}>More Reviews</button>}
+      <br />
+      <NewReview productName={product.name} />
     </ReviewListContainer>
   );
-};
+}
 
 ReviewsList.propTypes = {
-  productName: PropTypes.string,
+  product: PropTypes.shape(),
 };
 
 ReviewsList.defaultProps = {
-  productName: null,
+  product: null,
 };
 
 export default ReviewsList;

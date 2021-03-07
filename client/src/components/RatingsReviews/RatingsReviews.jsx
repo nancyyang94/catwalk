@@ -20,7 +20,7 @@ class RatingsReviews extends React.Component {
     const { product } = this.props;
     return (
       <RatingsReviewsContainer>
-        <Ratings />
+        <Ratings product={product} reviews={product.reviews} />
         <ReviewsList product={product} productName={product.name} />
       </RatingsReviewsContainer>
     );
@@ -32,6 +32,7 @@ RatingsReviews.propTypes = {
     id: PropTypes.number,
     campus: PropTypes.string,
     name: PropTypes.string,
+    reviews: PropTypes.arrayOf(PropTypes.object),
     slogan: PropTypes.string,
     description: PropTypes.string,
     category: PropTypes.string,
