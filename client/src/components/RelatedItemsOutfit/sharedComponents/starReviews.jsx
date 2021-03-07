@@ -4,17 +4,13 @@ import StarRating from './StarRatings';
 
 const StarReviews = ({ reviews }) => {
   const [averageRating, setAverageRating] = useState(0);
-  const [reviewIds, setReviewIds] = useState([]);
   const getAverageRating = (ratings) => {
     let counter = 0;
-    const reviewKeys = [];
     for (let i = 0; i < ratings.length; i += 1) {
       counter += ratings[i].rating;
-      reviewKeys.push(ratings.review_id);
     }
     const average = counter / ratings.length;
     setAverageRating(average);
-    setReviewIds(reviewIds);
   };
 
   useEffect(() => {
@@ -25,7 +21,7 @@ const StarReviews = ({ reviews }) => {
           getAverageRating(reviews);
         }
       }
-    }, 50);
+    }, 10);
     return () => {
       unmounted = true;
     };
