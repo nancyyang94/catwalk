@@ -24,8 +24,6 @@ const AddOutfitContainer = styled.div`
   background:#d3d3d3;
 
   &:hover {
-    /* background:#ebedee;
-    transition: 1s; */
   .add {
     color: black;
     transition: 1s;
@@ -35,7 +33,7 @@ const AddOutfitContainer = styled.div`
     transform: rotate(90deg);
     border: 1px solid black;
     border-radius: 2%;
-    transition: 2s;
+    transition: 1.5s;
     color: black;
     }
   }

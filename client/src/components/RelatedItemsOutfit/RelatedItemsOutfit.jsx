@@ -17,9 +17,14 @@ import ButtonContainer from './styledComponents/sharedStyledC/buttonContainer';
 import ComparissonModal from './RelatedItems/comparissonModal';
 
 const Div = styled.div`
-transform: translateY(${({ animate }) => (animate ? '0vh' : '80vh')});
-transition: transform 1s;
-position: relative;
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+animation: fadein 4s;
+transform: translateY(${({ animate }) => (animate ? '0vh' : '60vh')});
+transition: transform 1.8s;
+
 `;
 
 const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
