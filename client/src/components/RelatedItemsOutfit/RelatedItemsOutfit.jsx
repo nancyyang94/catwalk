@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import React, {
+  useState, useEffect, useRef, useLayoutEffect,
+} from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -16,6 +18,7 @@ import ButtonContainer from './styledComponents/sharedStyledC/buttonContainer';
 const Div = styled.div`
 transform: translateY(${({ animate }) => (animate ? '0vh' : '80vh')});
 transition: transform 1s;
+position: relative;
 `;
 
 const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
