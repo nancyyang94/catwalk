@@ -6,18 +6,18 @@ import StarReviews from '../sharedComponents/starReviews';
 
 const Descriptions = ({ productInfo }) => (
   <DescriptionsContainer>
-    <div>{productInfo.category.toUpperCase()}</div>
-    <div><b>{productInfo.name}</b></div>
-    <div><i>{productInfo.style}</i></div>
+    <div className="category">{productInfo.category}</div>
+    <div className="name">{productInfo.name.toUpperCase()}</div>
+    <div className="style">{productInfo.style.toUpperCase()}</div>
     {/* <div>{productInfo.slogan}</div> */}
     {productInfo.default
       ? (
-        <div>
+        <div className="default">
           {`$${productInfo.defaultPrice}`}
         </div>
       )
       : (
-        <div>
+        <div className="salePrice">
           <SalePrice>
             {productInfo.salePrice ? `$${productInfo.salePrice}` : 'Sold Out'}
           </SalePrice>

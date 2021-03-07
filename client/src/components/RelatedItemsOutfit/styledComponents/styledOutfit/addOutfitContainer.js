@@ -4,7 +4,7 @@ const AddOutfitContainer = styled.div`
   flex-basis: 20%
   height: 100%;
   width: 230px;
-  border: 1px solid #ebedee;
+  border: 1px solid #d3d3d3;
   flex-shrink: 0;
   flex-grow: 0;
   margin-bottom: 5px;
@@ -21,6 +21,25 @@ const AddOutfitContainer = styled.div`
   border-radius: 1%;
   cursor: pointer;
   position: relative;
+  background:#d3d3d3;
+
+  &:hover {
+    /* background:#ebedee;
+    transition: 1s; */
+  .add {
+    color: black;
+    transition: 1s;
+
+  }
+  .plus{
+    transform: rotate(90deg);
+    border: 1px solid black;
+    border-radius: 2%;
+    transition: 2s;
+    color: black;
+    }
+  }
+
 `;
 
 export default AddOutfitContainer;

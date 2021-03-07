@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import ImageGallery from './imageGallery';
 import Descriptions from './descriptions';
 import ComparissonModal from './comparissonModal';
@@ -36,6 +37,8 @@ const ProductCard = ({
   };
 
   const comparisonModal = (event, bool, mainFeat, relatedFeat) => {
+    event.preventDefault();
+    event.stopPropagation();
     if (bool) {
       setPressed(false);
     } else {
@@ -44,11 +47,10 @@ const ProductCard = ({
     if (!combinedFeatures.length) {
       combiner(mainFeat, relatedFeat);
     }
-    event.stopPropagation();
   };
 
   return (
-    <ProductContainer className="productContainer" onClick={() => getProduct(productInfo.id)}>
+    <ProductContainer to={{ pathname: `/product/${productInfo.id}` }} className="productContainer" onClick={() => getProduct(productInfo.id)}>
       <RelatedAction type="button" onClick={(event) => comparisonModal(event, isPressed, mainFeatures, productInfo.features)}>☆</RelatedAction>
       <ImageGallery photos={productInfo.photos} category={productInfo.category} />
       <Descriptions productInfo={productInfo} />

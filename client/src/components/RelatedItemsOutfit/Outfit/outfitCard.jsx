@@ -6,8 +6,8 @@ import OutfitAction from '../styledComponents/styledOutfit/outfitAction';
 import ProductContainer from '../styledComponents/styledRelated/productContainer';
 
 const OutfitCard = ({ productInfo, getProduct, deleteOutfit }) => (
-  <ProductContainer className="productContainer" onClick={() => getProduct(productInfo.id)}>
-    <OutfitAction type="button" name={productInfo.styleId} onClick={(event) => deleteOutfit(event)}>✖</OutfitAction>
+  <ProductContainer to={{ pathname: `/product/${productInfo.id}` }} className="productContainer" onClick={(event) => getProduct(productInfo.id, event)}>
+    <OutfitAction type="button" name={productInfo.styleId} onClick={(event) => { event.preventDefault(); deleteOutfit(event); }}>✖</OutfitAction>
     <ImageGallery photos={productInfo.photos} category={productInfo.category} />
     <Descriptions productInfo={productInfo} />
   </ProductContainer>

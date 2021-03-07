@@ -11,6 +11,8 @@ align-content: center;
 position: absolute;
 bottom: 0;
 left: 0;
+margin-left: 2px;
+margin-bottom: 3px;
 `;
 
 export default StarRatingContainer;

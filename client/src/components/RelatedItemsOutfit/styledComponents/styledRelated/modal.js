@@ -4,7 +4,7 @@ const Modal = styled.div`
   background-color: white;
   padding: 20px;
   border: 1px solid black;
-  height: 35%;
+  height: auto;
   width: 35%;
   border-radius: 5px;
   max-width: 60%;

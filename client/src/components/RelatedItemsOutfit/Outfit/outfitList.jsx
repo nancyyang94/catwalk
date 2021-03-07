@@ -101,9 +101,11 @@ const OutfitList = ({
         outfit.isOutfitCard ? (
           <AddOutfitContainer className="productContainer" key="addOutfit" onClick={(event) => addOutfit(event)}>
             <AddOutfitText>
-              +
-              <div>
-                Add Outfit
+              <div className="plus">
+                +
+              </div>
+              <div className="add">
+                ADD OUTFIT
               </div>
             </AddOutfitText>
           </AddOutfitContainer>

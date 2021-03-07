@@ -15,7 +15,7 @@ const RelatedItemsContainer = styled.div`
   scroll-snap-type: x mandatory;
   & .productContainer:hover {
     border: 1px solid black;
-    transition: .5s;
+    transition: 1s;
   }
 `;
 

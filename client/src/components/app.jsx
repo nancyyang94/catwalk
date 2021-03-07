@@ -21,7 +21,8 @@ class App extends React.Component {
     this.getProduct('14931');
   }
 
-  getProduct(id) {
+  getProduct(id, event) {
+    // event.preventDefault();
     axios.get(`/products/${id}`)
       .then((response) => {
         console.log(response.data);
