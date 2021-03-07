@@ -33,7 +33,6 @@ const ImageGallery = ({ photos }) => {
   if (!Array.isArray(photos) || photos.length <= 0) {
     return null;
   }
-  console.log(isHovering);
 
   return (
     <ImageGalleryContainer onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>

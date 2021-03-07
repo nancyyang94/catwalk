@@ -66,7 +66,7 @@ class Overview extends React.Component {
     if (styles.length < 1 || Object.keys(currentStyle).length === 0) {
       return (<div>loading...</div>);
     }
-    const { photos } = currentStyle;
+    const { photos, skus, style_id: styleId } = currentStyle;
 
     return (
       <OverviewContainer>
@@ -85,7 +85,7 @@ class Overview extends React.Component {
             />
           </StyleSelectorContainer>
           <AddToCartContainer>
-            <AddToCart currentStyle={currentStyle} />
+            <AddToCart styleId={styleId} skus={skus} />
           </AddToCartContainer>
         </InfoContainer>
       </OverviewContainer>

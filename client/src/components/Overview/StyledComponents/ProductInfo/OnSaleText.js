@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const OnSaleText = styled.text`
+const OnSaleText = styled.h1`
   font-size: 18px;
   line-height: 24px;
   font-family: Helvetica, Arial, sans-serif;

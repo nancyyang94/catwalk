@@ -1,87 +1,81 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import InnerContainer from '../StyledComponents/AddToCart/InnerContainer';
+import SelectorContainer from '../StyledComponents/AddToCart/SelectorContainer';
+import NextRowContainer from '../StyledComponents/AddToCart/NextRowContainer';
 import SizeSelector from './SizeSelector';
 import QuantitySelector from './QuantitySelector';
+import Bag from './Bag';
 
-class AddToCart extends React.Component {
-  constructor(props) {
-    super(props);
+const AddToCart = ({ styleId, skus }) => {
+  // const [currentSizes, setCurrentSizes] = useState([]);
+  const [currentSelectedId, setCurrentSelectedId] = useState('default');
+  const [currentCount, setCurrentCount] = useState(1);
 
-    this.state = {
-      selectedSkuId: 'default',
-      count: 1,
-    };
+  const handleSizeClick = (num) => {
+    setCurrentSelectedId(num);
+  };
 
-    this.setSelectedSkuId = this.setSelectedSkuId.bind(this);
-    this.setCount = this.setCount.bind(this);
-  }
+  const handleQuantityClick = (num) => {
+    setCurrentCount(num);
+  };
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   const { currentStyle: prevStyle } = prevProps;
-  //   const { style_id: prevStyleId } = prevStyle;
-  //   // const { selectedSkuId: prevSku_id } = prevState;
-  //   const { currentStyle } = this.props;
-  //   const { style_id: currentStyleId } = currentStyle;
-  //   // const { selectedSkuId: currentSkuId } = this.state;
+  const makeSizeTuples = () => {
+    const keys = Object.keys(skus);
 
-  //   if (prevStyleId !== currentStyleId) {
-  //     this.setState({
-  //       selectedSkuId: 'default',
-  //     });
-  //   }
-  // }
+    const sizes = [];
 
-  setSelectedSkuId(key) {
-    this.setState({
-      selectedSkuId: key,
-    });
-  }
+    for (let i = 0; i < keys.length; i += 1) {
+      const key = keys[i];
+      if (skus[key].quantity > 0) {
+        sizes.push([key, skus[key].size]);
+      }
+    }
 
-  setCount(quantity) {
-    this.setState({
-      count: quantity,
-    });
-  }
+    return sizes;
+  };
 
-  render() {
-    const { currentStyle } = this.props;
-    const { selectedSkuId, count } = this.state;
-    console.log('-------rendering addToCart------');
-    console.log('currentStyle: ' + currentStyle.name);
-    console.log('skuId: ' + selectedSkuId);
+  useEffect(() => {
+    setCurrentSelectedId('default');
+  }, [styleId]);
 
-    return (
-      <div>
-        <SizeSelector setSelectedSkuId={this.setSelectedSkuId} currentStyle={currentStyle} />
+  const currentSizes = makeSizeTuples();
+  return (
+    <InnerContainer>
+      <SelectorContainer>
+        <SizeSelector currentSizes={currentSizes} handleSizeClick={handleSizeClick} />
         <QuantitySelector
-          currentStyle={currentStyle}
-          selectedSkuId={selectedSkuId}
-          setCount={this.setCount}
-          setSelectedSkuId={this.setSelectedSkuId}
+          currentSelectedId={currentSelectedId}
+          skus={skus}
+          currentCount={currentCount}
+          handleQuantityClick={handleQuantityClick}
         />
-      </div>
-    );
-  }
-}
+      </SelectorContainer>
+      <NextRowContainer>
+        <Bag
+          currentSizes={currentSizes}
+          currentSelectedId={currentSelectedId}
+          setCurrentSelectedId={setCurrentSelectedId}
+          currentCount={currentCount}
+        />
+      </NextRowContainer>
+    </InnerContainer>
+  );
+};
 
 AddToCart.propTypes = {
-  currentStyle: PropTypes.shape({ // left skus and default? out for now
-    style_id: PropTypes.number,
-    name: PropTypes.string,
-    original_price: PropTypes.string,
-    sale_price: PropTypes.string,
-    photos: PropTypes.arrayOf(PropTypes.object),
-    skus: PropTypes.objectOf(
-      PropTypes.shape({
-        quantity: PropTypes.number,
-        size: PropTypes.string,
-      }),
-    ),
-  }),
+  skus: PropTypes.objectOf(
+    PropTypes.shape({
+      quantity: PropTypes.number,
+      size: PropTypes.string,
+    }),
+  ),
+  styleId: PropTypes.number,
 };
 
 AddToCart.defaultProps = {
-  currentStyle: {},
+  skus: {},
+  styleId: null,
 };
 
 export default AddToCart;

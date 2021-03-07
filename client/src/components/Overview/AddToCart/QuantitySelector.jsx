@@ -1,47 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import QuantitySelectorContainer from '../StyledComponents/AddToCart/QuantitySelectorContainer';
 
-class QuantitySelector extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.renderSwitch = this.renderSwitch.bind(this);
+const QuantitySelector = ({ currentSelectedId, skus, handleQuantityClick }) => {
+  if (currentSelectedId === 'default' || !skus[currentSelectedId]) {
+    return (
+      <QuantitySelectorContainer defaultValue="default" disabled={currentSelectedId === 'default'}>
+        <option value="default">-</option>
+      </QuantitySelectorContainer>
+    );
   }
 
-  // componentDidUpdate(prevProps) {
-  //   const { currentStyle: prevStyle } = prevProps;
-  //   const { style_id: prevId } = prevStyle;
-  //   const { currentStyle, selectedSkuId } = this.props;
-  //   const { style_id: currentId } = currentStyle;
-
-  //   if (prevId !== currentId && currentId) {
-  //     const { setSelectedSkuId } = this.props;
-  //     setSelectedSkuId('default');
-  //   }
-  // }
-
-  handleChange(e) {
-    const { setCount } = this.props;
-    setCount(e.target.value);
-  }
-
-  renderSwitch() {
-    const { currentStyle, selectedSkuId } = this.props;
-    const { skus } = currentStyle;
-    const currentSkuObj = skus[selectedSkuId];
-    if (!currentSkuObj) {
-      const { setSelectedSkuId } = this.props;
-      setSelectedSkuId('default');
-      return;
-    }
-
-    const { quantity } = currentSkuObj;
+  const handleChange = (e) => {
+    handleQuantityClick(e.target.value);
+  };
+  const makeQuantityArray = () => {
+    const max = skus[currentSelectedId].quantity;
     const quantityArr = [];
 
-    for (let i = 1; i < quantity + 1; i += 1) {
+    for (let i = 1; i < max + 1; i += 1) {
       if (i > 15) {
         break;
       }
@@ -49,59 +26,38 @@ class QuantitySelector extends React.Component {
       quantityArr.push(i);
     }
 
-    return quantityArr.map((num, index) => {
-      const key = index;
-      return (
-        <option key={key} value={num}>{num}</option>
-      );
-    });
-  }
+    return quantityArr;
+  };
 
-  render() {
-    const { selectedSkuId } = this.props;
-    console.log('------quant skuID---');
-    console.log(selectedSkuId);
+  const options = makeQuantityArray();
 
-    if (selectedSkuId === 'default' || !selectedSkuId) {
-      return (
-        <select defaultValue="default" disabled={selectedSkuId === 'default'}>
-          <option value="default">-</option>
-        </select>
-      );
-    }
-
-    return (
-      <select defaultValue="1" onChange={this.handleChange}>
-        {this.renderSwitch()}
-      </select>
-    );
-  }
-}
+  return (
+    <QuantitySelectorContainer onChange={handleChange}>
+      {options.map((num) => (
+        <option value={num} key={num}>{num}</option>
+      ))}
+    </QuantitySelectorContainer>
+  );
+};
 
 QuantitySelector.propTypes = {
-  currentStyle: PropTypes.shape({ // left skus and default? out for now
-    style_id: PropTypes.number,
-    name: PropTypes.string,
-    original_price: PropTypes.string,
-    sale_price: PropTypes.string,
-    photos: PropTypes.arrayOf(PropTypes.object),
-    skus: PropTypes.objectOf(
-      PropTypes.shape({
-        quantity: PropTypes.number,
-        size: PropTypes.string,
-      }),
-    ),
-  }),
-  setCount: PropTypes.func,
-  selectedSkuId: PropTypes.string,
-  setSelectedSkuId: PropTypes.func,
+  skus: PropTypes.objectOf(
+    PropTypes.shape({
+      quantity: PropTypes.number,
+      size: PropTypes.string,
+    }),
+  ),
+  currentSelectedId: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  handleQuantityClick: PropTypes.func,
 };
 
 QuantitySelector.defaultProps = {
-  currentStyle: {},
-  setCount: null,
-  selectedSkuId: 'default',
-  setSelectedSkuId: null,
+  skus: {},
+  currentSelectedId: null,
+  handleQuantityClick: null,
 };
 
 export default QuantitySelector;

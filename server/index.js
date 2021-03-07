@@ -94,8 +94,23 @@ app.get('/products/:product_id/styles', (req, res) => {
     headers: { Authorization: config.TOKEN },
   })
     .then((response) => {
-      console.log(response.data.results[0].photos.length);
       res.status(200).send(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(400).send(error);
+    });
+});
+
+app.post('/cart', (req, res) => {
+  axios({
+    method: 'post',
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/cart',
+    data: { sku_id: req.body.styleNumber },
+    headers: { Authorization: config.TOKEN },
+  })
+    .then((response) => {
+      res.status(201).send(response.data);
     })
     .catch((error) => {
       res.status(400).send(error);
