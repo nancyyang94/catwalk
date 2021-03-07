@@ -36,9 +36,13 @@ class Ratings extends React.Component {
       <RatingsContainer>
         <h3>Ratings and Reviews</h3>
         <RatingSummary reviews={reviews} />
-        {reviews && reviews.length > 0 && <p>
-          {reviews.length} Reviews</p>}
-        {reviews && reviews.length > 0 && <p>{this.getPercentage(reviews)} of reviews recommend this product</p>}
+        {reviews && reviews.length > 0
+        && <div>
+          <p>
+          {reviews.length} Reviews
+          </p>
+          <p>{this.getPercentage(reviews)} of reviews recommend this product</p>
+        </div>}
       </RatingsContainer>
     );
   }
