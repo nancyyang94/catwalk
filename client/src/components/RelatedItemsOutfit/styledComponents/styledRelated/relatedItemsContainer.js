@@ -13,6 +13,7 @@ const RelatedItemsContainer = styled.div`
   padding: 0;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
+  opacity: 1;
   & .productContainer:hover {
     border: 1px solid black;
     transition: 1s;

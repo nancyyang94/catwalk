@@ -49,7 +49,7 @@ const ProductCard = ({
   };
 
   return (
-    <ProductContainer to={{ pathname: `/product/${productInfo.id}` }} className="productContainer" onClick={() => getProduct(productInfo.id)}>
+    <ProductContainer to={{ pathname: `/product/${productInfo.id}` }} className="productContainer" onClick={() => { window.location.reload(); getProduct(productInfo.id); }}>
       <RelatedAction type="button" onClick={(event) => comparisonModal(event, isPressed, mainFeatures, productInfo.features)}>☆</RelatedAction>
       <ImageGallery photos={productInfo.photos} category={productInfo.category} />
       <Descriptions productInfo={productInfo} />

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import styled from 'styled-components';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import RelatedItemsList from './RelatedItems/relatedItemsList';
@@ -12,12 +13,45 @@ import OutfitList from './Outfit/outfitList';
 import Title from './styledComponents/styledRelated/title';
 import ButtonContainer from './styledComponents/sharedStyledC/buttonContainer';
 
+const Div = styled.div`
+transform: translateY(${({ animate }) => (animate ? '0vh' : '80vh')});
+transition: transform 1s;
+`;
+
 const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
   const [related, setRelated] = useState([]);
   const [hasRelatedNext, setHasRelatedNext] = useState(false);
   const [hasRelatedPrevious, setHasRelatedPrevious] = useState(false);
   const [hasOutfitNext, setHasOutfitNext] = useState(false);
   const [hasOutfitPrevious, setHasOutfitPrevious] = useState(false);
+  const [show, doShow] = useState({
+    itemOne: false,
+    itemTwo: false,
+  });
+  const ourRef = useRef(null);
+  const anotherRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const topPos = (element) => {
+      if (element) {
+        return element.getBoundingClientRect().top;
+      }
+      return null;
+    };
+
+    const div1Pos = topPos(ourRef.current);
+    const div2Pos = topPos(anotherRef.current);
+    const onScroll = () => {
+      const scrollPos = window.scrollY + window.innerHeight;
+      if (div1Pos < scrollPos) {
+        doShow((state) => ({ ...state, itemOne: true }));
+      } else if (div2Pos < scrollPos) {
+        doShow((state) => ({ ...state, itemTwo: true }));
+      }
+    };
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const getRelated = (id) => {
     axios.get(`/products/${id}/related`)
@@ -151,32 +185,36 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
   };
 
   return (
-    <div>
-      <RelatedContainer id="carousel">
-        <Title>COMPLETE THE LOOK</Title>
-        {hasRelatedPrevious ? <Left type="button" onClick={() => left('relatedLeft')}><SvgArrowL width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowL></Left> : null}
-        <RelatedItemsList
-          related={related}
-          getProduct={getProduct}
-          mainFeatures={product.features}
-          mainName={product.name}
-        />
-        {hasRelatedNext ? <ButtonContainer /> : null}
-        {hasRelatedNext ? <Right type="button" onClick={() => right('relatedRight')}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
-      </RelatedContainer>
-      <OutfitContainer>
-        <Title>YOUR OUTFIT</Title>
-        {hasOutfitPrevious ? <Left type="button" onClick={left}><SvgArrowL width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowL></Left> : null}
-        <OutfitList
-          currentStyle={currentStyle}
-          getProduct={getProduct}
-          product={product}
-          updateButton={updateButton}
-        />
-        {hasOutfitNext ? <ButtonContainer /> : null}
-        {hasOutfitNext ? <Right type="button" onClick={right}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
-      </OutfitContainer>
-    </div>
+    <>
+      <Div animate={show.itemTwo} ref={anotherRef}>
+        <RelatedContainer>
+          <Title>COMPLETE THE LOOK</Title>
+          {hasRelatedPrevious ? <Left type="button" onClick={() => left('relatedLeft')}><SvgArrowL width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowL></Left> : null}
+          <RelatedItemsList
+            related={related}
+            getProduct={getProduct}
+            mainFeatures={product.features}
+            mainName={product.name}
+          />
+          {hasRelatedNext ? <ButtonContainer /> : null}
+          {hasRelatedNext ? <Right type="button" onClick={() => right('relatedRight')}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
+        </RelatedContainer>
+      </Div>
+      <Div animate={show.itemOne} ref={ourRef}>
+        <OutfitContainer>
+          <Title>YOUR OUTFIT</Title>
+          {hasOutfitPrevious ? <Left type="button" onClick={left}><SvgArrowL width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowL></Left> : null}
+          <OutfitList
+            currentStyle={currentStyle}
+            getProduct={getProduct}
+            product={product}
+            updateButton={updateButton}
+          />
+          {hasOutfitNext ? <ButtonContainer /> : null}
+          {hasOutfitNext ? <Right type="button" onClick={right}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
+        </OutfitContainer>
+      </Div>
+    </>
   );
 };
 
