@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
 const AverageRatingContainer = styled.div`
-height: 5px;
-display: flex;
-justify-content: flex-start;
+height: 50px;
+display: inline-flex;
+justify-content: space-between;
 flex-direction: row;
-background-color: #ffffff;
-color: #525252;
 align-content: center;
 position: absolute;
-/* bottom: 0;
-left: 0; */
+margin-left: 75px;
+margin-bottom: 100px;
+margin-top: 5px;
+align-items: baseline;
 `;
 
 export default AverageRatingContainer;

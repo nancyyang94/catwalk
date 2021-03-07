@@ -8,7 +8,7 @@ const RatingsReviewContainer = styled.div`
   margin-left: 172px;
   margin-right: 172px;
   font-family: Helvetica, Arial, sans-serif;
-  color: ##525252;;
+  color: #ffffff;
 
 
   h3, h5 {
