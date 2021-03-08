@@ -9,13 +9,15 @@ const NavigationContainer = styled.div`
     border: none;
     border-bottom: 2px solid black;
     background: white;
-    height: 10px;
+    height: 8px;
+    width: 10px;
     margin-right: 2px;
     &:hover {
-      height: 10px;
+      height: 8px;
       background: black;
     }
   }
 `;
+NavigationContainer.displayName = 'divButton';
 
 export default NavigationContainer;

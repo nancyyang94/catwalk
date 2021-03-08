@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
 const ButtonContainer = styled.div`
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+animation: fadein .2s;
   position: absolute;
   right: -3%;
   top: 4%;

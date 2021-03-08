@@ -25,7 +25,6 @@ const Div = styled.div`
 animation: fadein 4s;
 transform: translateY(${({ animate }) => (animate ? '0vh' : '60vh')});
 transition: transform 1.5s;
-
 `;
 
 const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
@@ -267,7 +266,7 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
     const maxScrollWidth = slider.scrollWidth - slider.clientWidth;
     const scrollDistance = maxScrollWidth * percentage;
     slider.scrollLeft = scrollDistance;
-    setTimeout(() => { updateButton(); }, 550);
+    setTimeout(() => { updateButton(); }, 1000);
   };
 
   return (
@@ -281,7 +280,7 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
         />
       ) : null}
       <Div animate={show.itemTwo} ref={anotherRef}>
-        <RelatedContainer>
+        <RelatedContainer id="carousel1">
           <Title>COMPLETE THE LOOK</Title>
           {hasRelatedPrevious ? <Left type="button" onClick={() => left('relatedLeft')}><SvgArrowL width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowL></Left> : null}
           <RelatedItemsList
@@ -292,17 +291,19 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
           {hasRelatedNext ? <ButtonContainer /> : null}
           {hasRelatedNext ? <Right type="button" onClick={() => right('relatedRight')}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
         </RelatedContainer>
-        <NavigationContainer>
-          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.0); }} />
-          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.20); }} />
-          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.40); }} />
-          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.60); }} />
-          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.80); }} />
-          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 1); }} />
-        </NavigationContainer>
+        {hasRelatedNext || hasRelatedPrevious ? (
+          <NavigationContainer>
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.0); }} />
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.20); }} />
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.40); }} />
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.60); }} />
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.80); }} />
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 1); }} />
+          </NavigationContainer>
+        ) : null}
       </Div>
       <Div animate={show.itemOne} ref={ourRef}>
-        <OutfitContainer>
+        <OutfitContainer id="carousel2">
           <Title>YOUR OUTFIT</Title>
           {hasOutfitPrevious ? <Left type="button" onClick={left}><SvgArrowL width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowL></Left> : null}
           <OutfitList
@@ -314,18 +315,22 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
           {hasOutfitNext ? <ButtonContainer /> : null}
           {hasOutfitNext ? <Right type="button" onClick={right}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
         </OutfitContainer>
-        <NavigationContainer>
-          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.0); }} />
-          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.20); }} />
-          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.40); }} />
-          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.60); }} />
-          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.80); }} />
-          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 1); }} />
-        </NavigationContainer>
+        {hasOutfitNext || hasOutfitPrevious ? (
+          <NavigationContainer>
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.0); }} />
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.20); }} />
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.40); }} />
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.60); }} />
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.80); }} />
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 1); }} />
+          </NavigationContainer>
+        ) : null}
       </Div>
     </>
   );
 };
+
+RelatedItemsOutfit.displayName = 'RelatedItemsOutfit';
 
 export default RelatedItemsOutfit;
 

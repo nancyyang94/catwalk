@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
 const Left = styled.button`
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+animation: fadein .2s;
   border: 1px solid black;
   position: absolute;
   left: 9.6%;
