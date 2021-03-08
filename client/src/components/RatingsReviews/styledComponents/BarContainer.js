@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const BarContainer = styled.div`
 display: flex;
 flex-direction: row;
+margin-bottom: -7%;
 
 .bars {
   margin-top: 20px;

@@ -9,8 +9,6 @@ class Ratings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // reviews: null,
-      // average: 0,
     };
     this.getPercentage = this.getPercentage.bind(this);
   }
@@ -30,7 +28,6 @@ class Ratings extends React.Component {
 
   render() {
     const { reviews } = this.props;
-    // const { average } = this.state;
     return (
       <RatingsContainer>
         <h3>Ratings and Reviews</h3>
@@ -41,8 +38,8 @@ class Ratings extends React.Component {
           {reviews.length} Reviews
           </p>
           <p>{this.getPercentage(reviews)} of reviews recommend this product</p>
+          <RatingsBreakdownContainer reviews={reviews} total={reviews.length} />
         </div>}
-        <RatingsBreakdownContainer />
       </RatingsContainer>
     );
   }
