@@ -4,6 +4,8 @@ import StyleSelectorEntry from './StyleSelectorEntry';
 import InnerContainer from '../StyledComponents/StyleSelector/InnerContainer';
 import TextWrapper from '../StyledComponents/StyleSelector/TextWrapper';
 import ListContainer from '../StyledComponents/StyleSelector/ListContainer';
+import StylePointerText from '../StyledComponents/StyleSelector/StylePointerText';
+import CurrentStyleText from '../StyledComponents/StyleSelector/CurrentStyleText';
 
 class StyleSelector extends React.Component {
   constructor(props) {
@@ -19,7 +21,10 @@ class StyleSelector extends React.Component {
 
     return (
       <InnerContainer>
-        <TextWrapper>{`Style > ${currentStyleName}`}</TextWrapper>
+        <TextWrapper>
+          <StylePointerText>{'STYLE >'}</StylePointerText>
+          <CurrentStyleText>{currentStyleName.toUpperCase()}</CurrentStyleText>
+        </TextWrapper>
         <ListContainer>
           {styles.map((style) => {
             const { style_id: key } = style;
