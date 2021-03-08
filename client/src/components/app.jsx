@@ -22,7 +22,7 @@ class AppComponent extends React.Component {
     const { location } = this.props;
     if (!location.pathname.split('/')[2]) {
       console.log('hi');
-      this.getProduct('14931');
+      this.getProduct('14042');
     } else {
       this.getProduct(`${location.pathname.split('/')[2]}`);
     }
