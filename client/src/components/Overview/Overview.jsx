@@ -11,6 +11,7 @@ import InfoContainer from './StyledComponents/InfoContainer';
 import StyleSelectorContainer from './StyledComponents/StyleSelectorContainer';
 import AddToCartContainer from './StyledComponents/AddToCartContainer';
 import ProductInfoContainer from './StyledComponents/ProductInfoContainer';
+import LoadingDiv from './StyledComponents/LoadingDiv';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -64,7 +65,7 @@ class Overview extends React.Component {
     const { updateCurrentStyle } = this.props;
     const { product } = this.props;
     if (styles.length < 1 || Object.keys(currentStyle).length === 0) {
-      return (<div>loading...</div>);
+      return (<LoadingDiv>loading...</LoadingDiv>);
     }
     const { photos, skus, style_id: styleId } = currentStyle;
 
