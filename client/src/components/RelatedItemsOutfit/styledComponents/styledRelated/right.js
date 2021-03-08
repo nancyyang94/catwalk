@@ -8,8 +8,8 @@ const Right = styled.button`
   width: 50px;
   height: 50px;
   cursor: pointer;
-  z-index: 1000;
   outline: 0;
+  z-index: 1000;
   background: white;
   margin-top: 0px;
   /* position: relative; */

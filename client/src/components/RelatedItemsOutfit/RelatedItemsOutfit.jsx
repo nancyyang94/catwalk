@@ -15,6 +15,7 @@ import OutfitList from './Outfit/outfitList';
 import Title from './styledComponents/styledRelated/title';
 import ButtonContainer from './styledComponents/sharedStyledC/buttonContainer';
 import ComparissonModal from './RelatedItems/comparissonModal';
+import NavigationContainer from './styledComponents/sharedStyledC/navigationContainer';
 
 const Div = styled.div`
 @keyframes fadein {
@@ -126,17 +127,35 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
     const outfitSlider = document.getElementById('slider2');
     const outfitWidth = outfitSlider.scrollWidth - outfitSlider.clientWidth;
     const relatedWidth = relatedSlider.scrollWidth - relatedSlider.clientWidth;
-    if (outfitWidth) {
+    if (outfitWidth && outfitSlider.scrollLeft !== outfitWidth) {
       setHasOutfitNext(true);
+      if (outfitSlider.scrollLeft === 0) {
+        setHasOutfitPrevious(false);
+      } else {
+        setHasOutfitPrevious(true);
+      }
     } else {
-      setHasOutfitPrevious(false);
       setHasOutfitNext(false);
+      if (outfitSlider.scrollLeft === 0) {
+        setHasOutfitPrevious(false);
+      } else {
+        setHasOutfitPrevious(true);
+      }
     }
-    if (relatedWidth) {
+    if (relatedWidth && relatedSlider.scrollLeft !== relatedWidth) {
       setHasRelatedNext(true);
+      if (relatedSlider.scrollLeft === 0) {
+        setHasRelatedPrevious(false);
+      } else {
+        setHasRelatedPrevious(true);
+      }
     } else {
-      setHasRelatedPrevious(false);
       setHasRelatedNext(false);
+      if (relatedSlider.scrollLeft === 0) {
+        setHasRelatedPrevious(false);
+      } else {
+        setHasRelatedPrevious(true);
+      }
     }
   };
 
@@ -217,7 +236,6 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
           slider.scrollLeft -= slider.scrollLeft;
           setHasRelatedPrevious(false);
         }
-        setHasRelatedNext(true);
       } else {
         setHasRelatedPrevious(false);
         setHasRelatedNext(false);
@@ -232,12 +250,24 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
           slider.scrollLeft -= slider.scrollLeft;
           setHasOutfitPrevious(false);
         }
-        setHasOutfitNext(true);
       } else {
         setHasOutfitPrevious(false);
         setHasOutfitNext(false);
       }
     }
+  };
+
+  const navigate = (carousel, percentage) => {
+    let slider;
+    if (carousel === 'related') {
+      slider = document.getElementById('slider');
+    } else {
+      slider = document.getElementById('slider2');
+    }
+    const maxScrollWidth = slider.scrollWidth - slider.clientWidth;
+    const scrollDistance = maxScrollWidth * percentage;
+    slider.scrollLeft = scrollDistance;
+    setTimeout(() => { updateButton(); }, 550);
   };
 
   return (
@@ -262,6 +292,14 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
           {hasRelatedNext ? <ButtonContainer /> : null}
           {hasRelatedNext ? <Right type="button" onClick={() => right('relatedRight')}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
         </RelatedContainer>
+        <NavigationContainer>
+          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.0); }} />
+          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.20); }} />
+          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.40); }} />
+          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.60); }} />
+          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.80); }} />
+          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 1); }} />
+        </NavigationContainer>
       </Div>
       <Div animate={show.itemOne} ref={ourRef}>
         <OutfitContainer>
@@ -276,6 +314,14 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
           {hasOutfitNext ? <ButtonContainer /> : null}
           {hasOutfitNext ? <Right type="button" onClick={right}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
         </OutfitContainer>
+        <NavigationContainer>
+          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.0); }} />
+          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.20); }} />
+          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.40); }} />
+          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.60); }} />
+          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.80); }} />
+          <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 1); }} />
+        </NavigationContainer>
       </Div>
     </>
   );
