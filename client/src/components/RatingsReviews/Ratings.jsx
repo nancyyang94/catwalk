@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import RatingsContainer from './styledComponents/RatingsContainer';
 import StarReviews from '../RelatedItemsOutfit/sharedComponents/starReviews';
-import AverageRatingContainer from './styledComponents/AverageRatingContainer';
 import RatingSummary from './RatingSummary';
+import RatingsBreakdownContainer from './RatingsBreakdown/RatingsBreakdownContainer';
 
 class Ratings extends React.Component {
   constructor(props) {
@@ -42,6 +42,7 @@ class Ratings extends React.Component {
           </p>
           <p>{this.getPercentage(reviews)} of reviews recommend this product</p>
         </div>}
+        <RatingsBreakdownContainer />
       </RatingsContainer>
     );
   }
