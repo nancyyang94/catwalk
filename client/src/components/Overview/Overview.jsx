@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import ImageGallery from './ImageGallery/ImageGallery';
 import ProductInfo from './ProductInfo/ProductInfo';
 import StyleSelector from './StyleSelector/StyleSelector';
+import AddToCart from './AddToCart/AddToCart';
 import OverviewContainer from './StyledComponents/OverviewContainer';
 import GalleryContainer from './StyledComponents/GalleryContainer';
 import InfoContainer from './StyledComponents/InfoContainer';
 import StyleSelectorContainer from './StyledComponents/StyleSelectorContainer';
 import AddToCartContainer from './StyledComponents/AddToCartContainer';
 import ProductInfoContainer from './StyledComponents/ProductInfoContainer';
+import LoadingDiv from './StyledComponents/LoadingDiv';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -62,14 +64,15 @@ class Overview extends React.Component {
     const { currentStyle } = this.props;
     const { updateCurrentStyle } = this.props;
     const { product } = this.props;
-    if (styles.length < 1) {
-      return (<div>loading...</div>);
+    if (styles.length < 1 || Object.keys(currentStyle).length === 0) {
+      return (<LoadingDiv>loading...</LoadingDiv>);
     }
+    const { photos, skus, style_id: styleId } = currentStyle;
 
     return (
       <OverviewContainer>
         <GalleryContainer>
-          <ImageGallery currentStyle={currentStyle} />
+          <ImageGallery photos={photos} />
         </GalleryContainer>
         <InfoContainer>
           <ProductInfoContainer>
@@ -83,7 +86,7 @@ class Overview extends React.Component {
             />
           </StyleSelectorContainer>
           <AddToCartContainer>
-            Add To Cart
+            <AddToCart styleId={styleId} skus={skus} />
           </AddToCartContainer>
         </InfoContainer>
       </OverviewContainer>
@@ -109,6 +112,12 @@ Overview.propTypes = {
     original_price: PropTypes.string,
     sale_price: PropTypes.string,
     photos: PropTypes.arrayOf(PropTypes.object),
+    skus: PropTypes.objectOf(
+      PropTypes.shape({
+        quantity: PropTypes.number,
+        size: PropTypes.string,
+      }),
+    ),
   }),
   updateCurrentStyle: PropTypes.func,
 };
