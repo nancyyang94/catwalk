@@ -17,7 +17,7 @@ class StyleSelector extends React.Component {
 
   render() {
     const { styles, currentStyle, updateCurrentStyle } = this.props;
-    const { name: currentStyleName } = currentStyle;
+    const { name: currentStyleName, style_id: selectedId } = currentStyle;
 
     return (
       <InnerContainer>
@@ -27,12 +27,14 @@ class StyleSelector extends React.Component {
         </TextWrapper>
         <ListContainer>
           {styles.map((style) => {
-            const { style_id: key } = style;
+            const { style_id: styleId } = style;
+
             return (
               <StyleSelectorEntry
-                key={key}
+                key={Math.random()}
                 style={style}
-                currentStyle={currentStyle}
+                styleId={styleId}
+                selectedId={selectedId}
                 updateCurrentStyle={() => { updateCurrentStyle(style); }}
               />
             );
