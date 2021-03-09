@@ -30,6 +30,7 @@ class Ratings extends React.Component {
 
   render() {
     const { reviews } = this.props;
+    const { id } = this.props;
     return (
       <RatingsContainer>
         <h3>Ratings and Reviews</h3>
@@ -41,7 +42,7 @@ class Ratings extends React.Component {
           </p>
           <p>{this.getPercentage(reviews)} of reviews recommend this product</p>
           <RatingsBreakdownContainer reviews={reviews} total={reviews.length} />
-          <ProductBreakdownContainer reviews={reviews} total={reviews.length} />
+          <ProductBreakdownContainer reviews={reviews} total={reviews.length} id={id} />
         </div>}
       </RatingsContainer>
     );
