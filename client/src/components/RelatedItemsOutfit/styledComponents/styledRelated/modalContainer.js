@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const ModalContainer = styled.div`
-  height: 100vh;
+  height: 100%;
   width: 100%;
   position: fixed;
   top: 0;

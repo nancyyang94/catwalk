@@ -5,7 +5,7 @@ const OutfitItemsContainer = styled.div`
   height: auto;
   display: flex;
   flex-direction: row;
-  transition: .5s;
+  transition: 1s;
   max-width: 1450px;
   overflow-x: hidden;
   margin-left: 9.1%;

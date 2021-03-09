@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const ProductContainer = styled(Link)`
-  flex-basis: 30%
   height: auto;
   width: 230px;
   border: 1px solid white;

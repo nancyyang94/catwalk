@@ -1,5 +1,6 @@
+/* eslint-disable no-alert */
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Characteristics from './CharacteristicsRefactored';
 
 class NewReviewForm extends React.Component {
@@ -72,7 +73,6 @@ class NewReviewForm extends React.Component {
   }
 
   render() {
-    console.log('state of new review form:', this.state);
     return (
       <>
         <form onSubmit={this.submitHandler}>
