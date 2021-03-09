@@ -15,7 +15,6 @@ import OutfitList from './Outfit/outfitList';
 import Title from './styledComponents/styledRelated/title';
 import ButtonContainer from './styledComponents/sharedStyledC/buttonContainer';
 import NavigationContainer from './styledComponents/sharedStyledC/navigationContainer';
-// import AllCarouselContainer from './styledComponents/sharedStyledC/allCarouselContainer';
 
 const Div = styled.div`
 @keyframes fadein {
@@ -87,36 +86,40 @@ const RelatedItemsOutfit = ({
   const updateButton = () => {
     const relatedSlider = document.getElementById('slider');
     const outfitSlider = document.getElementById('slider2');
-    const outfitWidth = outfitSlider.scrollWidth - outfitSlider.clientWidth;
-    const relatedWidth = relatedSlider.scrollWidth - relatedSlider.clientWidth;
-    if (outfitWidth && outfitSlider.scrollLeft !== outfitWidth) {
-      setHasOutfitNext(true);
-      if (outfitSlider.scrollLeft === 0) {
-        setHasOutfitPrevious(false);
+    if (outfitSlider) {
+      const outfitWidth = outfitSlider.scrollWidth - outfitSlider.clientWidth;
+      if (outfitWidth && outfitSlider.scrollLeft !== outfitWidth) {
+        setHasOutfitNext(true);
+        if (outfitSlider.scrollLeft === 0) {
+          setHasOutfitPrevious(false);
+        } else {
+          setHasOutfitPrevious(true);
+        }
       } else {
-        setHasOutfitPrevious(true);
-      }
-    } else {
-      setHasOutfitNext(false);
-      if (outfitSlider.scrollLeft === 0) {
-        setHasOutfitPrevious(false);
-      } else {
-        setHasOutfitPrevious(true);
+        setHasOutfitNext(false);
+        if (outfitSlider.scrollLeft === 0) {
+          setHasOutfitPrevious(false);
+        } else {
+          setHasOutfitPrevious(true);
+        }
       }
     }
-    if (relatedWidth && relatedSlider.scrollLeft !== relatedWidth) {
-      setHasRelatedNext(true);
-      if (relatedSlider.scrollLeft === 0) {
-        setHasRelatedPrevious(false);
+    if (relatedSlider) {
+      const relatedWidth = relatedSlider.scrollWidth - relatedSlider.clientWidth;
+      if (relatedWidth && relatedSlider.scrollLeft !== relatedWidth) {
+        setHasRelatedNext(true);
+        if (relatedSlider.scrollLeft === 0) {
+          setHasRelatedPrevious(false);
+        } else {
+          setHasRelatedPrevious(true);
+        }
       } else {
-        setHasRelatedPrevious(true);
-      }
-    } else {
-      setHasRelatedNext(false);
-      if (relatedSlider.scrollLeft === 0) {
-        setHasRelatedPrevious(false);
-      } else {
-        setHasRelatedPrevious(true);
+        setHasRelatedNext(false);
+        if (relatedSlider.scrollLeft === 0) {
+          setHasRelatedPrevious(false);
+        } else {
+          setHasRelatedPrevious(true);
+        }
       }
     }
   };

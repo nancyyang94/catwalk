@@ -22,3 +22,21 @@ describe('AppComponent', () => {
     expect(wrapper.find(RatingsReviews)).toHaveLength(1);
   });
 });
+
+describe('AppComponent', () => {
+  test('is rendering three widgets', () => {
+    const wrapper = shallow(<AppComponent />);
+    expect(wrapper.find('RelatedItemsOutfit')).toHaveLength(1);
+    expect(wrapper.find(Overview)).toHaveLength(1);
+    expect(wrapper.find(RatingsReviews)).toHaveLength(1);
+  });
+});
+
+describe('RelatedItemsOutfit', () => {
+  test('has received correct props', () => {
+    const wrapper = mount(<AppComponent />);
+    expect(wrapper.find(RelatedItemsOutfit)).toHaveProp('product');
+    // expect(wrapper.find('RelatedItemsOutfit')).toHaveLength(1);
+    // expect(wrapper.find('RelatedItemsOutfit')).toHaveLength(1);
+  });
+})
