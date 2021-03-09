@@ -1,6 +1,6 @@
-// /* eslint-disable no-undef */
+/* eslint-disable no-undef */
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import RelatedItemsOutfit from '../../../client/src/components/RelatedItemsOutfit/RelatedItemsOutfit';
 import Overview from '../../../client/src/components/Overview/Overview';
 import RatingsReviews from '../../../client/src/components/RatingsReviews/RatingsReviews';

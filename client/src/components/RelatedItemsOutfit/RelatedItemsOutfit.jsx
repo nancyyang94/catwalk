@@ -16,7 +16,7 @@ import Title from './styledComponents/styledRelated/title';
 import ButtonContainer from './styledComponents/sharedStyledC/buttonContainer';
 import ComparissonModal from './RelatedItems/comparissonModal';
 import NavigationContainer from './styledComponents/sharedStyledC/navigationContainer';
-import AllCarouselContainer from './styledComponents/sharedStyledC/allCarouselContainer';
+// import AllCarouselContainer from './styledComponents/sharedStyledC/allCarouselContainer';
 
 const Div = styled.div`
 @keyframes fadein {
@@ -271,7 +271,7 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
   };
 
   return (
-    <AllCarouselContainer>
+    <>
       {isPressed ? (
         <ComparissonModal
           combinedFeatures={combinedFeatures}
@@ -327,7 +327,7 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
           </NavigationContainer>
         ) : null}
       </Div>
-    </AllCarouselContainer>
+    </>
   );
 };
 

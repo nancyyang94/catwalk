@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Overview from './Overview/Overview';
 import RelatedItemsOutfit from './RelatedItemsOutfit/RelatedItemsOutfit';
 import RatingsReviews from './RatingsReviews/RatingsReviews';
+import AllContainer from './RelatedItemsOutfit/styledComponents/sharedStyledC/allCarouselContainer';
 
 class AppComponent extends React.Component {
   constructor(props) {

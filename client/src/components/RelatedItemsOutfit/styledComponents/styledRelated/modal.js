@@ -5,7 +5,7 @@ const Modal = styled.div`
   padding: 20px;
   border: 1px solid black;
   height: auto;
-  width: 35%;
+  width: 30%;
   border-radius: 5px;
   max-width: 60%;
   @keyframes fadein {
