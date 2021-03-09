@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SizeSelectorContainer from '../StyledComponents/AddToCart/SizeSelectorContainer';
+import SizeOption from '../StyledComponents/AddToCart/SizeOption';
 
 const SizeSelector = ({ currentSelectedId, currentSizes, handleSizeClick }) => {
   if (currentSizes.length === 0) {
@@ -16,12 +17,12 @@ const SizeSelector = ({ currentSelectedId, currentSizes, handleSizeClick }) => {
 
   return (
     <SizeSelectorContainer value={currentSelectedId} onChange={handleChange}>
-      <option value="default" key="default">Select Size</option>
+      <SizeOption value="default" key="default">Select Size</SizeOption>
       {currentSizes.map((tuple) => {
         const skuId = tuple[0];
         const size = tuple[1];
         return (
-          <option value={skuId} key={skuId}>{size}</option>
+          <SizeOption value={skuId} key={skuId}>{size}</SizeOption>
         );
       })}
     </SizeSelectorContainer>

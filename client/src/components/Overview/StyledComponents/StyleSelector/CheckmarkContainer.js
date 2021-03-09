@@ -6,7 +6,7 @@ const CheckmarkContainer = styled.div`
   border-radius: 12px;
   background-color: white;
   position: absolute;
-  z-index: 10;
+  z-index: 5;
   top: 7px;
   right: 7px;
 `;

@@ -12,6 +12,10 @@ overflow: scroll;
 cursor: pointer;
 transition-duration: 0.3s;
 transition-timing-function: ease;
+
+:focus {
+  outline: none;
+}
 `;
 
 export default NavButton;

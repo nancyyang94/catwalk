@@ -11,6 +11,7 @@ const ImageGallery = ({ photos }) => {
   const [current, setCurrent] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isZoomed, setIsZoomed] = useState(false);
 
   const mouseEnter = () => {
     setIsHovering(true);
@@ -39,6 +40,31 @@ const ImageGallery = ({ photos }) => {
   if (!Array.isArray(photos) || photos.length <= 0) {
     return null;
   }
+
+  const imgExpandHandler = () => {
+    if (!isExpanded) {
+      setIsExpanded(true);
+    } else if (!isZoomed) {
+      setIsZoomed(true);
+    } else {
+      setIsZoomed(false);
+    }
+  };
+
+  const navSwitch = () => {
+    if (isZoomed) {
+      return null;
+    }
+
+    return (
+      <Nav
+        current={current}
+        photos={photos}
+        handleClick={handleClick}
+        isHovering={isHovering}
+      />
+    );
+  };
 
   const buttonSwitch = () => {
     if (isExpanded) {
@@ -77,12 +103,12 @@ const ImageGallery = ({ photos }) => {
         const key = index;
         if (index === current) {
           return (
-            <GalleryViewerImg key={key} src={url} alt="active img" />
+            <GalleryViewerImg isZoomed={isZoomed} isExpanded={isExpanded} onClick={imgExpandHandler} key={key} src={url} alt="active img" />
           );
         }
         return null;
       })}
-      <Nav current={current} photos={photos} handleClick={handleClick} isHovering={isHovering} />
+      {navSwitch()}
     </ImageGalleryContainer>
   );
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Price from './Price';
+import Stars from './Stars';
 import InnerContainer from '../StyledComponents/ProductInfo/InnerContainer';
 import StarsContainer from '../StyledComponents/ProductInfo/StarsContainer';
 import CategoryContainer from '../StyledComponents/ProductInfo/CategoryContainer';
@@ -20,12 +21,11 @@ class ProductInfo extends React.Component {
     const { currentStyle } = this.props;
     const { original_price: originalPrice } = currentStyle;
     const { sale_price: salePrice } = currentStyle;
-    const { category } = product;
-    const { name } = product;
+    const { category, name, reviews } = product;
 
     return (
       <InnerContainer>
-        <StarsContainer>Stars Stars Stars</StarsContainer>
+        <Stars reviews={reviews} />
         <CategoryContainer><div>{category.toUpperCase()}</div></CategoryContainer>
         <NameText>{name.toUpperCase()}</NameText>
         <Price originalPrice={originalPrice} salePrice={salePrice} />

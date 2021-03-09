@@ -12,6 +12,7 @@ const StyleImg = styled.img`
   top: 0;
   bottom: 0;
   margin: auto;
+  cursor: pointer;
 `;
 
 export default StyleImg;
