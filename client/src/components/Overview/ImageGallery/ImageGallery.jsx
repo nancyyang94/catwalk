@@ -11,6 +11,7 @@ const ImageGallery = ({ photos }) => {
   const [current, setCurrent] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isZoomed, setIsZoomed] = useState(false);
 
   const mouseEnter = () => {
     setIsHovering(true);
@@ -29,7 +30,7 @@ const ImageGallery = ({ photos }) => {
   };
 
   const handleExpand = () => {
-    setIsExpanded(true);
+    setIsExpanded(!isExpanded);
   };
 
   const handleClick = (num) => {
@@ -39,6 +40,45 @@ const ImageGallery = ({ photos }) => {
   if (!Array.isArray(photos) || photos.length <= 0) {
     return null;
   }
+
+  const imgExpandHandler = () => {
+    if (!isExpanded) {
+      setIsExpanded(true);
+    } else if (!isZoomed) {
+      setIsZoomed(true);
+    } else {
+      setIsZoomed(false);
+    }
+  };
+
+  const navSwitch = () => {
+    if (isZoomed) {
+      return null;
+    }
+
+    return (
+      <Nav
+        current={current}
+        photos={photos}
+        handleClick={handleClick}
+        isHovering={isHovering}
+      />
+    );
+  };
+
+  const buttonSwitch = () => {
+    if (isExpanded) {
+      return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path d="M15 2h2v5h7v2h-9v-7zm9 13v2h-7v5h-2v-7h9zm-15 7h-2v-5h-7v-2h9v7zm-9-13v-2h7v-5h2v7h-9z" />
+        </svg>
+      );
+    }
+    return (
+      <img src="https://img.icons8.com/small/32/000000/full-screen.png" alt="fullscreen" />
+    );
+  };
+
   return (
     <ImageGalleryContainer
       isExpanded={isExpanded}
@@ -46,7 +86,7 @@ const ImageGallery = ({ photos }) => {
       onMouseLeave={mouseLeave}
     >
       <ExpandButton onClick={handleExpand}>
-        <img src="https://img.icons8.com/small/32/000000/full-screen.png" alt="fullscreen" />
+        {buttonSwitch()}
       </ExpandButton>
       <NextButtonL onClick={prevSlide}>
         <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd">
@@ -63,12 +103,12 @@ const ImageGallery = ({ photos }) => {
         const key = index;
         if (index === current) {
           return (
-            <GalleryViewerImg key={key} src={url} alt="active img" />
+            <GalleryViewerImg isZoomed={isZoomed} isExpanded={isExpanded} onClick={imgExpandHandler} key={key} src={url} alt="active img" />
           );
         }
         return null;
       })}
-      <Nav current={current} photos={photos} handleClick={handleClick} isHovering={isHovering} />
+      {navSwitch()}
     </ImageGalleryContainer>
   );
 };

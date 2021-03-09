@@ -4,8 +4,7 @@ const ImageGalleryContainer = styled.div`
   position: relative;
   z-index: 10;
   display:flex;
-  height: 100%;
-  width: 100%;
+  height: ${({ isExpanded }) => (isExpanded ? '100vh' : '100%')};
   width: ${({ isExpanded }) => (isExpanded ? '100vw' : '100%')};
   background-color: #edeff0;
   justify-content: center;
