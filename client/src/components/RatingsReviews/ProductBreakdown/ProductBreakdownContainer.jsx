@@ -29,19 +29,9 @@ function ProductBreakdownContainer({ id }) {
       meaning1={factor[1]}
       meaning5={factor[5]}
       percentage="50%"
+      key={`${id}${factor[2]}`}
     />
   ));
-
-  // const allRatings = options.map((factor) => {
-  //   if (featureNames && featureNames.includes(factor)) {
-  //     <IndividualFactor
-  //     factor={factor.name}
-  //     meaning1={factor[1]}
-  //     meaning5={factor[5]}
-  //     percentage={'50%'}
-  //   />
-  //   }
-  // });
 
   return (
     <ProductBreakdownWrapper>
