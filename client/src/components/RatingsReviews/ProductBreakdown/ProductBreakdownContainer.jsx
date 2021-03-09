@@ -1,35 +1,61 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import options from '../charOptions';
 import IndividualFactor from './IndividualFactor';
 import ProductBreakdownWrapper from '../styledComponents/ProductBreakdownWrapper';
 
-function ProductBreakdownContainer(props) {
-  const { reviews } = props;
-  const { total } = props;
-  const { id } = props;
-  const allRatings = options.map((factor) => <IndividualFactor
-    factor={factor.name}
-    id={id}
-    meaning1={factor[1]}
-    meaning5={factor[5]}/>);
+function ProductBreakdownContainer({ id }) {
+  // eslint-disable-next-line no-unused-vars
+  const [characteristics, setCharacteristics] = useState('nothing');
+  // const [featureNames, setFeatureNames] = useState([]);
+
+  // let test;
+
+  useEffect(() => {
+    axios.get(`/metaData/${id}`)
+      .then((response) => {
+        setCharacteristics(response.data);
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.log(error);
+      });
+  }, [id]);
+
+  const allRatings = options.map((factor) => (
+    <IndividualFactor
+      factor={factor.name}
+      meaning1={factor[1]}
+      meaning5={factor[5]}
+      percentage="50%"
+    />
+  ));
+
+  // const allRatings = options.map((factor) => {
+  //   if (featureNames && featureNames.includes(factor)) {
+  //     <IndividualFactor
+  //     factor={factor.name}
+  //     meaning1={factor[1]}
+  //     meaning5={factor[5]}
+  //     percentage={'50%'}
+  //   />
+  //   }
+  // });
 
   return (
     <ProductBreakdownWrapper>
       {allRatings}
-      {console.log('reviews:', reviews)}
     </ProductBreakdownWrapper>
   );
 }
 
 ProductBreakdownContainer.propTypes = {
-  reviews: PropTypes.arrayOf(PropTypes.object),
-  total: PropTypes.number,
+  id: PropTypes.number,
 };
 
 ProductBreakdownContainer.defaultProps = {
-  reviews: null,
-  total: null,
+  id: null,
 };
 
 export default ProductBreakdownContainer;

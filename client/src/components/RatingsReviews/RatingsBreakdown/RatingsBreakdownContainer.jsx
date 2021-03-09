@@ -6,10 +6,13 @@ function RatingsBreakdownContainer(props) {
   const { reviews } = props;
   const { total } = props;
   const numbers = [1, 2, 3, 4, 5];
-  const allRatings = numbers.map((number) => <IndividualBar
-    reviews={reviews}
-    total={total}
-    number={number} />);
+  const allRatings = numbers.map((number) => (
+    <IndividualBar
+      reviews={reviews}
+      total={total}
+      number={number}
+    />
+  ));
 
   return (
     <div>
