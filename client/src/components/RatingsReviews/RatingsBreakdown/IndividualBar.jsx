@@ -20,7 +20,7 @@ function IndividualBar(props) {
   const bars = (
     <svg width="90%" height="15px">
       <g className="bars">
-        <rect fill="#ebedee" width="100%" height="4px" />
+        <rect fill="#a9a9aa" width="100%" height="4px" />
         <rect fill="#45da70" width={percentage} height="4px" />
       </g>
     </svg>

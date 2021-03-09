@@ -11,7 +11,7 @@ function IndividualFactor({
         <rect fill="#ebedee" width="100%" height="10" />
       </g>
       <g className="markers">
-        <rect fill="#45da70" x={percentage} y="0" width="4" height="13px" />
+        <rect fill="#45da70" x={percentage} y="0" width="4" height="10" />
       </g>
     </svg>
   );
