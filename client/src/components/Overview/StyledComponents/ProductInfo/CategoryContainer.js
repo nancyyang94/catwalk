@@ -9,6 +9,7 @@ const CategoryContainer = styled.div`
   font-size: 14px;
   line-height: 16px;
   font-style: italic;
+  margin-top: -22px;
 
 
 `;
