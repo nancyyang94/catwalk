@@ -5,11 +5,13 @@ const TitleContainer = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
   justify-items: center;
-  column-gap: 10px;
+  column-gap: 2%;
   row-gap: 10px;
   margin-top: 20px;
   margin-bottom: 30px;
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 100%;
+  overflow: auto;
 `;
 
 export default TitleContainer;
