@@ -8,13 +8,15 @@ import ProductBreakdownWrapper from '../styledComponents/ProductBreakdownWrapper
 function ProductBreakdownContainer({ id }) {
   // eslint-disable-next-line no-unused-vars
   const [characteristics, setCharacteristics] = useState('nothing');
-  // const [featureNames, setFeatureNames] = useState([]);
+  const [featureNames, setFeatureNames] = useState([]);
 
   useEffect(() => {
     axios.get(`/metaData/${id}`)
-      .then((response) => {
-        console.log('expect characteristics:', response.data);
-        setCharacteristics(response.data);
+      .then(({ data }) => {
+        setCharacteristics(data);
+        const current = data.map((feature) => feature.name);
+        setFeatureNames(current);
+        console.log('expect names array:', current);
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
@@ -22,17 +24,28 @@ function ProductBreakdownContainer({ id }) {
       });
   }, [id]);
 
-  // current characteristics:
-
   const allRatings = options.map((factor) => (
-    <IndividualFactor
-      factor={factor.name}
-      meaning1={factor[1]}
-      meaning5={factor[5]}
-      percentage="50%"
-      key={`${id}${factor[2]}`}
-    />
+    <div>
+      {featureNames && featureNames.includes(factor.name)
+      && <IndividualFactor
+        factor={factor.name}
+        meaning1={factor[1]}
+        meaning5={factor[5]}
+        percentage="50%"
+        key={`${id}${factor[2]}`}
+      />}
+    </div>
   ));
+
+  // const allRatings = characteristics.map((factor) =>
+  //   (<IndividualFactor
+  //       factor={factor.name}
+  //       meaning1={factor[1]}
+  //       meaning5={factor[5]}
+  //     value={factor.value}
+  //     key={`${id}${factor[2]}`}
+  //     />
+  //   ));
 
   return (
     <ProductBreakdownWrapper>

@@ -121,8 +121,20 @@ app.post('/cart', (req, res) => {
 
 app.get('/metaData/:id', (req, res) => {
   console.log(req.params.id);
+  const results = [];
   getReviewsMeta(req.params.id).then(({ data }) => {
-    res.status(200).send(data.characteristics);
+    const { characteristics } = data;
+    console.log('characteristics from serverside:', characteristics);
+    for (var feature in characteristics) {
+      results.push({
+        name: `${feature}`,
+        id: characteristics[feature].id,
+        value: characteristics[feature].value
+      })
+    }
+    console.log(results);
+    // res.status(200).send(data.characteristics);
+    res.status(200).send(results);
   })
     .catch((error) => {
       res.status(400).send(error);
