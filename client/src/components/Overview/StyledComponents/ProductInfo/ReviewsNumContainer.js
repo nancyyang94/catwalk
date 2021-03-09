@@ -10,6 +10,7 @@ const ReviewsNumContainer = styled.h1`
   text-decoration: underline;
   margin-left: 11px;
   margin-top: 24px;
+  cursor: pointer;
 `;
 
 export default ReviewsNumContainer;

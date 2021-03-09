@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Price from './Price';
 import Stars from './Stars';
 import InnerContainer from '../StyledComponents/ProductInfo/InnerContainer';
-import StarsContainer from '../StyledComponents/ProductInfo/StarsContainer';
 import CategoryContainer from '../StyledComponents/ProductInfo/CategoryContainer';
 import NameText from '../StyledComponents/ProductInfo/NameText';
 
@@ -44,6 +43,7 @@ ProductInfo.propTypes = {
     default_price: PropTypes.string,
     created_at: PropTypes.string,
     updated_at: PropTypes.string,
+    reviews: PropTypes.arrayOf(PropTypes.object),
     features: PropTypes.arrayOf(PropTypes.object),
   }),
   currentStyle: PropTypes.shape({ // left skus and default? out for now
