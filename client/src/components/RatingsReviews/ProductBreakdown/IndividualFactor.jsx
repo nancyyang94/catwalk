@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import FactorsContainer from '../styledComponents/FactorsContainer';
-import getReviewsMeta from '/server/getReviewsMeta';
+
 
 function IndividualFactor(props) {
   const { factor } = props;
