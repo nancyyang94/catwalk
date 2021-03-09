@@ -8,5 +8,6 @@ const Title = styled.div`
   margin-bottom: 10px;
   font-family: Arial, Helvetica, sans-serif;
 `;
+Title.displayName = 'tittle';
 
 export default Title;

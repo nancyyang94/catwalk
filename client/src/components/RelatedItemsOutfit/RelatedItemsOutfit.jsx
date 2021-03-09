@@ -14,7 +14,8 @@ import OutfitContainer from './styledComponents/styledOutfit/outfitContainer';
 import OutfitList from './Outfit/outfitList';
 import Title from './styledComponents/styledRelated/title';
 import ButtonContainer from './styledComponents/sharedStyledC/buttonContainer';
-import ComparissonModal from './RelatedItems/comparissonModal';
+import NavigationContainer from './styledComponents/sharedStyledC/navigationContainer';
+// import AllCarouselContainer from './styledComponents/sharedStyledC/allCarouselContainer';
 
 const Div = styled.div`
 @keyframes fadein {
@@ -23,59 +24,21 @@ const Div = styled.div`
 }
 animation: fadein 4s;
 transform: translateY(${({ animate }) => (animate ? '0vh' : '60vh')});
-transition: transform 2s;
-
+transition: transform 1.5s;
 `;
 
-const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
-  const [isPressed, setPressed] = useState(false);
+const RelatedItemsOutfit = ({
+  getProduct, product, currentStyle, comparisonModal,
+}) => {
   const [related, setRelated] = useState([]);
   const [hasRelatedNext, setHasRelatedNext] = useState(false);
   const [hasRelatedPrevious, setHasRelatedPrevious] = useState(false);
   const [hasOutfitNext, setHasOutfitNext] = useState(false);
   const [hasOutfitPrevious, setHasOutfitPrevious] = useState(false);
-  const [relatedName, setRelatedName] = useState('');
   const [show, doShow] = useState({
     itemOne: false,
     itemTwo: false,
   });
-
-  const [combinedFeatures, setCombinedFeatures] = useState([]);
-  const combiner = (feat1, feat2) => {
-    const combined = {};
-    for (let i = 0; i < feat1.length; i += 1) {
-      if (combined[feat1[i].feature] === undefined) {
-        combined[feat1[i].feature] = [(feat1[i].value ? feat1[i].value : '✓'), null];
-      }
-    }
-    for (let j = 0; j < feat2.length; j += 1) {
-      if (combined[feat2[j].feature] === undefined) {
-        combined[feat2[j].feature] = [null, (feat2[j].value ? feat2[j].value : '✓')];
-      } else {
-        combined[feat2[j].feature][1] = (feat2[j].value ? feat2[j].value : '✓');
-      }
-    }
-    const final = [];
-    const feats = Object.keys(combined);
-    const values = Object.values(combined);
-    for (let k = 0; k < feats.length; k += 1) {
-      final.push(values[k][0], feats[k], values[k][1]);
-    }
-    setCombinedFeatures(final);
-  };
-  const comparisonModal = (event, relatedFeat, relatedProduct) => {
-    event.preventDefault();
-    event.stopPropagation();
-    if (isPressed) {
-      setPressed(false);
-    } else {
-      setPressed(true);
-    }
-    setRelatedName(relatedProduct);
-    if (!combinedFeatures.length) {
-      combiner(product.features, relatedFeat);
-    }
-  };
 
   const ourRef = useRef(null);
   const anotherRef = useRef(null);
@@ -94,12 +57,12 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
     if (div1Pos < scrollPos) {
       doShow((state) => ({ ...state, itemOne: true }));
     }
-    if (div2Pos < scrollPos) {
+    if (div2Pos - 300 < scrollPos) {
       doShow((state) => ({ ...state, itemTwo: true }));
     }
     const onScroll = () => {
       scrollPos = window.scrollY + window.innerHeight;
-      if (div1Pos < scrollPos) {
+      if (div1Pos - 600 < scrollPos) {
         doShow((state) => ({ ...state, itemOne: true }));
       } else if (div2Pos < scrollPos) {
         doShow((state) => ({ ...state, itemTwo: true }));
@@ -126,17 +89,35 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
     const outfitSlider = document.getElementById('slider2');
     const outfitWidth = outfitSlider.scrollWidth - outfitSlider.clientWidth;
     const relatedWidth = relatedSlider.scrollWidth - relatedSlider.clientWidth;
-    if (outfitWidth) {
+    if (outfitWidth && outfitSlider.scrollLeft !== outfitWidth) {
       setHasOutfitNext(true);
+      if (outfitSlider.scrollLeft === 0) {
+        setHasOutfitPrevious(false);
+      } else {
+        setHasOutfitPrevious(true);
+      }
     } else {
-      setHasOutfitPrevious(false);
       setHasOutfitNext(false);
+      if (outfitSlider.scrollLeft === 0) {
+        setHasOutfitPrevious(false);
+      } else {
+        setHasOutfitPrevious(true);
+      }
     }
-    if (relatedWidth) {
+    if (relatedWidth && relatedSlider.scrollLeft !== relatedWidth) {
       setHasRelatedNext(true);
+      if (relatedSlider.scrollLeft === 0) {
+        setHasRelatedPrevious(false);
+      } else {
+        setHasRelatedPrevious(true);
+      }
     } else {
-      setHasRelatedPrevious(false);
       setHasRelatedNext(false);
+      if (relatedSlider.scrollLeft === 0) {
+        setHasRelatedPrevious(false);
+      } else {
+        setHasRelatedPrevious(true);
+      }
     }
   };
 
@@ -217,7 +198,6 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
           slider.scrollLeft -= slider.scrollLeft;
           setHasRelatedPrevious(false);
         }
-        setHasRelatedNext(true);
       } else {
         setHasRelatedPrevious(false);
         setHasRelatedNext(false);
@@ -232,7 +212,6 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
           slider.scrollLeft -= slider.scrollLeft;
           setHasOutfitPrevious(false);
         }
-        setHasOutfitNext(true);
       } else {
         setHasOutfitPrevious(false);
         setHasOutfitNext(false);
@@ -240,18 +219,23 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
     }
   };
 
+  const navigate = (carousel, percentage) => {
+    let slider;
+    if (carousel === 'related') {
+      slider = document.getElementById('slider');
+    } else {
+      slider = document.getElementById('slider2');
+    }
+    const maxScrollWidth = slider.scrollWidth - slider.clientWidth;
+    const scrollDistance = maxScrollWidth * percentage;
+    slider.scrollLeft = scrollDistance;
+    setTimeout(() => { updateButton(); }, 1000);
+  };
+
   return (
     <>
-      {isPressed ? (
-        <ComparissonModal
-          combinedFeatures={combinedFeatures}
-          product1={product.name}
-          product2={relatedName}
-          comparisonModal={comparisonModal}
-        />
-      ) : null}
       <Div animate={show.itemTwo} ref={anotherRef}>
-        <RelatedContainer>
+        <RelatedContainer id="carousel1">
           <Title>COMPLETE THE LOOK</Title>
           {hasRelatedPrevious ? <Left type="button" onClick={() => left('relatedLeft')}><SvgArrowL width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowL></Left> : null}
           <RelatedItemsList
@@ -262,9 +246,19 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
           {hasRelatedNext ? <ButtonContainer /> : null}
           {hasRelatedNext ? <Right type="button" onClick={() => right('relatedRight')}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
         </RelatedContainer>
+        {hasRelatedNext || hasRelatedPrevious ? (
+          <NavigationContainer>
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.0); }} />
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.20); }} />
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.40); }} />
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.60); }} />
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.80); }} />
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 1); }} />
+          </NavigationContainer>
+        ) : null}
       </Div>
       <Div animate={show.itemOne} ref={ourRef}>
-        <OutfitContainer>
+        <OutfitContainer id="carousel2">
           <Title>YOUR OUTFIT</Title>
           {hasOutfitPrevious ? <Left type="button" onClick={left}><SvgArrowL width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowL></Left> : null}
           <OutfitList
@@ -276,10 +270,22 @@ const RelatedItemsOutfit = ({ getProduct, product, currentStyle }) => {
           {hasOutfitNext ? <ButtonContainer /> : null}
           {hasOutfitNext ? <Right type="button" onClick={right}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
         </OutfitContainer>
+        {hasOutfitNext || hasOutfitPrevious ? (
+          <NavigationContainer>
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.0); }} />
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.20); }} />
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.40); }} />
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.60); }} />
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.80); }} />
+            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 1); }} />
+          </NavigationContainer>
+        ) : null}
       </Div>
     </>
   );
 };
+
+RelatedItemsOutfit.displayName = 'RelatedItemsOutfit';
 
 export default RelatedItemsOutfit;
 
@@ -305,10 +311,12 @@ RelatedItemsOutfit.propTypes = {
     photos: PropTypes.arrayOf(PropTypes.object),
   }),
   getProduct: PropTypes.func,
+  comparisonModal: PropTypes.func,
 };
 
 RelatedItemsOutfit.defaultProps = {
   product: null,
   getProduct: PropTypes.func,
   currentStyle: null,
+  comparisonModal: PropTypes.func,
 };
