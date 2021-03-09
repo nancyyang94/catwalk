@@ -6,7 +6,7 @@ import Overview from '../../../client/src/components/Overview/Overview';
 import RatingsReviews from '../../../client/src/components/RatingsReviews/RatingsReviews';
 import AppComponent from '../../../client/src/components/appComponent';
 
-describe('My Component', () => {
+describe('RelatedItemsOutfit Component', () => {
   test('is rendering both carousels', () => {
     const wrapper = shallow(<RelatedItemsOutfit />);
     expect(wrapper.find('#carousel1')).toExist();
@@ -14,10 +14,10 @@ describe('My Component', () => {
   });
 });
 
-describe('My Component', () => {
+describe('AppComponent', () => {
   test('is rendering three widgets', () => {
     const wrapper = shallow(<AppComponent />);
-    expect(wrapper.find(RelatedItemsOutfit)).toHaveLength(1);
+    expect(wrapper.find('RelatedItemsOutfit')).toHaveLength(1);
     expect(wrapper.find(Overview)).toHaveLength(1);
     expect(wrapper.find(RatingsReviews)).toHaveLength(1);
   });

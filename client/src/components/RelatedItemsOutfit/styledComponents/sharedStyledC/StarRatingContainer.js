@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const StarRatingContainer = styled.div`
-height: 0px;
+height: 0;
 display: flex;
 justify-content: flex-start;
 flex-direction: row;
