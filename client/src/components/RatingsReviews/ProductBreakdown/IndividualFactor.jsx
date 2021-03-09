@@ -13,7 +13,10 @@ function IndividualFactor(props) {
     <svg width="100%" height="15px">
       <g className="bars">
         <rect fill="#ebedee" width="100%" height="10" />
-        {/* <rect fill="#a9a9a9" width={percentage} height="10" /> */}
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="50 15, 100 100, 0 100" fill="ebedee" height="25px"/>
+    </svg>
+
       </g>
     </svg>
   );

@@ -18,7 +18,7 @@ flex-direction: column;
 
 .meanings {
   display: flex;
-  margin-top: -3%;
+  margin-top: -5%;
   margin-left: 5%;
   flex-direction: row;
   justify-content: space-between;
