@@ -5,7 +5,7 @@ const AvgRatingContainer = styled.div`
   width:25px;
   height: 0px;
   position: relative;
-  background-color: #ffffff;
+  background-color: #45da70;
 `;
 
 export default AvgRatingContainer;

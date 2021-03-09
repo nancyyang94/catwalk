@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const StarRatingContainer = styled.div`
 /* Adapt the colors based on primary prop */
-background-color: ${props => (props.className ? '#ebedee': 'white')};
+background-color: ${props => (props.className ? '#45da70': 'white')};
 color: black;
 padding: ${props => (props.className ? '18px': '0px')};
 height: 40px;

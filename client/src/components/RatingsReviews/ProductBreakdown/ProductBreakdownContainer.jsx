@@ -22,6 +22,8 @@ function ProductBreakdownContainer({ id }) {
       });
   }, [id]);
 
+  // current characteristics:
+
   const allRatings = options.map((factor) => (
     <IndividualFactor
       factor={factor.name}
