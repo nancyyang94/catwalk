@@ -49,14 +49,7 @@ class Overview extends React.Component {
   setDefaultStyle() {
     const { updateCurrentStyle } = this.props;
     const { styles } = this.state;
-
-    for (let i = 0; i < styles.length; i += 1) {
-      const style = styles[i];
-      if (style['default?'] === true) {
-        updateCurrentStyle(style);
-        break;
-      }
-    }
+    updateCurrentStyle(styles[0]);
   }
 
   render() {
@@ -64,6 +57,7 @@ class Overview extends React.Component {
     const { currentStyle } = this.props;
     const { updateCurrentStyle } = this.props;
     const { product } = this.props;
+
     if (styles.length < 1 || Object.keys(currentStyle).length === 0) {
       return (<LoadingDiv>loading...</LoadingDiv>);
     }

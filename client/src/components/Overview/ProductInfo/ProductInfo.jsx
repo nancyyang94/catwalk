@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Price from './Price';
+import Stars from './Stars';
 import InnerContainer from '../StyledComponents/ProductInfo/InnerContainer';
-import StarsContainer from '../StyledComponents/ProductInfo/StarsContainer';
 import CategoryContainer from '../StyledComponents/ProductInfo/CategoryContainer';
 import NameText from '../StyledComponents/ProductInfo/NameText';
 
@@ -20,12 +20,11 @@ class ProductInfo extends React.Component {
     const { currentStyle } = this.props;
     const { original_price: originalPrice } = currentStyle;
     const { sale_price: salePrice } = currentStyle;
-    const { category } = product;
-    const { name } = product;
+    const { category, name, reviews } = product;
 
     return (
       <InnerContainer>
-        <StarsContainer>Stars Stars Stars</StarsContainer>
+        <Stars reviews={reviews} />
         <CategoryContainer><div>{category.toUpperCase()}</div></CategoryContainer>
         <NameText>{name.toUpperCase()}</NameText>
         <Price originalPrice={originalPrice} salePrice={salePrice} />
@@ -44,6 +43,7 @@ ProductInfo.propTypes = {
     default_price: PropTypes.string,
     created_at: PropTypes.string,
     updated_at: PropTypes.string,
+    reviews: PropTypes.arrayOf(PropTypes.object),
     features: PropTypes.arrayOf(PropTypes.object),
   }),
   currentStyle: PropTypes.shape({ // left skus and default? out for now

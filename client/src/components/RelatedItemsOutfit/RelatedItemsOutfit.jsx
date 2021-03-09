@@ -62,7 +62,7 @@ const RelatedItemsOutfit = ({
     }
     const onScroll = () => {
       scrollPos = window.scrollY + window.innerHeight;
-      if (div1Pos - 600 < scrollPos) {
+      if (div1Pos - 300 < scrollPos) {
         doShow((state) => ({ ...state, itemOne: true }));
       } else if (div2Pos < scrollPos) {
         doShow((state) => ({ ...state, itemTwo: true }));

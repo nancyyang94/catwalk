@@ -13,7 +13,10 @@ const NextButtonL = styled.button`
   background-color: #fff;
   border: 1px solid #000;
   cursor: pointer;
-  // &focus: {outline: none};
+
+  :focus {
+    outline: none;
+  }
 `;
 
 export default NextButtonL;

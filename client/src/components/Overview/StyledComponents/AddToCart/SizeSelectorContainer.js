@@ -9,6 +9,11 @@ const SizeSelectorContainer = styled.select`
   font-size: 16px;
   background-color: #edeff0;
   border: 1px solid black;
+  cursor: pointer;
+
+  :focus {
+    outline: none;
+  }
 `;
 
 export default SizeSelectorContainer;

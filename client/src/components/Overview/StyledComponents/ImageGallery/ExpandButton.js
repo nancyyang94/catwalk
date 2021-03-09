@@ -13,7 +13,10 @@ const ExpandButton = styled.button`
   background-color: #edeff0;
   border: none;
   cursor: pointer;
-  // &focus: {outline: none};
+
+  :focus {
+    outline: none;
+  }
 `;
 
 export default ExpandButton;
