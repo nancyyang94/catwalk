@@ -7,6 +7,7 @@ const config = require('../config');
 const outfit = require('./outfit');
 const getRelatedProductData = require('./getRelatedProduct');
 const getReviews = require('./getReviews');
+const getReviewsMeta = require('./getReviewsMeta');
 
 const app = express();
 const port = 3000;
@@ -116,6 +117,16 @@ app.post('/cart', (req, res) => {
     .catch((error) => {
       res.status(400).send(error);
     });
+});
+
+app.get('/metaData/:id', (req, res) => {
+  console.log(req.params.id);
+  getReviewsMeta(req.params.id).then(({data}) => {
+    res.status(200).send(data.characteristics);
+  })
+  .catch((error) => {
+    res.status(400).send(error);
+  })
 });
 
 app.listen(port, () => {
