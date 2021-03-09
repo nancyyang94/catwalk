@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Overview from './Overview/Overview';
@@ -62,7 +61,7 @@ const AppComponent = () => {
         console.log(error);
       });
   };
-  const location = useLocation();
+  const { location } = window;
   useEffect(() => {
     if (location) {
       if (!location.pathname.split('/')[2]) {
