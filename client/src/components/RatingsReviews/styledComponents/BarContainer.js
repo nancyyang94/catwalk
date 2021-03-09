@@ -16,6 +16,7 @@ margin-bottom: -7%;
   width: 75px;
   text-decoration: underline;
 }
+
 `;
 
 export default BarContainer;

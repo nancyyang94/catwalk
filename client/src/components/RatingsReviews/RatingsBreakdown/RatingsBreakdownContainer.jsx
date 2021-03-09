@@ -10,6 +10,7 @@ function RatingsBreakdownContainer(props) {
     reviews={reviews}
     total={total}
     number={number} />);
+
   return (
     <div>
       {allRatings}
