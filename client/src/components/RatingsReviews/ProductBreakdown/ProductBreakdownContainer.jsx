@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import options from '../charOptions';
+import options from './Options';
 import IndividualFactor from './IndividualFactor';
 import ProductBreakdownWrapper from '../styledComponents/ProductBreakdownWrapper';
 
 function ProductBreakdownContainer({ id }) {
-  // eslint-disable-next-line no-unused-vars
-  const [characteristics, setCharacteristics] = useState('nothing');
   const [featureNames, setFeatureNames] = useState([]);
+  const [featureIds, setFeatureIds] = useState(null);
+  const [values, setValues] = useState(0);
 
   useEffect(() => {
     axios.get(`/metaData/${id}`)
       .then(({ data }) => {
-        setCharacteristics(data);
-        const current = data.map((feature) => feature.name);
-        setFeatureNames(current);
-        console.log('expect names array:', current);
+        setFeatureNames(data.map((feature) => feature.name));
+        setFeatureIds(data.map((feature) => feature.id));
+        setValues(data.map((feature) => feature.value));
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
@@ -24,28 +23,20 @@ function ProductBreakdownContainer({ id }) {
       });
   }, [id]);
 
-  const allRatings = options.map((factor) => (
+  const allRatings = featureNames.map((name, index) => (
     <div>
-      {featureNames && featureNames.includes(factor.name)
-      && <IndividualFactor
-        factor={factor.name}
-        meaning1={factor[1]}
-        meaning5={factor[5]}
-        percentage="50%"
-        key={`${id}${factor[2]}`}
-      />}
+      {featureNames.length > 0 && values[index]
+      && (
+      <IndividualFactor
+        key={featureIds[index]}
+        factor={name}
+        meaning1={options[name][1]}
+        meaning5={options[name][5]}
+        percentage={`${((values[index]) / 5) * 100}%`}
+      />
+      )}
     </div>
   ));
-
-  // const allRatings = characteristics.map((factor) =>
-  //   (<IndividualFactor
-  //       factor={factor.name}
-  //       meaning1={factor[1]}
-  //       meaning5={factor[5]}
-  //     value={factor.value}
-  //     key={`${id}${factor[2]}`}
-  //     />
-  //   ));
 
   return (
     <ProductBreakdownWrapper>

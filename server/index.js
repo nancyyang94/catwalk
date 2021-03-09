@@ -125,12 +125,12 @@ app.get('/metaData/:id', (req, res) => {
   getReviewsMeta(req.params.id).then(({ data }) => {
     const { characteristics } = data;
     console.log('characteristics from serverside:', characteristics);
-    for (var feature in characteristics) {
+    for (const feature in characteristics) {
       results.push({
         name: `${feature}`,
         id: characteristics[feature].id,
-        value: characteristics[feature].value
-      })
+        value: characteristics[feature].value,
+      });
     }
     console.log(results);
     // res.status(200).send(data.characteristics);
