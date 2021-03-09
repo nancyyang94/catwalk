@@ -5,12 +5,14 @@ import IndividualBar from './IndividualBar';
 function RatingsBreakdownContainer(props) {
   const { reviews } = props;
   const { total } = props;
+  const { id } = props;
   const numbers = [1, 2, 3, 4, 5];
   const allRatings = numbers.map((number) => (
     <IndividualBar
       reviews={reviews}
       total={total}
       number={number}
+      key={`${id}${number}`}
     />
   ));
 
@@ -24,11 +26,13 @@ function RatingsBreakdownContainer(props) {
 RatingsBreakdownContainer.propTypes = {
   reviews: PropTypes.arrayOf(PropTypes.object),
   total: PropTypes.number,
+  id: PropTypes.number,
 };
 
 RatingsBreakdownContainer.defaultProps = {
   reviews: null,
   total: null,
+  id: null,
 };
 
 export default RatingsBreakdownContainer;
