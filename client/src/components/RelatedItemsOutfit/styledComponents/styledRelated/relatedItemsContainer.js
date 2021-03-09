@@ -18,10 +18,6 @@ const RelatedItemsContainer = styled.div`
     border: 1px solid black;
     transition: 1s;
   }
-
-  @media (max-width: 767px) {
-    height: 200px;
-  }
 `;
 
 export default RelatedItemsContainer;
