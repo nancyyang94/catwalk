@@ -32,7 +32,7 @@ class ImageGallery extends React.Component {
     const { photos, category } = this.props;
     return (
       <ImageContainer onMouseEnter={(event) => { this.focusOn(event); }} onMouseLeave={(event) => { this.focusOff(event); }} className={imageFocus ? 'action' : ''}>
-        <Image src={photos[0].url} alt={category} />
+        <Image src={photos[0].url ? photos[0].url : 'https://images.unsplash.com/photo-1553830591-d8632a99e6ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1511&q=80'} alt={category} />
       </ImageContainer>
     );
   }
