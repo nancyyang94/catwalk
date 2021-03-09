@@ -4,11 +4,12 @@ const RatingsContainer = styled.div`
 background-color: #ffffff;
 color: black;
 padding: 25px;
-font-family: Helvetica, Arial, sans-serif;
+font-family: Arial, sans-serif;
 
-p {
+
+/* p {
   font-weight: bold;
-}
+} */
 
 /* .average-rating {
   font-size: 30px;

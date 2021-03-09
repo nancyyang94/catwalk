@@ -13,8 +13,8 @@ const quarterStar = (
     <polygon points="50,9 60.5,39.5 92.7,40.1 67,59.5 76.4,90.3 50,71.9 23.6,90.3 32.9,59.5 7.2,40.1 39.4,39.5" stroke="black" strokeWidth="5" fill="url(#grad1)" />
     <defs>
       <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="40%" stopColor="black" stopOpacity="1" />
-        <stop offset="40%" stopColor="white" stopOpacity="1" />
+        <stop offset="67%" stopColor="black" stopOpacity="1" />
+        <stop offset="67%" stopColor="white" stopOpacity="1" />
       </linearGradient>
     </defs>
   </svg>
@@ -35,8 +35,8 @@ const threeQuarterStar = (
     <polygon points="50,9 60.5,39.5 92.7,40.1 67,59.5 76.4,90.3 50,71.9 23.6,90.3 32.9,59.5 7.2,40.1 39.4,39.5" stroke="black" strokeWidth="5" fill="url(#grad1)" />
     <defs>
       <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="67%" stopColor="black" stopOpacity="1" />
-        <stop offset="67%" stopColor="white" stopOpacity="1" />
+        <stop offset="40%" stopColor="black" stopOpacity="1" />
+        <stop offset="40%" stopColor="white" stopOpacity="1" />
       </linearGradient>
     </defs>
   </svg>

@@ -13,14 +13,14 @@ class RatingsReviews extends React.Component {
   }
 
   componentDidUpdate() {
-    const { product } = this.props;
+    // const { product } = this.props;
   }
 
   render() {
     const { product } = this.props;
     return (
       <RatingsReviewsContainer>
-        <Ratings product={product} reviews={product.reviews} />
+        <Ratings product={product} reviews={product.reviews} id={product.id} />
         <ReviewsList product={product} productName={product.name} />
       </RatingsReviewsContainer>
     );
