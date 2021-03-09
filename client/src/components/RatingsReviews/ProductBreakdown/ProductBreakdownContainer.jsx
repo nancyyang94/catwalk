@@ -10,11 +10,10 @@ function ProductBreakdownContainer({ id }) {
   const [characteristics, setCharacteristics] = useState('nothing');
   // const [featureNames, setFeatureNames] = useState([]);
 
-  // let test;
-
   useEffect(() => {
     axios.get(`/metaData/${id}`)
       .then((response) => {
+        console.log('expect characteristics:', response.data);
         setCharacteristics(response.data);
       })
       .catch((error) => {
