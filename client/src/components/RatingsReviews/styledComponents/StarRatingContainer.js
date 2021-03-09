@@ -1,12 +1,14 @@
+/* eslint-disable arrow-parens */
+/* eslint-disable space-infix-ops */
 import styled from 'styled-components';
 
 const StarRatingContainer = styled.div`
 /* Adapt the colors based on primary prop */
-background-color: ${props => props.className ? '#ebedee': 'white'};
+background-color: ${props => (props.className ? '#ebedee': 'white')};
 color: black;
-padding: ${props => props.className ? '18px': '0px'};
+padding: ${props => (props.className ? '18px': '0px')};
 height: 40px;
-width: ${props => props.className ? '250px': 'auto'};
+width: ${props => (props.className ? '250px': 'auto')};
 display: flex;
 justify-content: flex-start;
 flex-direction: row;

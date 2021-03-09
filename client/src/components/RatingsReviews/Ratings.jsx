@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RatingsContainer from './styledComponents/RatingsContainer';
-import StarReviews from '../RelatedItemsOutfit/sharedComponents/starReviews';
+// import StarReviews from '../RelatedItemsOutfit/sharedComponents/starReviews';
 import RatingSummary from './RatingSummary';
 import RatingsBreakdownContainer from './RatingsBreakdown/RatingsBreakdownContainer';
 import ProductBreakdownContainer from './ProductBreakdown/ProductBreakdownContainer';
-
 
 class Ratings extends React.Component {
   constructor(props) {
@@ -15,11 +14,12 @@ class Ratings extends React.Component {
     this.getPercentage = this.getPercentage.bind(this);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   getPercentage(reviews) {
     let counter = 0;
-    for (let i = 0; i < reviews.length; i++) {
-      let currentReview = reviews[i];
-      let recommendation = currentReview.recommend;
+    for (let i = 0; i < reviews.length; i += 1) {
+      const currentReview = reviews[i];
+      const recommendation = currentReview.recommend;
       if (recommendation) {
         counter += 1;
       }
@@ -36,14 +36,20 @@ class Ratings extends React.Component {
         <h3>Ratings and Reviews</h3>
         <RatingSummary reviews={reviews} />
         {reviews && reviews.length > 0
-        && <div>
+        && (
+        <div>
           <p>
-          {reviews.length} Reviews
+            {reviews.length}
+            Reviews
           </p>
-          <p>{this.getPercentage(reviews)} of reviews recommend this product</p>
+          <p>
+            {this.getPercentage(reviews)}
+            of reviews recommend this product
+          </p>
           <RatingsBreakdownContainer reviews={reviews} total={reviews.length} />
           <ProductBreakdownContainer reviews={reviews} total={reviews.length} id={id} />
-        </div>}
+        </div>
+        )}
       </RatingsContainer>
     );
   }
@@ -51,10 +57,12 @@ class Ratings extends React.Component {
 
 Ratings.propTypes = {
   reviews: PropTypes.arrayOf(PropTypes.object),
+  id: PropTypes.number,
 };
 
 Ratings.defaultProps = {
   reviews: null,
+  id: null,
 };
 
 export default Ratings;

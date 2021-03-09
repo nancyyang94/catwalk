@@ -121,12 +121,12 @@ app.post('/cart', (req, res) => {
 
 app.get('/metaData/:id', (req, res) => {
   console.log(req.params.id);
-  getReviewsMeta(req.params.id).then(({data}) => {
+  getReviewsMeta(req.params.id).then(({ data }) => {
     res.status(200).send(data.characteristics);
   })
-  .catch((error) => {
-    res.status(400).send(error);
-  })
+    .catch((error) => {
+      res.status(400).send(error);
+    });
 });
 
 app.listen(port, () => {

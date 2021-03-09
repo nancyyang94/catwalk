@@ -4,7 +4,7 @@ const RatingsContainer = styled.div`
 background-color: #ffffff;
 color: black;
 padding: 25px;
-font-family: Helvetica, Arial, sans-serif;
+font-family: Arial, Helvetica, sans-serif;
 
 
 /* p {
