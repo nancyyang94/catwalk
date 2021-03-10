@@ -20,6 +20,7 @@ const FeaturesContainer = styled.div`
     font-weight: 100;
     font-size: 14px;
     padding-left: 12px;
+    text-decoration: underline;
   }
 `;
 
