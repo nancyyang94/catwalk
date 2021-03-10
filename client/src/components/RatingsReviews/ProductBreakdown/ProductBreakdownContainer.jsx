@@ -7,7 +7,7 @@ import ProductBreakdownWrapper from '../styledComponents/ProductBreakdownWrapper
 
 function ProductBreakdownContainer({ id }) {
   const [featureNames, setFeatureNames] = useState([]);
-  const [featureIds, setFeatureIds] = useState(null);
+  const [featureIds, setFeatureIds] = useState([]);
   const [values, setValues] = useState(0);
 
   useEffect(() => {
@@ -24,11 +24,11 @@ function ProductBreakdownContainer({ id }) {
   }, [id]);
 
   const allRatings = featureNames.map((name, index) => (
-    <div>
+    <div key={`${Math.random()}`}>
       {featureNames.length > 0 && values[index]
       && (
       <IndividualFactor
-        key={featureIds[index]}
+        key={`${Math.random()}`}
         factor={name}
         meaning1={options[name][1]}
         meaning5={options[name][5]}
