@@ -9,6 +9,7 @@ import AllContainer from './RelatedItemsOutfit/styledComponents/sharedStyledC/al
 import ComparissonModal from './RelatedItemsOutfit/RelatedItems/comparissonModal';
 import Sidebar from './Sidebar';
 import MainContainer from './Overview/SharedComponents/MainContainer';
+import useWindowSize from './Overview/useWindowSize';
 
 const AppComponent = () => {
   const [product, setProduct] = useState({});
@@ -16,6 +17,8 @@ const AppComponent = () => {
   const [isPressed, setPressed] = useState(false);
   const [relatedName, setRelatedName] = useState('');
   const [combinedFeatures, setCombinedFeatures] = useState([]);
+
+  const [windowWidth] = useWindowSize();
 
   const combiner = (feat1, feat2) => {
     const combined = {};
@@ -91,6 +94,7 @@ const AppComponent = () => {
       <AllContainer>
         <MainContainer>
           <Overview
+            windowWidth={windowWidth}
             product={product}
             currentStyle={currentStyle}
             getProduct={getProduct}
@@ -105,6 +109,7 @@ const AppComponent = () => {
           <RatingsReviews product={product} getProduct={getProduct} />
         </MainContainer>
         <Sidebar
+          windowWidth={windowWidth}
           product={product}
           currentStyle={currentStyle}
           getProduct={getProduct}

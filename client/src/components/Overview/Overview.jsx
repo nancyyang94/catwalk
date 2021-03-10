@@ -5,6 +5,10 @@ import ImageGallery from './ImageGallery/ImageGallery';
 import OverviewContainer from './StyledComponents/OverviewContainer';
 import GalleryContainer from './StyledComponents/GalleryContainer';
 import LoadingDiv from './StyledComponents/LoadingDiv';
+import AltWindowWidthContainer from './StyledComponents/AltWindowWidthContainer';
+import StyleSelector from './StyleSelector/StyleSelector';
+import AddToCart from './AddToCart/AddToCart';
+import AddToCartContainer from './StyledComponents/AddToCartContainer';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -47,18 +51,29 @@ class Overview extends React.Component {
 
   render() {
     const { styles } = this.state;
-    const { currentStyle } = this.props;
+    const { currentStyle, updateCurrentStyle, windowWidth } = this.props;
 
     if (styles.length < 1 || Object.keys(currentStyle).length === 0) {
       return (<LoadingDiv>loading...</LoadingDiv>);
     }
-    const { photos } = currentStyle;
+    const { photos, skus, style_id: styleId } = currentStyle;
 
     return (
       <OverviewContainer>
         <GalleryContainer>
           <ImageGallery photos={photos} />
         </GalleryContainer>
+        <AltWindowWidthContainer windowWidth={windowWidth}>
+          <StyleSelector
+            windowWidth={windowWidth}
+            styles={styles}
+            currentStyle={currentStyle}
+            updateCurrentStyle={updateCurrentStyle}
+          />
+          <AddToCartContainer windowWidth={windowWidth}>
+            <AddToCart styleId={styleId} skus={skus} />
+          </AddToCartContainer>
+        </AltWindowWidthContainer>
       </OverviewContainer>
     );
   }
@@ -90,12 +105,14 @@ Overview.propTypes = {
     ),
   }),
   updateCurrentStyle: PropTypes.func,
+  windowWidth: PropTypes.number,
 };
 
 Overview.defaultProps = {
   product: null,
   currentStyle: {},
   updateCurrentStyle: null,
+  windowWidth: 0,
 };
 
 export default Overview;
