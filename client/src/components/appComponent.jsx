@@ -96,13 +96,13 @@ const AppComponent = () => {
             getProduct={getProduct}
             updateCurrentStyle={updateCurrentStyle}
           />
+          <RatingsReviews product={product} getProduct={getProduct} />
           <RelatedItemsOutfit
             product={product}
             getProduct={getProduct}
             currentStyle={currentStyle}
             comparisonModal={comparisonModal}
           />
-          <RatingsReviews product={product} getProduct={getProduct} />
         </MainContainer>
         <Sidebar
           product={product}

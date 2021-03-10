@@ -37,7 +37,7 @@ class ImageGallery extends React.Component {
     );
   }
 }
-
+ImageGallery.displayName = 'imageGallery';
 export default ImageGallery;
 
 ImageGallery.propTypes = {

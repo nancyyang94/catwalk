@@ -30,8 +30,7 @@ const OutfitList = ({
   useEffect(() => {
     localStorage.setItem('outfits', JSON.stringify(outfits));
     axios.put('/updateOutfits', { user: outfits })
-      .then((response) => {
-        console.log(response.data);
+      .then(() => {
       })
       .catch((error) => {
         console.log(error);

@@ -15,7 +15,7 @@ const ProductCard = ({
     <Descriptions productInfo={productInfo} />
   </ProductContainer>
 );
-
+ProductCard.displayName = 'productCard';
 export default ProductCard;
 
 ProductCard.propTypes = {
