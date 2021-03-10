@@ -9,14 +9,33 @@ const NavigationContainer = styled.div`
     outline: 0;
     border: none;
     border-bottom: 2px solid black;
+    border-top-left-radius: 20%;
+    border-top-right-radius: 20%;
     background: white;
     height: .2vh;
     width: .8vw;
     margin-right: .2vw;
     &:hover {
-      height: .8vh;
+      height: .6vh;
       background: black;
     }
+  }
+  .navButtonClicked {
+
+    cursor: pointer;
+    outline: 0;
+    border: none;
+    border-top-left-radius: 20%;
+    border-top-right-radius: 20%;
+    border-bottom: 2px solid black;
+    background: black;
+    height: .8vh;
+    width: .8vw;
+    margin-right: .2vw;
+    /* &:hover {
+      height: .6vh;
+      background: black;
+    } */
   }
 `;
 NavigationContainer.displayName = 'divButton';
