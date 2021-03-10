@@ -1,19 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import ImageGallery from './ImageGallery/ImageGallery';
-import ProductInfo from './ProductInfo/ProductInfo';
-import StyleSelector from './StyleSelector/StyleSelector';
-import AddToCart from './AddToCart/AddToCart';
-import OverviewContainer from './StyledComponents/OverviewContainer';
-import GalleryContainer from './StyledComponents/GalleryContainer';
-import InfoContainer from './StyledComponents/InfoContainer';
-import StyleSelectorContainer from './StyledComponents/StyleSelectorContainer';
-import AddToCartContainer from './StyledComponents/AddToCartContainer';
-import ProductInfoContainer from './StyledComponents/ProductInfoContainer';
-import LoadingDiv from './StyledComponents/LoadingDiv';
+import ProductInfo from './Overview/ProductInfo/ProductInfo';
+import StyleSelector from './Overview/StyleSelector/StyleSelector';
+import AddToCart from './Overview/AddToCart/AddToCart';
+import InfoContainer from './Overview/StyledComponents/InfoContainer';
+import StyleSelectorContainer from './Overview/StyledComponents/StyleSelectorContainer';
+import AddToCartContainer from './Overview/StyledComponents/AddToCartContainer';
+import ProductInfoContainer from './Overview/StyledComponents/ProductInfoContainer';
+import LoadingDiv from './Overview/StyledComponents/LoadingDiv';
 
-class Overview extends React.Component {
+class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,11 +43,11 @@ class Overview extends React.Component {
     }
   }
 
-  setDefaultStyle() {
-    const { updateCurrentStyle } = this.props;
-    const { styles } = this.state;
-    updateCurrentStyle(styles[0]);
-  }
+  // setDefaultStyle() {
+  //   const { updateCurrentStyle } = this.props;
+  //   const { styles } = this.state;
+  //   updateCurrentStyle(styles[0]);
+  // }
 
   render() {
     const { styles } = this.state;
@@ -60,35 +57,28 @@ class Overview extends React.Component {
     // console.log(product);
 
     if (styles.length < 1 || Object.keys(currentStyle).length === 0) {
-      return (<LoadingDiv>loading...</LoadingDiv>);
+      return null;
     }
-    const { photos, skus, style_id: styleId } = currentStyle;
+    const { skus, style_id: styleId } = currentStyle;
 
     return (
-      <OverviewContainer>
-        <GalleryContainer>
-          <ImageGallery photos={photos} />
-        </GalleryContainer>
-        {/* <InfoContainer>
-          <ProductInfoContainer>
-            <ProductInfo product={product} styles={styles} currentStyle={currentStyle} />
-          </ProductInfoContainer>
-          <StyleSelectorContainer>
-            <StyleSelector
-              styles={styles}
-              currentStyle={currentStyle}
-              updateCurrentStyle={updateCurrentStyle}
-            />
-          </StyleSelectorContainer>
-          <AddToCartContainer>
-            <AddToCart styleId={styleId} skus={skus} />
-          </AddToCartContainer>
-        </InfoContainer> */}
-      </OverviewContainer>
+      <InfoContainer>
+        <ProductInfoContainer>
+          <ProductInfo product={product} styles={styles} currentStyle={currentStyle} />
+        </ProductInfoContainer>
+        <StyleSelector
+          styles={styles}
+          currentStyle={currentStyle}
+          updateCurrentStyle={updateCurrentStyle}
+        />
+        <AddToCartContainer>
+          <AddToCart styleId={styleId} skus={skus} />
+        </AddToCartContainer>
+      </InfoContainer>
     );
   }
 }
-Overview.propTypes = {
+Sidebar.propTypes = {
   product: PropTypes.shape({
     id: PropTypes.number,
     campus: PropTypes.string,
@@ -117,10 +107,10 @@ Overview.propTypes = {
   updateCurrentStyle: PropTypes.func,
 };
 
-Overview.defaultProps = {
+Sidebar.defaultProps = {
   product: null,
   currentStyle: {},
   updateCurrentStyle: null,
 };
 
-export default Overview;
+export default Sidebar;

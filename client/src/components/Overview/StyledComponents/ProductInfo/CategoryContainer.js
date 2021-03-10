@@ -8,8 +8,9 @@ const CategoryContainer = styled.div`
   font-weight: normal;
   font-size: 14px;
   line-height: 16px;
+  color: #767677;
   font-style: italic;
-  margin-top: -22px;
+  margin-top: -15px;
 
 
 `;
