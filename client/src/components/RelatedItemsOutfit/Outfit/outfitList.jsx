@@ -31,7 +31,6 @@ const OutfitList = ({
     localStorage.setItem('outfits', JSON.stringify(outfits));
     axios.put('/updateOutfits', { user: outfits })
       .then(() => {
-        // console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
