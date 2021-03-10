@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const AllCarouselContainer = styled.div`
+  display: flex;
   @media (max-width: 320px) {
     transform: scale(0.4);
     transition: transform 1s;
