@@ -15,7 +15,6 @@ import OutfitList from './Outfit/outfitList';
 import Title from './styledComponents/styledRelated/title';
 import ButtonContainer from './styledComponents/sharedStyledC/buttonContainer';
 import NavigationContainer from './styledComponents/sharedStyledC/navigationContainer';
-// import AllCarouselContainer from './styledComponents/sharedStyledC/allCarouselContainer';
 
 const Div = styled.div`
 @keyframes fadein {
@@ -54,15 +53,15 @@ const RelatedItemsOutfit = ({
     const div1Pos = topPos(ourRef.current);
     const div2Pos = topPos(anotherRef.current);
     let scrollPos = window.scrollY + window.innerHeight;
-    if (div1Pos < scrollPos) {
+    if (div2Pos < scrollPos) {
       doShow((state) => ({ ...state, itemOne: true }));
     }
-    if (div2Pos - 300 < scrollPos) {
+    if (div2Pos < scrollPos) {
       doShow((state) => ({ ...state, itemTwo: true }));
     }
     const onScroll = () => {
       scrollPos = window.scrollY + window.innerHeight;
-      if (div1Pos - 300 < scrollPos) {
+      if (div1Pos < scrollPos) {
         doShow((state) => ({ ...state, itemOne: true }));
       } else if (div2Pos < scrollPos) {
         doShow((state) => ({ ...state, itemTwo: true }));
@@ -87,36 +86,40 @@ const RelatedItemsOutfit = ({
   const updateButton = () => {
     const relatedSlider = document.getElementById('slider');
     const outfitSlider = document.getElementById('slider2');
-    const outfitWidth = outfitSlider.scrollWidth - outfitSlider.clientWidth;
-    const relatedWidth = relatedSlider.scrollWidth - relatedSlider.clientWidth;
-    if (outfitWidth && outfitSlider.scrollLeft !== outfitWidth) {
-      setHasOutfitNext(true);
-      if (outfitSlider.scrollLeft === 0) {
-        setHasOutfitPrevious(false);
+    if (outfitSlider) {
+      const outfitWidth = outfitSlider.scrollWidth - outfitSlider.clientWidth;
+      if (outfitWidth && outfitSlider.scrollLeft !== outfitWidth) {
+        setHasOutfitNext(true);
+        if (outfitSlider.scrollLeft === 0) {
+          setHasOutfitPrevious(false);
+        } else {
+          setHasOutfitPrevious(true);
+        }
       } else {
-        setHasOutfitPrevious(true);
-      }
-    } else {
-      setHasOutfitNext(false);
-      if (outfitSlider.scrollLeft === 0) {
-        setHasOutfitPrevious(false);
-      } else {
-        setHasOutfitPrevious(true);
+        setHasOutfitNext(false);
+        if (outfitSlider.scrollLeft === 0) {
+          setHasOutfitPrevious(false);
+        } else {
+          setHasOutfitPrevious(true);
+        }
       }
     }
-    if (relatedWidth && relatedSlider.scrollLeft !== relatedWidth) {
-      setHasRelatedNext(true);
-      if (relatedSlider.scrollLeft === 0) {
-        setHasRelatedPrevious(false);
+    if (relatedSlider) {
+      const relatedWidth = relatedSlider.scrollWidth - relatedSlider.clientWidth;
+      if (relatedWidth && relatedSlider.scrollLeft !== relatedWidth) {
+        setHasRelatedNext(true);
+        if (relatedSlider.scrollLeft === 0) {
+          setHasRelatedPrevious(false);
+        } else {
+          setHasRelatedPrevious(true);
+        }
       } else {
-        setHasRelatedPrevious(true);
-      }
-    } else {
-      setHasRelatedNext(false);
-      if (relatedSlider.scrollLeft === 0) {
-        setHasRelatedPrevious(false);
-      } else {
-        setHasRelatedPrevious(true);
+        setHasRelatedNext(false);
+        if (relatedSlider.scrollLeft === 0) {
+          setHasRelatedPrevious(false);
+        } else {
+          setHasRelatedPrevious(true);
+        }
       }
     }
   };
@@ -243,8 +246,8 @@ const RelatedItemsOutfit = ({
             getProduct={getProduct}
             comparisonModal={comparisonModal}
           />
-          {hasRelatedNext ? <ButtonContainer /> : null}
-          {hasRelatedNext ? <Right type="button" onClick={() => right('relatedRight')}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
+          {hasRelatedNext ? <ButtonContainer className="buttonContainer" /> : null}
+          {hasRelatedNext ? <Right className="right" type="button" onClick={() => right('relatedRight')}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
         </RelatedContainer>
         {hasRelatedNext || hasRelatedPrevious ? (
           <NavigationContainer>
@@ -267,8 +270,8 @@ const RelatedItemsOutfit = ({
             product={product}
             updateButton={updateButton}
           />
-          {hasOutfitNext ? <ButtonContainer /> : null}
-          {hasOutfitNext ? <Right type="button" onClick={right}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
+          {hasOutfitNext ? <ButtonContainer className="buttonContainer" /> : null}
+          {hasOutfitNext ? <Right className="right" type="button" onClick={right}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
         </OutfitContainer>
         {hasOutfitNext || hasOutfitPrevious ? (
           <NavigationContainer>
@@ -285,7 +288,7 @@ const RelatedItemsOutfit = ({
   );
 };
 
-RelatedItemsOutfit.displayName = 'RelatedItemsOutfit';
+RelatedItemsOutfit.displayName = 'relatedItemsOutfit';
 
 export default RelatedItemsOutfit;
 

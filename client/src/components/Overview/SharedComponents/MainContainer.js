@@ -6,6 +6,7 @@ const MainContainer = styled.div`
   min-width: 40%;
   border-right: 1px solid #ebedee;
   z-index: 100;
+  margin-bottom: 8%;
 
 `;
 

@@ -31,6 +31,7 @@ const Descriptions = ({ productInfo }) => (
   </DescriptionsContainer>
 );
 
+Descriptions.displayName = 'descriptions';
 export default Descriptions;
 
 Descriptions.propTypes = {
