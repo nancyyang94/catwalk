@@ -1,6 +1,7 @@
 import React from 'react';
-import StarRatingContainer from './styledComponents/StarRatingContainer';
-import IndividualStarContainer from './styledComponents/IndividualStarContainer';
+import PropTypes from 'prop-types';
+import StarRatingContainer from '../styledComponents/StarRatingContainer';
+import AverageStarContainer from '../styledComponents/AvgRatingContainer';
 
 const wholeStar = (
   <svg width="100" height="100">
@@ -12,8 +13,8 @@ const quarterStar = (
     <polygon points="50,9 60.5,39.5 92.7,40.1 67,59.5 76.4,90.3 50,71.9 23.6,90.3 32.9,59.5 7.2,40.1 39.4,39.5" stroke="black" strokeWidth="5" fill="url(#grad1)" />
     <defs>
       <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="40%" stopColor="black" stopOpacity="1" />
-        <stop offset="40%" stopColor="white" stopOpacity="1" />
+        <stop offset="67%" stopColor="black" stopOpacity="1" />
+        <stop offset="67%" stopColor="white" stopOpacity="1" />
       </linearGradient>
     </defs>
   </svg>
@@ -34,8 +35,8 @@ const threeQuarterStar = (
     <polygon points="50,9 60.5,39.5 92.7,40.1 67,59.5 76.4,90.3 50,71.9 23.6,90.3 32.9,59.5 7.2,40.1 39.4,39.5" stroke="black" strokeWidth="5" fill="url(#grad1)" />
     <defs>
       <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="67%" stopColor="black" stopOpacity="1" />
-        <stop offset="67%" stopColor="white" stopOpacity="1" />
+        <stop offset="40%" stopColor="black" stopOpacity="1" />
+        <stop offset="40%" stopColor="white" stopOpacity="1" />
       </linearGradient>
     </defs>
   </svg>
@@ -64,10 +65,19 @@ function getStars(value) {
   return stars;
 }
 
-const StarRating = (rating) => (
-  <StarRatingContainer>
-    {getStars(rating).map((star, index) => <IndividualStarContainer key={`${rating}_${index}`}>{star}</IndividualStarContainer>)}
+const AverageStarRating = ({ avg }) => (
+  <StarRatingContainer className="average">
+    {getStars(avg).map((star) => <AverageStarContainer key={`${avg}_${Math.random()}`}>{star}</AverageStarContainer>)}
+    <h3 className="number-rating">{avg}</h3>
   </StarRatingContainer>
 );
 
-export default StarRating;
+AverageStarRating.propTypes = {
+  avg: PropTypes.number,
+};
+
+AverageStarRating.defaultProps = {
+  avg: 0,
+};
+
+export default AverageStarRating;

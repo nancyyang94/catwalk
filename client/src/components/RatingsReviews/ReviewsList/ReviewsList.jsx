@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import IndividualReview from './IndividualReview';
-import ReviewListContainer from './styledComponents/ReviewListContainer';
+import ReviewListContainer from '../styledComponents/ReviewListContainer';
 import NewReview from './NewReview';
 
 function ReviewsList({ product }) {

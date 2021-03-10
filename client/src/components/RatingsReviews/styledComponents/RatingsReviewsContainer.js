@@ -26,7 +26,6 @@ const RatingsReviewContainer = styled.div`
     justify-content: space-between;
     margin-left: 20%;
   }
-
 `;
 
 export default RatingsReviewContainer;
