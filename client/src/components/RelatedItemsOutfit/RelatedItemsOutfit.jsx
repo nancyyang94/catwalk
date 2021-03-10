@@ -246,8 +246,8 @@ const RelatedItemsOutfit = ({
             getProduct={getProduct}
             comparisonModal={comparisonModal}
           />
-          {hasRelatedNext ? <ButtonContainer /> : null}
-          {hasRelatedNext ? <Right type="button" onClick={() => right('relatedRight')}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
+          {hasRelatedNext ? <ButtonContainer className="buttonContainer" /> : null}
+          {hasRelatedNext ? <Right className="right" type="button" onClick={() => right('relatedRight')}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
         </RelatedContainer>
         {hasRelatedNext || hasRelatedPrevious ? (
           <NavigationContainer>
@@ -270,8 +270,8 @@ const RelatedItemsOutfit = ({
             product={product}
             updateButton={updateButton}
           />
-          {hasOutfitNext ? <ButtonContainer /> : null}
-          {hasOutfitNext ? <Right type="button" onClick={right}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
+          {hasOutfitNext ? <ButtonContainer className="buttonContainer" /> : null}
+          {hasOutfitNext ? <Right className="right" type="button" onClick={right}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
         </OutfitContainer>
         {hasOutfitNext || hasOutfitPrevious ? (
           <NavigationContainer>

@@ -7,9 +7,10 @@ const ButtonContainer = styled.div`
 }
 animation: fadein .2s;
   position: absolute;
-  right: -3%;
+  right: -1.5%;
   top: 4%;
-  padding-left: 15%;
+  padding-left: 13%;
+  padding-right: 1%;
   height: 99%;
   background-color: white;
   filter:blur(5px);
