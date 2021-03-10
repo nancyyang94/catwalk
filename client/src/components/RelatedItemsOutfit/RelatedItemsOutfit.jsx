@@ -39,8 +39,16 @@ const RelatedItemsOutfit = ({
     itemTwo: false,
   });
   const [scrollOutfitPerc, setScrollOutfitPerc] = useState(null);
-  const [scrollRelatedPerc, setRelatedPerc] = useState(null);
-  const [clicked, setClicked] = useState({
+  const [scrollRelatedPerc, setScrollRelatedPerc] = useState(null);
+  const [clickedRelated, setClickedRelated] = useState({
+    nav1: true,
+    nav2: false,
+    nav3: false,
+    nav4: false,
+    nav5: false,
+    nav6: false,
+  });
+  const [clickedOutfit, setClickedOutfit] = useState({
     nav1: true,
     nav2: false,
     nav3: false,
@@ -170,6 +178,8 @@ const RelatedItemsOutfit = ({
         if (slider.scrollLeft > relatedWidth - 484) {
           slider.scrollLeft += relatedWidth - slider.scrollLeft;
           setHasRelatedNext(false);
+          setScrollRelatedPerc(1);
+          return null;
         }
         if (slider.scrollLeft >= relatedWidth - 242) {
           setHasRelatedNext(false);
@@ -178,6 +188,7 @@ const RelatedItemsOutfit = ({
         setHasRelatedPrevious(false);
         setHasRelatedNext(false);
       }
+      setScrollRelatedPerc((slider.scrollLeft / relatedWidth) + 0.1);
     } else {
       slider = document.getElementById('slider2');
       const outfitWidth = slider.scrollWidth - slider.clientWidth;
@@ -200,6 +211,7 @@ const RelatedItemsOutfit = ({
       }
       setScrollOutfitPerc((slider.scrollLeft / outfitWidth) + 0.1);
     }
+    return null;
   };
 
   const left = (carousel) => {
@@ -213,11 +225,14 @@ const RelatedItemsOutfit = ({
         if (slider.scrollLeft < 484) {
           slider.scrollLeft -= slider.scrollLeft;
           setHasRelatedPrevious(false);
+          setScrollRelatedPerc(0);
+          return null;
         }
       } else {
         setHasRelatedPrevious(false);
         setHasRelatedNext(false);
       }
+      setScrollRelatedPerc((slider.scrollLeft / relatedWidth) + 0.1);
     } else {
       slider = document.getElementById('slider2');
       const outfitWidth = slider.scrollWidth - slider.clientWidth;
@@ -234,8 +249,9 @@ const RelatedItemsOutfit = ({
         setHasOutfitPrevious(false);
         setHasOutfitNext(false);
       }
-      setScrollOutfitPerc(slider.scrollLeft / outfitWidth);
+      setScrollOutfitPerc((slider.scrollLeft / outfitWidth) + 0.1);
     }
+    return null;
   };
 
   return (
@@ -253,7 +269,7 @@ const RelatedItemsOutfit = ({
           {hasRelatedNext ? <Right className="right" type="button" onClick={() => right('relatedRight')}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
         </RelatedContainer>
         {hasRelatedNext || hasRelatedPrevious ? (
-          <Navigation carouselName="related" updateButton={updateButton} scrollPercentage={scrollOutfitPerc} setClicked={setClicked} clicked={clicked} />
+          <Navigation carouselName="related" updateButton={updateButton} scrollPercentage={scrollRelatedPerc} setScrollPercentage={setScrollRelatedPerc} setClicked={setClickedRelated} clicked={clickedRelated} />
         ) : null}
       </Div>
       <Div animate={show.itemOne} ref={ourRef}>
@@ -270,7 +286,7 @@ const RelatedItemsOutfit = ({
           {hasOutfitNext ? <Right className="right" type="button" onClick={right}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
         </OutfitContainer>
         {hasOutfitNext || hasOutfitPrevious ? (
-          <Navigation carouselName="outfit" updateButton={updateButton} scrollPercentage={scrollOutfitPerc} setClicked={setClicked} clicked={clicked} setScrollPercentage={setScrollOutfitPerc} />
+          <Navigation carouselName="outfit" updateButton={updateButton} scrollPercentage={scrollOutfitPerc} setClicked={setClickedOutfit} clicked={clickedOutfit} setScrollPercentage={setScrollOutfitPerc} />
         ) : null}
       </Div>
     </>

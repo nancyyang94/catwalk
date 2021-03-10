@@ -11,7 +11,9 @@ const allFalse = {
   nav6: false,
 };
 
-const Navigation = ({ updateButton, carouselName, scrollPercentage, setClicked, clicked, setScrollPercentage }) => {
+const Navigation = ({
+  updateButton, carouselName, scrollPercentage, setClicked, clicked, setScrollPercentage,
+}) => {
   const checkPercentage = (percentage) => {
     if (percentage >= 0.20 && percentage < 0.40) {
       setClicked({ ...allFalse, nav2: true });
@@ -23,13 +25,12 @@ const Navigation = ({ updateButton, carouselName, scrollPercentage, setClicked, 
       setClicked({ ...allFalse, nav5: true });
     } else if (percentage === 1) {
       setClicked({ ...allFalse, nav6: true });
-    } else if (percentage === 0) {
+    } else if (percentage <= 0) {
       setClicked({ ...allFalse, nav1: true });
     }
   };
 
   useEffect(() => {
-    console.log(scrollPercentage);
     if (scrollPercentage !== null) {
       checkPercentage(scrollPercentage);
     }
@@ -79,9 +80,24 @@ export default Navigation;
 Navigation.propTypes = {
   updateButton: PropTypes.func,
   carouselName: PropTypes.string,
+  clicked: PropTypes.shape({
+    nav1: PropTypes.bool,
+    nav2: PropTypes.bool,
+    nav3: PropTypes.bool,
+    nav4: PropTypes.bool,
+    nav5: PropTypes.bool,
+    nav6: PropTypes.bool,
+  }),
+  setClicked: PropTypes.func,
+  scrollPercentage: PropTypes.number,
+  setScrollPercentage: PropTypes.func,
 };
 
 Navigation.defaultProps = {
   updateButton: PropTypes.func,
   carouselName: PropTypes.string,
+  clicked: null,
+  setClicked: PropTypes.func,
+  scrollPercentage: PropTypes.number,
+  setScrollPercentage: PropTypes.func,
 };
