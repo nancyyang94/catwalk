@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import options from '../charOptions';
+import options from './Options';
 import IndividualFactor from './IndividualFactor';
 import ProductBreakdownWrapper from '../styledComponents/ProductBreakdownWrapper';
 
 function ProductBreakdownContainer({ id }) {
-  // eslint-disable-next-line no-unused-vars
-  const [characteristics, setCharacteristics] = useState('nothing');
-  // const [featureNames, setFeatureNames] = useState([]);
-
-  // let test;
+  const [featureNames, setFeatureNames] = useState([]);
+  const [featureIds, setFeatureIds] = useState([]);
+  const [values, setValues] = useState(0);
 
   useEffect(() => {
     axios.get(`/metaData/${id}`)
-      .then((response) => {
-        setCharacteristics(response.data);
+      .then(({ data }) => {
+        setFeatureNames(data.map((feature) => feature.name));
+        setFeatureIds(data.map((feature) => feature.id));
+        setValues(data.map((feature) => feature.value));
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
@@ -23,14 +23,19 @@ function ProductBreakdownContainer({ id }) {
       });
   }, [id]);
 
-  const allRatings = options.map((factor) => (
-    <IndividualFactor
-      factor={factor.name}
-      meaning1={factor[1]}
-      meaning5={factor[5]}
-      percentage="50%"
-      key={`${id}${factor[2]}`}
-    />
+  const allRatings = featureNames.map((name, index) => (
+    <div key={`${Math.random()}`}>
+      {featureNames.length > 0 && values[index]
+      && (
+      <IndividualFactor
+        key={`${Math.random()}`}
+        factor={name}
+        meaning1={options[name][1]}
+        meaning5={options[name][5]}
+        percentage={`${((values[index]) / 5) * 100}%`}
+      />
+      )}
+    </div>
   ));
 
   return (

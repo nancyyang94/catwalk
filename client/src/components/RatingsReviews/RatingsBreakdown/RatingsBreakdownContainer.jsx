@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import IndividualBar from './IndividualBar';
 
-function RatingsBreakdownContainer(props) {
-  const { reviews } = props;
-  const { total } = props;
-  const { id } = props;
+function RatingsBreakdownContainer({ reviews, total, id }) {
   const numbers = [1, 2, 3, 4, 5];
   const allRatings = numbers.map((number) => (
     <IndividualBar
