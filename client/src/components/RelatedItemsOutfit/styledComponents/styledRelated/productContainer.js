@@ -18,5 +18,5 @@ const ProductContainer = styled(Link)`
   background-color: white;
   cursor: pointer;
 `;
-
+ProductContainer.displayName = 'productContainer';
 export default ProductContainer;

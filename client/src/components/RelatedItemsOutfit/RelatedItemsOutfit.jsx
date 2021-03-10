@@ -288,7 +288,7 @@ const RelatedItemsOutfit = ({
   );
 };
 
-RelatedItemsOutfit.displayName = 'RelatedItemsOutfit';
+RelatedItemsOutfit.displayName = 'relatedItemsOutfit';
 
 export default RelatedItemsOutfit;
 

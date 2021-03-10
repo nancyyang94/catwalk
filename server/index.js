@@ -120,7 +120,6 @@ app.post('/cart', (req, res) => {
 });
 
 app.get('/metaData/:id', (req, res) => {
-  console.log(req.params.id);
   getReviewsMeta(req.params.id).then(({ data }) => {
     res.status(200).send(data.characteristics);
   })

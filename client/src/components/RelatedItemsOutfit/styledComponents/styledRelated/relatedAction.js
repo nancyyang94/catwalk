@@ -17,5 +17,5 @@ const RelatedAction = styled.button`
   transition: 1s;
   }
 `;
-
+RelatedAction.displayName = 'relatedAction';
 export default RelatedAction;
