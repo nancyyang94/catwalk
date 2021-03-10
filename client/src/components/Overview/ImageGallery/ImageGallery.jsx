@@ -7,7 +7,7 @@ import NextButtonR from '../StyledComponents/ImageGallery/NextButtonR';
 import NextButtonL from '../StyledComponents/ImageGallery/NextButtonL';
 import ExpandButton from '../StyledComponents/ImageGallery/ExpandButton';
 
-const ImageGallery = ({ photos }) => {
+const ImageGallery = ({ photos, windowWidth }) => {
   const [current, setCurrent] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -88,12 +88,12 @@ const ImageGallery = ({ photos }) => {
       <ExpandButton onClick={handleExpand}>
         {buttonSwitch()}
       </ExpandButton>
-      <NextButtonL onClick={prevSlide}>
+      <NextButtonL onClick={prevSlide} windowWidth={windowWidth}>
         <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd">
           <path d="M2.117 12l7.527 6.235-.644.765-9-7.521 9-7.479.645.764-7.529 6.236h21.884v1h-21.883z" />
         </svg>
       </NextButtonL>
-      <NextButtonR onClick={nextSlide}>
+      <NextButtonR onClick={nextSlide} windowWidth={windowWidth}>
         <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd">
           <path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z" />
         </svg>
@@ -114,10 +114,12 @@ const ImageGallery = ({ photos }) => {
 };
 ImageGallery.propTypes = {
   photos: PropTypes.arrayOf(PropTypes.object),
+  windowWidth: PropTypes.number,
 };
 
 ImageGallery.defaultProps = {
   photos: [],
+  windowWidth: 0,
 };
 
 export default ImageGallery;

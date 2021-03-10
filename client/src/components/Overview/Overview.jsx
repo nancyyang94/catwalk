@@ -61,7 +61,7 @@ class Overview extends React.Component {
     return (
       <OverviewContainer>
         <GalleryContainer>
-          <ImageGallery photos={photos} />
+          <ImageGallery photos={photos} windowWidth={windowWidth} />
         </GalleryContainer>
         <AltWindowWidthContainer windowWidth={windowWidth}>
           <StyleSelector

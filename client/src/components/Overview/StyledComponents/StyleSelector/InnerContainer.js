@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const InnerContainer = styled.div`
   height: 200px;
-  width: ${(props) => (props.windowWidth < 981 ? '50%' : 'initial')};
+  width: ${(props) => (!props.windowWidth ? '100%' : '50%')};
 `;
 
 export default InnerContainer;
