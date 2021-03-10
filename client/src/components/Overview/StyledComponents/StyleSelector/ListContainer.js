@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const ListContainer = styled.div`
-  height: 85%;
+  height: 150px;
   display: flex;
   flex-wrap: wrap;
   padding-right: 20%;

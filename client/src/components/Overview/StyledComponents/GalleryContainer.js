@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const GalleryContainer = styled.div`
-  flex: 2;
+  width: 100%;
   height: 600px;
 `;
 
