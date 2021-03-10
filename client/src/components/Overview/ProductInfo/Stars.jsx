@@ -9,7 +9,7 @@ const Stars = ({ reviews }) => {
 
   const clickHandler = () => {
     window.scrollBy({
-      top: 1500,
+      top: 700,
       behavior: 'smooth',
     });
   };

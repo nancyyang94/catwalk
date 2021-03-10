@@ -46,7 +46,7 @@ class Sidebar extends React.Component {
     } = this.props;
 
     if (styles.length < 1 || Object.keys(currentStyle).length === 0) {
-      return null;
+      return <InfoContainer windowWidth={windowWidth} />;
     }
     const { skus, style_id: styleId } = currentStyle;
     const { features } = product;
