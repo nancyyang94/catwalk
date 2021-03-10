@@ -5,10 +5,8 @@ import ProductInfo from './Overview/ProductInfo/ProductInfo';
 import StyleSelector from './Overview/StyleSelector/StyleSelector';
 import AddToCart from './Overview/AddToCart/AddToCart';
 import InfoContainer from './Overview/StyledComponents/InfoContainer';
-import StyleSelectorContainer from './Overview/StyledComponents/StyleSelectorContainer';
 import AddToCartContainer from './Overview/StyledComponents/AddToCartContainer';
 import ProductInfoContainer from './Overview/StyledComponents/ProductInfoContainer';
-import LoadingDiv from './Overview/StyledComponents/LoadingDiv';
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -34,27 +32,17 @@ class Sidebar extends React.Component {
             styles: response.data.results,
           });
         })
-        .then(() => {
-          this.setDefaultStyle();
-        })
         .catch((err) => {
           throw err;
         });
     }
   }
 
-  // setDefaultStyle() {
-  //   const { updateCurrentStyle } = this.props;
-  //   const { styles } = this.state;
-  //   updateCurrentStyle(styles[0]);
-  // }
-
   render() {
     const { styles } = this.state;
     const { currentStyle } = this.props;
     const { updateCurrentStyle } = this.props;
     const { product } = this.props;
-    // console.log(product);
 
     if (styles.length < 1 || Object.keys(currentStyle).length === 0) {
       return null;
