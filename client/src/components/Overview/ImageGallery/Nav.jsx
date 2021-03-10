@@ -11,7 +11,13 @@ const Nav = ({ current, photos, isHovering, handleClick }) => (
       const key = index;
 
       return (
-        <NavButton current={current} index={index} active={isHovering} onClick={() => handleClick(index)} key={key}>
+        <NavButton
+          current={current}
+          index={index}
+          active={isHovering}
+          onClick={() => handleClick(index)}
+          key={key}
+        >
           <NavThumbnail src={thumbnail} alt="nav thumbnail" />
         </NavButton>
       );

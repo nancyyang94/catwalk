@@ -9,6 +9,7 @@ import AltWindowWidthContainer from './StyledComponents/AltWindowWidthContainer'
 import StyleSelector from './StyleSelector/StyleSelector';
 import AddToCart from './AddToCart/AddToCart';
 import AddToCartContainer from './StyledComponents/AddToCartContainer';
+import DescriptionContainer from './StyledComponents/DescriptionContainer';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -57,6 +58,8 @@ class Overview extends React.Component {
       return (<LoadingDiv>loading...</LoadingDiv>);
     }
     const { photos, skus, style_id: styleId } = currentStyle;
+    const { product } = this.props;
+    const { slogan, description } = product;
 
     return (
       <OverviewContainer>
@@ -74,6 +77,10 @@ class Overview extends React.Component {
             <AddToCart styleId={styleId} skus={skus} />
           </AddToCartContainer>
         </AltWindowWidthContainer>
+        <DescriptionContainer windowWidth={windowWidth}>
+          <h1 className="overviewSlogan">{slogan.toUpperCase()}</h1>
+          <h5 className="overviewDescription">{description}</h5>
+        </DescriptionContainer>
       </OverviewContainer>
     );
   }

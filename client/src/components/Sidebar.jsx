@@ -7,6 +7,7 @@ import AddToCart from './Overview/AddToCart/AddToCart';
 import InfoContainer from './Overview/StyledComponents/InfoContainer';
 import AddToCartContainer from './Overview/StyledComponents/AddToCartContainer';
 import ProductInfoContainer from './Overview/StyledComponents/ProductInfoContainer';
+import Features from './Overview/Features';
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -48,6 +49,7 @@ class Sidebar extends React.Component {
       return null;
     }
     const { skus, style_id: styleId } = currentStyle;
+    const { features } = product;
 
     return (
       <InfoContainer windowWidth={windowWidth}>
@@ -62,6 +64,7 @@ class Sidebar extends React.Component {
         <AddToCartContainer>
           <AddToCart styleId={styleId} skus={skus} />
         </AddToCartContainer>
+        <Features features={features} />
       </InfoContainer>
     );
   }
