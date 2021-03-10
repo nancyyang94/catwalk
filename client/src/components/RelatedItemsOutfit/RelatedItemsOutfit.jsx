@@ -53,7 +53,7 @@ const RelatedItemsOutfit = ({
     const div1Pos = topPos(ourRef.current);
     const div2Pos = topPos(anotherRef.current);
     let scrollPos = window.scrollY + window.innerHeight;
-    if (div1Pos < scrollPos) {
+    if (div2Pos < scrollPos) {
       doShow((state) => ({ ...state, itemOne: true }));
     }
     if (div2Pos < scrollPos) {

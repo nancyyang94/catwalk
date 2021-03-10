@@ -8,7 +8,7 @@ const Left = styled.button`
 animation: fadein .2s;
   border: 1px solid black;
   position: absolute;
-  left: 6.4%;
+  left: 14.9%;
   top: 45%;
   width: 50px;
   height: 50px;

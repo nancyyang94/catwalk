@@ -8,7 +8,7 @@ const Right = styled.button`
 animation: fadein .2s;
   position: absolute;
   border: 1px solid black;
-  right: 8.8%;
+  right: 15.3%;
   top: 45%;
   width: 50px;
   height: 50px;
