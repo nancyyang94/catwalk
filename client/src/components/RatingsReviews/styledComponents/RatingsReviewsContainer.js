@@ -10,7 +10,6 @@ const RatingsReviewContainer = styled.div`
   font-family: Arial, sans-serif;
   color: #ffffff;
 
-
   h3, h5 {
     text-transform: uppercase;
      color: #000000;
@@ -18,6 +17,14 @@ const RatingsReviewContainer = styled.div`
 
   h5 {
     font-size: 30px;
+  }
+
+  .buttons {
+    width: 120px;
+    font-size: 1.5em;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-left: 20%;
   }
 
 `;

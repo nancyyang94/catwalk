@@ -6,7 +6,7 @@ import IndividualCharacteristic from './IndividualCharacteristic';
 function Characteristics(props) {
   const { handleChange } = props;
   const mappedOptions = options.map(
-    (feature) => <IndividualCharacteristic feature={feature} handleChange={handleChange} />,
+    (feature) => <IndividualCharacteristic key={Math.random()} feature={feature} handleChange={handleChange} />,
   );
 
   return (

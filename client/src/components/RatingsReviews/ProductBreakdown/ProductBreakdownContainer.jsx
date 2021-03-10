@@ -7,14 +7,12 @@ import ProductBreakdownWrapper from '../styledComponents/ProductBreakdownWrapper
 
 function ProductBreakdownContainer({ id }) {
   const [featureNames, setFeatureNames] = useState([]);
-  const [featureIds, setFeatureIds] = useState([]);
   const [values, setValues] = useState(0);
 
   useEffect(() => {
     axios.get(`/metaData/${id}`)
       .then(({ data }) => {
         setFeatureNames(data.map((feature) => feature.name));
-        setFeatureIds(data.map((feature) => feature.id));
         setValues(data.map((feature) => feature.value));
       })
       .catch((error) => {

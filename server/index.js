@@ -124,16 +124,22 @@ app.get('/metaData/:id', (req, res) => {
   const results = [];
   getReviewsMeta(req.params.id).then(({ data }) => {
     const { characteristics } = data;
-    console.log('characteristics from serverside:', characteristics);
-    for (const feature in characteristics) {
-      results.push({
-        name: `${feature}`,
-        id: characteristics[feature].id,
-        value: characteristics[feature].value,
-      });
+
+    const featureNames = Object.keys(characteristics);
+    const values = Object.values(characteristics);
+
+    for (let i = 0; i < featureNames.length; i += 1) {
+      const currentFeatureName = featureNames[i];
+      const currentValue = values[i].value;
+      const currentId = values[i].id;
+      results.push(
+        {
+          name: currentFeatureName,
+          id: currentId,
+          value: currentValue,
+        },
+      );
     }
-    console.log(results);
-    // res.status(200).send(data.characteristics);
     res.status(200).send(results);
   })
     .catch((error) => {
