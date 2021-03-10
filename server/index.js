@@ -120,10 +120,10 @@ app.post('/cart', (req, res) => {
 });
 
 app.get('/metaData/:id', (req, res) => {
-  console.log(req.params.id);
   const results = [];
   getReviewsMeta(req.params.id).then(({ data }) => {
     const { characteristics } = data;
+<<<<<<< HEAD
 
     const featureNames = Object.keys(characteristics);
     const values = Object.values(characteristics);
@@ -139,6 +139,14 @@ app.get('/metaData/:id', (req, res) => {
           value: currentValue,
         },
       );
+=======
+    for (const feature in characteristics) {
+      results.push({
+        name: `${feature}`,
+        id: characteristics[feature].id,
+        value: characteristics[feature].value,
+      });
+>>>>>>> main
     }
     res.status(200).send(results);
   })

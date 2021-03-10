@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const AddToCartContainer = styled.div`
-  height: 33.33%;
+  height: 200px;
 `;
 
 export default AddToCartContainer;

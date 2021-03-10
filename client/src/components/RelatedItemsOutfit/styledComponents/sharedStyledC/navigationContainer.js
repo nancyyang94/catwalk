@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 const NavigationContainer = styled.div`
-   margin-left: 46.5vw;
-   margin-top: .5vh;
+   margin-left: 46%;
+   margin-top: .3vh;
+   margin-bottom: .5vh;
   .navButton {
     cursor: pointer;
     outline: 0;

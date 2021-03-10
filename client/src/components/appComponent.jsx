@@ -7,6 +7,8 @@ import RelatedItemsOutfit from './RelatedItemsOutfit/RelatedItemsOutfit';
 import RatingsReviews from './RatingsReviews/RatingsReviews';
 import AllContainer from './RelatedItemsOutfit/styledComponents/sharedStyledC/allCarouselContainer';
 import ComparissonModal from './RelatedItemsOutfit/RelatedItems/comparissonModal';
+import Sidebar from './Sidebar';
+import MainContainer from './Overview/SharedComponents/MainContainer';
 
 const AppComponent = () => {
   const [product, setProduct] = useState({});
@@ -87,20 +89,27 @@ const AppComponent = () => {
         />
       ) : null}
       <AllContainer>
-        Product Page
-        <Overview
+        <MainContainer>
+          <Overview
+            product={product}
+            currentStyle={currentStyle}
+            getProduct={getProduct}
+            updateCurrentStyle={updateCurrentStyle}
+          />
+          <RatingsReviews product={product} getProduct={getProduct} />
+          <RelatedItemsOutfit
+            product={product}
+            getProduct={getProduct}
+            currentStyle={currentStyle}
+            comparisonModal={comparisonModal}
+          />
+        </MainContainer>
+        <Sidebar
           product={product}
           currentStyle={currentStyle}
           getProduct={getProduct}
           updateCurrentStyle={updateCurrentStyle}
         />
-        <RelatedItemsOutfit
-          product={product}
-          getProduct={getProduct}
-          currentStyle={currentStyle}
-          comparisonModal={comparisonModal}
-        />
-        <RatingsReviews product={product} getProduct={getProduct} />
       </AllContainer>
     </div>
   );
