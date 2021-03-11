@@ -10,9 +10,10 @@ const ExpandButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #edeff0;
+  background-color: transparent;
   border: none;
   cursor: pointer;
+  z-index: 100;
 
   :focus {
     outline: none;

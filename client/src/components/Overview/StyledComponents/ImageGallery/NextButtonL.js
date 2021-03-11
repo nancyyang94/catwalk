@@ -10,9 +10,10 @@ const NextButtonL = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
-  border: 1px solid #000;
+  background-color: ${(props) => (props.windowWidth < 981 ? 'transparent' : '#fff')};
+  border: ${(props) => (props.windowWidth < 981 ? 'none' : '1px solid #000')};
   cursor: pointer;
+  z-index: 100;
 
   :focus {
     outline: none;
