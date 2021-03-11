@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RatingsContainer from './styledComponents/RatingsContainer';
-// import StarReviews from '../RelatedItemsOutfit/sharedComponents/starReviews';
+import RatingsContainer from '../styledComponents/RatingsContainer';
 import RatingSummary from './RatingSummary';
-import RatingsBreakdownContainer from './RatingsBreakdown/RatingsBreakdownContainer';
-import ProductBreakdownContainer from './ProductBreakdown/ProductBreakdownContainer';
+import RatingsBreakdownContainer from './RatingsBreakdownContainer';
+import ProductBreakdownContainer from '../ProductBreakdown/ProductBreakdownContainer';
 
 class Ratings extends React.Component {
   constructor(props) {

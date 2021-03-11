@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Ratings from './Ratings';
-import ReviewsList from './ReviewsList';
+import Ratings from './RatingsBreakdown/Ratings';
+import ReviewsList from './ReviewsList/ReviewsList';
 import RatingsReviewsContainer from './styledComponents/RatingsReviewsContainer';
 
 class RatingsReviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
     };
   }
 

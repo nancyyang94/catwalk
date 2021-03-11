@@ -3,13 +3,13 @@ import styled from 'styled-components';
 const RatingsReviewContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 3fr;
-  grid-gap: 30px;
+  grid-gap: 5%;
   height: auto;
-  margin-left: 8%;
-  margin-right: 172px;
+  /* max-height: 35%; */
+  margin-left: 13%;
+  margin-right: 2%;
   font-family: Arial, sans-serif;
   color: #ffffff;
-
 
   h3, h5 {
     text-transform: uppercase;
@@ -17,9 +17,16 @@ const RatingsReviewContainer = styled.div`
   }
 
   h5 {
-    font-size: 30px;
+    font-size: 2em;
   }
 
+  /* .buttons {
+    width: 5%;
+    font-size: 1.5em;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-left: 20%;
+  } */
 `;
 
 export default RatingsReviewContainer;
