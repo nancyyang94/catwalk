@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const FactorsContainer = styled.div`
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
 .bars {
   margin-right: -15px;

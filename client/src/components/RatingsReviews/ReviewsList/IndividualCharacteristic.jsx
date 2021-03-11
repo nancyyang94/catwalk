@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 function IndividualCharacteristic({ feature, handleChange }) {
@@ -18,35 +18,35 @@ function IndividualCharacteristic({ feature, handleChange }) {
       <br />
       <input
         type="radio"
-        id="1"
+        id={`${feature.name}.1`}
         name={feature.name}
         value={feature['1']}
         onChange={(e) => { updateCurrentSelection(e); }}
       />
       <input
         type="radio"
-        id="2"
+        id={`${feature.name}.2`}
         name={feature.name}
         value={feature['2']}
         onChange={(e) => { updateCurrentSelection(e); }}
       />
       <input
         type="radio"
-        id="3"
+        id={`${feature.name}.3`}
         name={feature.name}
         value={feature['3']}
         onChange={(e) => { updateCurrentSelection(e); }}
       />
       <input
         type="radio"
-        id="4"
+        id={`${feature.name}.4`}
         name={feature.name}
         value={feature['4']}
         onChange={(e) => { updateCurrentSelection(e); }}
       />
       <input
         type="radio"
-        id="5"
+        id={`${feature.name}.5`}
         name={feature.name}
         value={feature['5']}
         onChange={(e) => { updateCurrentSelection(e); }}

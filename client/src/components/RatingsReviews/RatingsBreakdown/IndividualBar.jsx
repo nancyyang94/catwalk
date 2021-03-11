@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import BarContainer from '../styledComponents/BarContainer';
 
 function IndividualBar(props) {
-  const { reviews } = props;
-  const { total } = props;
-  const { number } = props;
+  const { reviews, total, number } = props;
   let counter = 0;
 
   for (let i = 0; i < reviews.length; i += 1) {
