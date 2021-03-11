@@ -7,6 +7,7 @@ import AddToCart from './Overview/AddToCart/AddToCart';
 import InfoContainer from './Overview/StyledComponents/InfoContainer';
 import AddToCartContainer from './Overview/StyledComponents/AddToCartContainer';
 import ProductInfoContainer from './Overview/StyledComponents/ProductInfoContainer';
+import Features from './Overview/Features';
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -40,17 +41,18 @@ class Sidebar extends React.Component {
 
   render() {
     const { styles } = this.state;
-    const { currentStyle } = this.props;
-    const { updateCurrentStyle } = this.props;
-    const { product } = this.props;
+    const {
+      currentStyle, updateCurrentStyle, product, windowWidth,
+    } = this.props;
 
     if (styles.length < 1 || Object.keys(currentStyle).length === 0) {
-      return null;
+      return <InfoContainer windowWidth={windowWidth} />;
     }
     const { skus, style_id: styleId } = currentStyle;
+    const { features } = product;
 
     return (
-      <InfoContainer>
+      <InfoContainer windowWidth={windowWidth}>
         <ProductInfoContainer>
           <ProductInfo product={product} styles={styles} currentStyle={currentStyle} />
         </ProductInfoContainer>
@@ -62,6 +64,7 @@ class Sidebar extends React.Component {
         <AddToCartContainer>
           <AddToCart styleId={styleId} skus={skus} />
         </AddToCartContainer>
+        <Features features={features} />
       </InfoContainer>
     );
   }
@@ -93,12 +96,14 @@ Sidebar.propTypes = {
     ),
   }),
   updateCurrentStyle: PropTypes.func,
+  windowWidth: PropTypes.number,
 };
 
 Sidebar.defaultProps = {
   product: null,
   currentStyle: {},
   updateCurrentStyle: null,
+  windowWidth: 0,
 };
 
 export default Sidebar;

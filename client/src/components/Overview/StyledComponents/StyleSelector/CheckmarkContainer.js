@@ -7,8 +7,8 @@ const CheckmarkContainer = styled.div`
   background-color: white;
   position: absolute;
   z-index: 5;
-  top: 7px;
-  right: 7px;
+  top: 5px;
+  right: 4px;
 `;
 
 export default CheckmarkContainer;

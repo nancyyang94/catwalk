@@ -16,12 +16,14 @@ class StyleSelector extends React.Component {
   }
 
   render() {
-    const { styles, currentStyle, updateCurrentStyle } = this.props;
+    const {
+      styles, currentStyle, updateCurrentStyle, windowWidth,
+    } = this.props;
     const { name: currentStyleName, style_id: selectedId } = currentStyle;
 
     return (
-      <InnerContainer>
-        <TextWrapper>
+      <InnerContainer windowWidth={windowWidth}>
+        <TextWrapper windowWidth={windowWidth}>
           <StylePointerText>{'STYLE >'}</StylePointerText>
           <CurrentStyleText>{currentStyleName.toUpperCase()}</CurrentStyleText>
         </TextWrapper>
@@ -54,12 +56,14 @@ StyleSelector.propTypes = {
   }),
   styles: PropTypes.PropTypes.arrayOf(PropTypes.object),
   updateCurrentStyle: PropTypes.func,
+  windowWidth: PropTypes.number,
 };
 
 StyleSelector.defaultProps = {
   styles: {},
   currentStyle: {},
   updateCurrentStyle: null,
+  windowWidth: 0,
 };
 
 export default StyleSelector;
