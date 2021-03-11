@@ -28,7 +28,7 @@ transition: transform 1.5s;
 `;
 
 const RelatedItemsOutfit = ({
-  getProduct, product, currentStyle, comparisonModal,
+  getProduct, product, currentStyle, comparisonModal, trackInteraction,
 }) => {
   const [related, setRelated] = useState([]);
   const [hasRelatedNext, setHasRelatedNext] = useState(false);
@@ -265,6 +265,7 @@ const RelatedItemsOutfit = ({
             related={related}
             getProduct={getProduct}
             comparisonModal={comparisonModal}
+            trackInteraction={trackInteraction}
           />
           {hasRelatedNext ? <ButtonContainer className="buttonContainer" /> : null}
           {hasRelatedNext ? <Right className="right" type="button" onClick={() => right('relatedRight')}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
@@ -282,6 +283,7 @@ const RelatedItemsOutfit = ({
             getProduct={getProduct}
             product={product}
             updateButton={updateButton}
+            trackInteraction={trackInteraction}
           />
           {hasOutfitNext ? <ButtonContainer className="buttonContainer" /> : null}
           {hasOutfitNext ? <Right className="right" type="button" onClick={right}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
@@ -321,6 +323,7 @@ RelatedItemsOutfit.propTypes = {
   }),
   getProduct: PropTypes.func,
   comparisonModal: PropTypes.func,
+  trackInteraction: PropTypes.func,
 };
 
 RelatedItemsOutfit.defaultProps = {
@@ -328,4 +331,5 @@ RelatedItemsOutfit.defaultProps = {
   getProduct: PropTypes.func,
   currentStyle: null,
   comparisonModal: PropTypes.func,
+  trackInteraction: PropTypes.func,
 };

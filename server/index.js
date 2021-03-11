@@ -146,6 +146,25 @@ app.get('/metaData/:id', (req, res) => {
     });
 });
 
+app.post('/interactions', (req, res) => {
+  axios({
+    method: 'POST',
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/interactions',
+    headers: { Authorization: config.TOKEN },
+    data: {
+      element: req.body.element,
+      widget: req.body.widget,
+      time: req.body.time,
+    },
+  })
+    .then((response) => {
+      res.send(response.data);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+});
+
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
