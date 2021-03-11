@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Overview from './Overview/Overview';
 import RelatedItemsOutfit from './RelatedItemsOutfit/RelatedItemsOutfit';
 import RatingsReviews from './RatingsReviews/RatingsReviews';
-import AllContainer from './RelatedItemsOutfit/styledComponents/sharedStyledC/allCarouselContainer';
+import AllContainer from './RelatedItemsOutfit/styledComponents/sharedStyledC/allContainer';
 import ComparissonModal from './RelatedItemsOutfit/RelatedItems/comparissonModal';
 import Sidebar from './Sidebar';
 import MainContainer from './Overview/SharedComponents/MainContainer';
@@ -19,6 +19,26 @@ const AppComponent = () => {
   const [combinedFeatures, setCombinedFeatures] = useState([]);
 
   const [windowWidth] = useWindowSize();
+
+  const postInteraction = (element, time, widget) => {
+    axios.post('/interactions', {
+      element,
+      widget,
+      time,
+    })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const trackInteraction = (event, widget) => {
+    const element = `${event.target.tagName}${event.target.className ? ` ${event.target.className}` : ''}`;
+    const time = new Date().toISOString();
+    postInteraction(element, time, widget);
+  };
 
   const combiner = (feat1, feat2) => {
     const combined = {};
@@ -46,6 +66,7 @@ const AppComponent = () => {
   const comparisonModal = (event, relatedFeat, relatedProduct) => {
     event.preventDefault();
     event.stopPropagation();
+    trackInteraction(event, 'RelatedOutfit');
     if (isPressed) {
       setPressed(false);
     } else {
@@ -89,6 +110,7 @@ const AppComponent = () => {
           product1={product.name}
           product2={relatedName}
           comparisonModal={comparisonModal}
+          trackInteraction={trackInteraction}
         />
       ) : null}
       <AllContainer>
@@ -101,12 +123,15 @@ const AppComponent = () => {
             updateCurrentStyle={updateCurrentStyle}
           />
           <RatingsReviews product={product} getProduct={getProduct} />
-          <RelatedItemsOutfit
-            product={product}
-            getProduct={getProduct}
-            currentStyle={currentStyle}
-            comparisonModal={comparisonModal}
-          />
+          <div onClick={(event) => trackInteraction(event, 'RelatedOutfit')} onKeyPress={(event) => trackInteraction(event, 'RelatedOutfit')} role="button" tabIndex={0} style={{ outline: 'none' }}>
+            <RelatedItemsOutfit
+              product={product}
+              getProduct={getProduct}
+              currentStyle={currentStyle}
+              comparisonModal={comparisonModal}
+              trackInteraction={trackInteraction}
+            />
+          </div>
         </MainContainer>
         <Sidebar
           windowWidth={windowWidth}
