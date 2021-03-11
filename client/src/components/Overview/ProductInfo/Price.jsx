@@ -9,14 +9,14 @@ const Price = (props) => {
   if (salePrice === null) {
     return (
       <PriceContainer>
-        <PriceText>{`$${originalPrice}`}</PriceText>
+        <PriceText sale={false}>{`$${originalPrice}`}</PriceText>
       </PriceContainer>
     );
   }
   return (
     <PriceContainer>
       <OnSaleText>{`$${originalPrice}`}</OnSaleText>
-      <PriceText>{`$${salePrice}`}</PriceText>
+      <PriceText sale={true}>{`$${salePrice}`}</PriceText>
     </PriceContainer>
   );
 };
