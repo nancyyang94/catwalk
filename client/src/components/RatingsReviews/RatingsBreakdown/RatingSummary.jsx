@@ -29,7 +29,6 @@ const RatingSummary = ({ reviews }) => {
   }, [reviews]);
 
   return (
-    // <div>hu</div>
     <>
       <AverageStarRating avg={averageRating} />
     </>

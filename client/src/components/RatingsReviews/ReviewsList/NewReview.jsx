@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ModalContainer from './styledComponents/ModalContainer';
+import ModalContainer from '../styledComponents/ModalContainer';
 import NewReviewForm from './NewReviewForm';
 
 class NewReview extends React.Component {
