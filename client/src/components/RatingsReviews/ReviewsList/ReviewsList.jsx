@@ -8,7 +8,6 @@ import NewReview from './NewReview';
 function ReviewsList({ product }) {
   const { reviews } = product;
   const { id } = product;
-  console.log(reviews);
   // initialize for first two reviews
   const [lastIndex, setLastIndex] = useState(2);
   // track when product changes
