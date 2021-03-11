@@ -21,6 +21,7 @@ const Div = styled.div`
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+margin-top: 6%;
 animation: fadein 4s;
 transform: translateY(${({ animate }) => (animate ? '0vh' : '60vh')});
 transition: transform 1.5s;
