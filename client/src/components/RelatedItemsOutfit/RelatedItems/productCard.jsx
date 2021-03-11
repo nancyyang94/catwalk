@@ -7,11 +7,15 @@ import ProductContainer from '../styledComponents/styledRelated/productContainer
 import RelatedAction from '../styledComponents/styledRelated/relatedAction';
 
 const ProductCard = ({
-  productInfo, getProduct, comparisonModal,
+  productInfo, getProduct, comparisonModal, trackInteraction,
 }) => (
-  <ProductContainer to={{ pathname: `/product/${productInfo.id}` }} className="productContainer" onClick={() => { getProduct(productInfo.id); setTimeout(() => { window.location.reload(); }, 50); }}>
+  <ProductContainer to={{ pathname: `/product/${productInfo.id}` }} className="productContainer" onClick={(event) => { event.stopPropagation(); trackInteraction(event, 'RelatedOutfit'); getProduct(productInfo.id); setTimeout(() => { window.location.reload(); }, 50); }}>
     <RelatedAction type="button" onClick={(event) => comparisonModal(event, productInfo.features, productInfo.name)}>☆</RelatedAction>
-    <ImageGallery photos={productInfo.photos} category={productInfo.category} />
+    <ImageGallery
+      photos={productInfo.photos}
+      category={productInfo.category}
+      trackInteraction={trackInteraction}
+    />
     <Descriptions productInfo={productInfo} />
   </ProductContainer>
 );
@@ -36,10 +40,12 @@ ProductCard.propTypes = {
   }),
   getProduct: PropTypes.func,
   comparisonModal: PropTypes.func,
+  trackInteraction: PropTypes.func,
 };
 
 ProductCard.defaultProps = {
   productInfo: null,
   getProduct: PropTypes.func,
   comparisonModal: PropTypes.func,
+  trackInteraction: PropTypes.func,
 };
