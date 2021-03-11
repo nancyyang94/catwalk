@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const AllCarouselContainer = styled.div`
+const AllContainer = styled.div`
   display: flex;
   @media (max-width: 320px) {
     transform: scale(0.3);
@@ -49,6 +49,13 @@ const AllCarouselContainer = styled.div`
       right: 0%;
     }
   }
+
+  @media (min-width: 1800px) and (max-width: 2000px) {
+    transition: transform 1s;
+    .buttonContainer{
+      padding-left: 25%;
+    }
+  }
 `;
 
-export default AllCarouselContainer;
+export default AllContainer;

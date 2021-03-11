@@ -1,5 +1,9 @@
 node_modules
-public/bundle.js
 config.js
+<<<<<<< HEAD
 coverage
 *.pem
+=======
+bundle.js
+coverage
+>>>>>>> main

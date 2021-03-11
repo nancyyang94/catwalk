@@ -14,20 +14,21 @@ import OutfitContainer from './styledComponents/styledOutfit/outfitContainer';
 import OutfitList from './Outfit/outfitList';
 import Title from './styledComponents/styledRelated/title';
 import ButtonContainer from './styledComponents/sharedStyledC/buttonContainer';
-import NavigationContainer from './styledComponents/sharedStyledC/navigationContainer';
+import Navigation from './sharedComponents/navigation';
 
 const Div = styled.div`
 @keyframes fadein {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+margin-top: 6%;
 animation: fadein 4s;
 transform: translateY(${({ animate }) => (animate ? '0vh' : '60vh')});
 transition: transform 1.5s;
 `;
 
 const RelatedItemsOutfit = ({
-  getProduct, product, currentStyle, comparisonModal,
+  getProduct, product, currentStyle, comparisonModal, trackInteraction,
 }) => {
   const [related, setRelated] = useState([]);
   const [hasRelatedNext, setHasRelatedNext] = useState(false);
@@ -37,6 +38,24 @@ const RelatedItemsOutfit = ({
   const [show, doShow] = useState({
     itemOne: false,
     itemTwo: false,
+  });
+  const [scrollOutfitPerc, setScrollOutfitPerc] = useState(null);
+  const [scrollRelatedPerc, setScrollRelatedPerc] = useState(null);
+  const [clickedRelated, setClickedRelated] = useState({
+    nav1: true,
+    nav2: false,
+    nav3: false,
+    nav4: false,
+    nav5: false,
+    nav6: false,
+  });
+  const [clickedOutfit, setClickedOutfit] = useState({
+    nav1: true,
+    nav2: false,
+    nav3: false,
+    nav4: false,
+    nav5: false,
+    nav6: false,
   });
 
   const ourRef = useRef(null);
@@ -160,6 +179,8 @@ const RelatedItemsOutfit = ({
         if (slider.scrollLeft > relatedWidth - 484) {
           slider.scrollLeft += relatedWidth - slider.scrollLeft;
           setHasRelatedNext(false);
+          setScrollRelatedPerc(1);
+          return null;
         }
         if (slider.scrollLeft >= relatedWidth - 242) {
           setHasRelatedNext(false);
@@ -168,6 +189,7 @@ const RelatedItemsOutfit = ({
         setHasRelatedPrevious(false);
         setHasRelatedNext(false);
       }
+      setScrollRelatedPerc((slider.scrollLeft / relatedWidth) + 0.1);
     } else {
       slider = document.getElementById('slider2');
       const outfitWidth = slider.scrollWidth - slider.clientWidth;
@@ -178,6 +200,8 @@ const RelatedItemsOutfit = ({
         if (slider.scrollLeft > outfitWidth - 484) {
           slider.scrollLeft += outfitWidth - slider.scrollLeft;
           setHasOutfitNext(false);
+          setScrollOutfitPerc(1);
+          return null;
         }
         if (slider.scrollLeft >= outfitWidth - 242) {
           setHasOutfitNext(false);
@@ -186,7 +210,9 @@ const RelatedItemsOutfit = ({
         setHasOutfitPrevious(false);
         setHasOutfitNext(false);
       }
+      setScrollOutfitPerc((slider.scrollLeft / outfitWidth) + 0.1);
     }
+    return null;
   };
 
   const left = (carousel) => {
@@ -200,11 +226,14 @@ const RelatedItemsOutfit = ({
         if (slider.scrollLeft < 484) {
           slider.scrollLeft -= slider.scrollLeft;
           setHasRelatedPrevious(false);
+          setScrollRelatedPerc(0);
+          return null;
         }
       } else {
         setHasRelatedPrevious(false);
         setHasRelatedNext(false);
       }
+      setScrollRelatedPerc((slider.scrollLeft / relatedWidth) + 0.1);
     } else {
       slider = document.getElementById('slider2');
       const outfitWidth = slider.scrollWidth - slider.clientWidth;
@@ -214,25 +243,16 @@ const RelatedItemsOutfit = ({
         if (slider.scrollLeft < 484) {
           slider.scrollLeft -= slider.scrollLeft;
           setHasOutfitPrevious(false);
+          setScrollOutfitPerc(0);
+          return null;
         }
       } else {
         setHasOutfitPrevious(false);
         setHasOutfitNext(false);
       }
+      setScrollOutfitPerc((slider.scrollLeft / outfitWidth) + 0.1);
     }
-  };
-
-  const navigate = (carousel, percentage) => {
-    let slider;
-    if (carousel === 'related') {
-      slider = document.getElementById('slider');
-    } else {
-      slider = document.getElementById('slider2');
-    }
-    const maxScrollWidth = slider.scrollWidth - slider.clientWidth;
-    const scrollDistance = maxScrollWidth * percentage;
-    slider.scrollLeft = scrollDistance;
-    setTimeout(() => { updateButton(); }, 1000);
+    return null;
   };
 
   return (
@@ -245,19 +265,13 @@ const RelatedItemsOutfit = ({
             related={related}
             getProduct={getProduct}
             comparisonModal={comparisonModal}
+            trackInteraction={trackInteraction}
           />
           {hasRelatedNext ? <ButtonContainer className="buttonContainer" /> : null}
           {hasRelatedNext ? <Right className="right" type="button" onClick={() => right('relatedRight')}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
         </RelatedContainer>
         {hasRelatedNext || hasRelatedPrevious ? (
-          <NavigationContainer>
-            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.0); }} />
-            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.20); }} />
-            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.40); }} />
-            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.60); }} />
-            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 0.80); }} />
-            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('related', 1); }} />
-          </NavigationContainer>
+          <Navigation carouselName="related" updateButton={updateButton} scrollPercentage={scrollRelatedPerc} setScrollPercentage={setScrollRelatedPerc} setClicked={setClickedRelated} clicked={clickedRelated} />
         ) : null}
       </Div>
       <Div animate={show.itemOne} ref={ourRef}>
@@ -269,19 +283,13 @@ const RelatedItemsOutfit = ({
             getProduct={getProduct}
             product={product}
             updateButton={updateButton}
+            trackInteraction={trackInteraction}
           />
           {hasOutfitNext ? <ButtonContainer className="buttonContainer" /> : null}
           {hasOutfitNext ? <Right className="right" type="button" onClick={right}><SvgArrowR width="60" height="60"><path d="M 20 10 L 30 0 L 60 30 L 30 60 L 20 50 L 40 30 L 10 0" /></SvgArrowR></Right> : null}
         </OutfitContainer>
         {hasOutfitNext || hasOutfitPrevious ? (
-          <NavigationContainer>
-            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.0); }} />
-            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.20); }} />
-            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.40); }} />
-            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.60); }} />
-            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 0.80); }} />
-            <button className="navButton" type="button" aria-label="navigation" onClick={() => { navigate('outfit', 1); }} />
-          </NavigationContainer>
+          <Navigation carouselName="outfit" updateButton={updateButton} scrollPercentage={scrollOutfitPerc} setClicked={setClickedOutfit} clicked={clickedOutfit} setScrollPercentage={setScrollOutfitPerc} />
         ) : null}
       </Div>
     </>
@@ -315,6 +323,7 @@ RelatedItemsOutfit.propTypes = {
   }),
   getProduct: PropTypes.func,
   comparisonModal: PropTypes.func,
+  trackInteraction: PropTypes.func,
 };
 
 RelatedItemsOutfit.defaultProps = {
@@ -322,4 +331,5 @@ RelatedItemsOutfit.defaultProps = {
   getProduct: PropTypes.func,
   currentStyle: null,
   comparisonModal: PropTypes.func,
+  trackInteraction: PropTypes.func,
 };

@@ -8,7 +8,7 @@ import AddOutfitContainer from '../styledComponents/styledOutfit/addOutfitContai
 import AddOutfitText from '../styledComponents/styledOutfit/addOutfitText';
 
 const OutfitList = ({
-  product, getProduct, currentStyle, updateButton,
+  product, getProduct, currentStyle, updateButton, trackInteraction,
 }) => {
   const addOutfitCard = {
     isOutfitCard: true,
@@ -72,6 +72,7 @@ const OutfitList = ({
           });
       });
     updateButton();
+    trackInteraction(event, 'RelatedOutfit');
     event.stopPropagation();
   };
 
@@ -90,7 +91,7 @@ const OutfitList = ({
       .catch((error) => {
         console.log(error);
       });
-
+    trackInteraction(event, 'RelatedOutfit');
     event.stopPropagation();
   };
 
@@ -114,6 +115,7 @@ const OutfitList = ({
             key={outfit.styleId}
             getProduct={getProduct}
             deleteOutfit={deleteOutfit}
+            trackInteraction={trackInteraction}
           />
         )
       ))}
@@ -148,6 +150,7 @@ OutfitList.propTypes = {
     reviews: PropTypes.arrayOf(PropTypes.object),
   }),
   updateButton: PropTypes.func,
+  trackInteraction: PropTypes.func,
 };
 
 OutfitList.defaultProps = {
@@ -155,4 +158,5 @@ OutfitList.defaultProps = {
   getProduct: PropTypes.func,
   product: null,
   updateButton: PropTypes.func,
+  trackInteraction: PropTypes.func,
 };
