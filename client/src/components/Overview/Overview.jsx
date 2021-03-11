@@ -58,11 +58,18 @@ class Overview extends React.Component {
       return (<LoadingDiv>loading...</LoadingDiv>);
     }
     const { photos, skus, style_id: styleId } = currentStyle;
-    const { product } = this.props;
+    const { product, trackInteraction } = this.props;
     const { slogan, description } = product;
 
     return (
-      <OverviewContainer>
+      <OverviewContainer
+        onClick={(event) => trackInteraction(event, 'Overview')}
+        onKeyPress={(event) => trackInteraction(event, 'Overview')}
+        role="button"
+        tabIndex={0}
+        style={{ outline: 'none' }}
+        windowWidth={windowWidth}
+      >
         <GalleryContainer>
           <ImageGallery photos={photos} windowWidth={windowWidth} />
         </GalleryContainer>
@@ -113,6 +120,7 @@ Overview.propTypes = {
   }),
   updateCurrentStyle: PropTypes.func,
   windowWidth: PropTypes.number,
+  trackInteraction: PropTypes.func,
 };
 
 Overview.defaultProps = {
@@ -120,6 +128,7 @@ Overview.defaultProps = {
   currentStyle: {},
   updateCurrentStyle: null,
   windowWidth: 0,
+  trackInteraction: null,
 };
 
 export default Overview;

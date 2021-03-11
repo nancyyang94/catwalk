@@ -42,7 +42,7 @@ class Sidebar extends React.Component {
   render() {
     const { styles } = this.state;
     const {
-      currentStyle, updateCurrentStyle, product, windowWidth,
+      currentStyle, trackInteraction, updateCurrentStyle, product, windowWidth,
     } = this.props;
 
     if (styles.length < 1 || Object.keys(currentStyle).length === 0) {
@@ -52,7 +52,14 @@ class Sidebar extends React.Component {
     const { features } = product;
 
     return (
-      <InfoContainer windowWidth={windowWidth}>
+      <InfoContainer
+        onClick={(event) => trackInteraction(event, 'Sidebar')}
+        onKeyPress={(event) => trackInteraction(event, 'Sidebar')}
+        role="button"
+        tabIndex={0}
+        style={{ outline: 'none' }}
+        windowWidth={windowWidth}
+      >
         <ProductInfoContainer>
           <ProductInfo product={product} styles={styles} currentStyle={currentStyle} />
         </ProductInfoContainer>
@@ -96,6 +103,7 @@ Sidebar.propTypes = {
     ),
   }),
   updateCurrentStyle: PropTypes.func,
+  trackInteraction: PropTypes.func,
   windowWidth: PropTypes.number,
 };
 
@@ -104,6 +112,7 @@ Sidebar.defaultProps = {
   currentStyle: {},
   updateCurrentStyle: null,
   windowWidth: 0,
+  trackInteraction: null,
 };
 
 export default Sidebar;
