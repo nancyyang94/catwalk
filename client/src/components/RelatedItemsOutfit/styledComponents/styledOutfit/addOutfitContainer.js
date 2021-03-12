@@ -20,8 +20,10 @@ const AddOutfitContainer = styled.div`
   background-color: none;
   border-radius: 1%;
   cursor: pointer;
-  position: relative;
+  position: sticky;
   background:#d3d3d3;
+  left: 0;
+  z-index: 50;
 
   &:hover {
   .add {

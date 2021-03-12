@@ -16,6 +16,7 @@ const OutfitItemsContainer = styled.div`
     border: 1px solid black;
     transition: 1s;
   }
+  position: relative;
 `;
 
 export default OutfitItemsContainer;
