@@ -122,7 +122,12 @@ const AppComponent = () => {
             getProduct={getProduct}
             updateCurrentStyle={updateCurrentStyle}
           />
-          <RatingsReviews product={product} getProduct={getProduct} />
+          <div onClick={(event) => trackInteraction(event, 'RatingsReviews')} onKeyPress={(event) => trackInteraction(event, 'RatingsReviews')} role="button" tabIndex={0} style={{ outline: 'none' }}>
+            <RatingsReviews
+              product={product}
+              getProduct={getProduct}
+            />
+          </div>
           <div onClick={(event) => trackInteraction(event, 'RelatedOutfit')} onKeyPress={(event) => trackInteraction(event, 'RelatedOutfit')} role="button" tabIndex={0} style={{ outline: 'none' }}>
             <RelatedItemsOutfit
               product={product}
