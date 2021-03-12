@@ -11,7 +11,7 @@ const ReviewListButtonsContainer = styled.div`
 
   .plop {
     width: 100%;
-    height: 100%;
+    height: 50%;
     margin-right: 2%;
   }
 
