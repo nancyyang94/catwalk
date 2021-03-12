@@ -44,7 +44,9 @@ class ImageGallery extends React.Component {
 
   render() {
     const { imageFocus, photo } = this.state;
-    const { photos, category, trackInteraction } = this.props;
+    const {
+      photos, category, trackInteraction, productId,
+    } = this.props;
     return (
       <ImageContainer
         onMouseEnter={(event) => { this.focusOn(event); }}
@@ -56,6 +58,7 @@ class ImageGallery extends React.Component {
             photos={photos}
             setPhoto={this.setPhoto}
             trackInteraction={trackInteraction}
+            id={productId}
           />
         ) : null }
       </ImageContainer>
@@ -69,10 +72,12 @@ ImageGallery.propTypes = {
   photos: PropTypes.arrayOf(PropTypes.object),
   category: PropTypes.string,
   trackInteraction: PropTypes.func,
+  productId: PropTypes.number,
 };
 
 ImageGallery.defaultProps = {
   photos: null,
   category: PropTypes.string,
   trackInteraction: PropTypes.func,
+  productId: null,
 };

@@ -63,12 +63,14 @@ const ImageContainer = styled.div`
   .carouselContainer{
     position: absolute;
     top: 71%;
-    left: 8.5%;
+    left: 8%;
     overflow: auto;
     overflow-x: hidden;
     overflow-y: hidden;
     display: flex;
-    width: 188px;
+    width: 190px;
+    scroll-behavior: smooth;
+    transition: 1s;
   }
   .thumbnailContainer{
     @keyframes grow {
@@ -85,7 +87,7 @@ const ImageContainer = styled.div`
       border-radius: 10%;
     }
     outline: 0;
-    margin: 0 1.5% 0 1.5%;
+    margin: 0 3px 0 3px;
     flex-shrink: 0;
     flex-grow: 0;
     animation: grow .5s;
