@@ -6,7 +6,7 @@ const RelatedItemsContainer = styled.div`
   display: flex;
   flex-direction: row;
   transition: 1s;
-  max-width: 965px;
+  max-width: 963px;
   overflow-x: hidden;
   overflow-y: hidden;
   margin-left: 14.5%;
