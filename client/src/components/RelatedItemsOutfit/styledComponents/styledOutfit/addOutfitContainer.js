@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const AddOutfitContainer = styled.div`
-  flex-basis: 20%
   height: 100%;
   width: 230px;
   border: 1px solid #d3d3d3;
