@@ -18,7 +18,7 @@ const Nav = ({ current, photos, isHovering, handleClick }) => (
           onClick={() => handleClick(index)}
           key={key}
         >
-          <NavThumbnail src={thumbnail} alt="nav thumbnail" />
+          <NavThumbnail active={isHovering} src={thumbnail} alt="nav thumbnail" />
         </NavButton>
       );
     })}
