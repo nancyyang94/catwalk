@@ -32,6 +32,7 @@ const ImageContainer = styled.div`
       transition: .5s;
       border-radius: 10%;
     }
+    outline: 0;
     margin: 0 1.5% 0 1.5%;
     flex-shrink: 0;
     flex-grow: 0;

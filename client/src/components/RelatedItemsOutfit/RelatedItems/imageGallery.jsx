@@ -17,10 +17,15 @@ class ImageGallery extends React.Component {
     this.setPhoto = this.setPhoto.bind(this);
   }
 
-  setPhoto(photo) {
+  setPhoto(event, photo) {
+    event.stopPropagation();
+    event.preventDefault();
+    const { trackInteraction } = this.props;
+    trackInteraction(event, 'RelatedOutfit');
     this.setState({
       photo,
     });
+    event.stopPropagation();
   }
 
   focusOn(event) {
