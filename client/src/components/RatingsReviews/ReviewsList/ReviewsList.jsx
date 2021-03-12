@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import IndividualReview from './IndividualReview';
 import ReviewListContainer from '../styledComponents/ReviewListContainer';
-import ReviewListButtons from '../styledComponents/ReviewListButtons';
+import ReviewListButtonsContainer from '../styledComponents/ReviewListButtons';
 import NewReview from './NewReview';
 
 function ReviewsList({ product }) {
@@ -32,11 +32,13 @@ function ReviewsList({ product }) {
         </div>
         <br />
       </ReviewListContainer>
-      <ReviewListButtons>
-        {reviews && (reviews.length > 2) && (lastIndex < reviews.length) && <div className="button"><button type="button" onClick={setIndex}>More Reviews</button></div>}
+      <ReviewListButtonsContainer>
+        {reviews && (reviews.length > 2) && (lastIndex < reviews.length) && <div className="plop"><button type="button" onClick={setIndex}>More Reviews</button></div>}
         <br />
-        <NewReview productName={product.name} />
-      </ReviewListButtons>
+        <div className="plop">
+          <NewReview productName={product.name} />
+        </div>
+      </ReviewListButtonsContainer>
     </div>
   );
 }
