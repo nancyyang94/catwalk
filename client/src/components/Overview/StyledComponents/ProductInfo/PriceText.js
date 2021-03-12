@@ -5,6 +5,7 @@ font-size: 18px;
 line-height: 24px;
 font-family: Arial, Helvetica, sans-serif;
 font-weight: 700;
+color: ${(props) => (props.sale ? 'red' : 'black')};
 letter-spacing: 1.5px;
 `;
 
