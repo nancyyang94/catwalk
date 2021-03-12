@@ -57,6 +57,8 @@ const AllContainer = styled.div`
     }
     .buttonContainer{
       padding-left: 20%;
+      padding-right: 0%;
+      right: 0%;
     }
   }
 `;
