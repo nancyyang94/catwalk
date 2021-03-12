@@ -7,7 +7,7 @@ module.exports = {
     filename: 'bundle.js',
   },
   resolve: { extensions: ['.js', '.jsx', '.jpg'] },
-  mode: 'development',
+  mode: 'production',
   module: {
     rules: [
       {
