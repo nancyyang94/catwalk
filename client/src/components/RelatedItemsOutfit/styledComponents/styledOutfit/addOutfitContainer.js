@@ -8,7 +8,7 @@ const AddOutfitContainer = styled.div`
   flex-shrink: 0;
   flex-grow: 0;
   margin-bottom: 5px;
-  margin-left: 5px;
+  margin-left: 0;
   margin-right: 5px;
   position: relative;
   text-align: center;

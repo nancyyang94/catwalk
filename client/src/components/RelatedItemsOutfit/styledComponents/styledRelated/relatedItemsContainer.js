@@ -18,6 +18,9 @@ const RelatedItemsContainer = styled.div`
     border: 1px solid black;
     transition: 1s;
   }
+  :first-child{
+    margin-left: 0;
+  }
 `;
 
 export default RelatedItemsContainer;
