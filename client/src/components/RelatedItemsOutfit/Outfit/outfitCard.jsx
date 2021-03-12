@@ -10,7 +10,12 @@ const OutfitCard = ({
 }) => (
   <ProductContainer to={{ pathname: `/product/${productInfo.id}` }} className="productContainer" onClick={(event) => { event.stopPropagation(); trackInteraction(event, 'RelatedOutfit'); getProduct(productInfo.id); setTimeout(() => { window.location.reload(); }, 50); }}>
     <OutfitAction type="button" name={productInfo.styleId} onClick={(event) => { event.preventDefault(); deleteOutfit(event); }}>✖</OutfitAction>
-    <ImageGallery photos={productInfo.photos} category={productInfo.category} />
+    <ImageGallery
+      photos={productInfo.photos}
+      category={productInfo.category}
+      trackInteraction={trackInteraction}
+      id={productInfo.styleId}
+    />
     <Descriptions productInfo={productInfo} />
   </ProductContainer>
 );

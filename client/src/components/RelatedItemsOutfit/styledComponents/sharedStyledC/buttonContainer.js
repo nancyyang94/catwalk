@@ -17,7 +17,7 @@ animation: fadein .2s;
   background-image: linear-gradient(to left,  rgba(255,255,255,1), rgba(255,255,255,0));
   border: none;
   cursor: pointer;
-  z-index: 1000;
+  z-index: 100;
   outline: 0;
 `;
 

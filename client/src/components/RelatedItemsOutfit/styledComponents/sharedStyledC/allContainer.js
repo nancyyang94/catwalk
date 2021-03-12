@@ -52,8 +52,13 @@ const AllContainer = styled.div`
 
   @media (min-width: 1800px) and (max-width: 2000px) {
     transition: transform 1s;
+    #carousel1, #carousel2{
+      margin-left: 4%;
+    }
     .buttonContainer{
-      padding-left: 25%;
+      padding-left: 20%;
+      padding-right: 0%;
+      right: 0%;
     }
   }
 `;

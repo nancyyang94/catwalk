@@ -15,6 +15,7 @@ const ProductCard = ({
       photos={productInfo.photos}
       category={productInfo.category}
       trackInteraction={trackInteraction}
+      productId={productInfo.id}
     />
     <Descriptions productInfo={productInfo} />
   </ProductContainer>
