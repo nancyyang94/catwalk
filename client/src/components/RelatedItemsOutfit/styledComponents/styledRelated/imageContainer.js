@@ -31,6 +31,7 @@ const ImageContainer = styled.div`
     background: none;
     outline: none;
     border: none;
+    cursor: pointer;
   }
 
   .imageLeft {
