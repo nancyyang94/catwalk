@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import ImageGallery from './ImageGallery/ImageGallery';
 import OverviewContainer from './StyledComponents/OverviewContainer';
 import GalleryContainer from './StyledComponents/GalleryContainer';
-import LoadingDiv from './StyledComponents/LoadingDiv';
 import AltWindowWidthContainer from './StyledComponents/AltWindowWidthContainer';
 import StyleSelector from './StyleSelector/StyleSelector';
 import AddToCart from './AddToCart/AddToCart';
 import AddToCartContainer from './StyledComponents/AddToCartContainer';
 import DescriptionContainer from './StyledComponents/DescriptionContainer';
+import ImageGalleryContainer from './StyledComponents/ImageGallery/ImageGalleryContainer';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -55,7 +55,11 @@ class Overview extends React.Component {
     const { currentStyle, updateCurrentStyle, windowWidth } = this.props;
 
     if (styles.length < 1 || Object.keys(currentStyle).length === 0) {
-      return (<LoadingDiv>loading...</LoadingDiv>);
+      return (
+        <ImageGalleryContainer
+          isLoading={styles.length < 1 || Object.keys(currentStyle).length === 0}
+        />
+      );
     }
     const { photos, skus, style_id: styleId } = currentStyle;
     const { product, trackInteraction } = this.props;

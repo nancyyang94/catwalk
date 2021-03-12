@@ -6,6 +6,7 @@ const GalleryViewerImg = styled.img`
   transform: ${(props) => (props.isZoomed ? 'scale(2.5)' : 'scale(1)')};
   object-fit: contain;
   background-color: #edeff0;
+  transition: transform .4s;
   cursor: ${(props) => (props.isExpanded ? 'crosshair' : 'zoom-in')}
 `;
 

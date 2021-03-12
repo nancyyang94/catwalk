@@ -88,12 +88,20 @@ const ImageGallery = ({ photos, windowWidth }) => {
       <ExpandButton onClick={handleExpand}>
         {buttonSwitch()}
       </ExpandButton>
-      <NextButtonL onClick={prevSlide} windowWidth={windowWidth}>
+      <NextButtonL
+        onClick={prevSlide}
+        windowWidth={windowWidth}
+        shouldButtonsDisplay={photos.length > 2}
+      >
         <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd">
           <path d="M2.117 12l7.527 6.235-.644.765-9-7.521 9-7.479.645.764-7.529 6.236h21.884v1h-21.883z" />
         </svg>
       </NextButtonL>
-      <NextButtonR onClick={nextSlide} windowWidth={windowWidth}>
+      <NextButtonR
+        shouldButtonsDisplay={photos.length > 2}
+        onClick={nextSlide}
+        windowWidth={windowWidth}
+      >
         <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd">
           <path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z" />
         </svg>

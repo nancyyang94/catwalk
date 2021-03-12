@@ -16,7 +16,7 @@ const Price = (props) => {
   return (
     <PriceContainer>
       <OnSaleText>{`$${originalPrice}`}</OnSaleText>
-      <PriceText sale={true}>{`$${salePrice}`}</PriceText>
+      <PriceText sale={salePrice !== null}>{`$${salePrice}`}</PriceText>
     </PriceContainer>
   );
 };
