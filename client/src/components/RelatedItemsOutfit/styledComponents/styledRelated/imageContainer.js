@@ -8,6 +8,13 @@ const ImageContainer = styled.div`
   border-bottom: 1px solid #ebedee;
   transition: transform .5s;
   position: relative;
+  /* @keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+  }
+  animate: fadein .5s;
+  transition-duration: 0.3s;
+  transition-timing-function: ease; */
 
   .carouselContainer{
     position: absolute;
@@ -15,6 +22,7 @@ const ImageContainer = styled.div`
     left: 7.5%;
     overflow: auto;
     overflow-x: hidden;
+    overflow-y: hidden;
     display: flex;
     width: 188px;
   }
