@@ -8,13 +8,6 @@ const ImageContainer = styled.div`
   border-bottom: 1px solid #ebedee;
   transition: transform .5s;
   position: relative;
-  /* @keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-  }
-  animate: fadein .5s;
-  transition-duration: 0.3s;
-  transition-timing-function: ease; */
   .imageButtonContainer {
     position: absolute;
     top: 75%;
@@ -58,6 +51,17 @@ const ImageContainer = styled.div`
     top: -20%;
     position: absolute;
     z-index: -1;
+  }
+
+  .imageRightSVG, .imageLeftSVG {
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  animation: fadein .5s;
+    &:hover {
+      fill: black;
+    }
   }
 
   .carouselContainer{
@@ -105,6 +109,7 @@ const ImageContainer = styled.div`
     height: 100%;
     width: 100%;
     object-fit: fill;
+    border-radius: 10%;
   }
 `;
 
