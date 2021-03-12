@@ -15,11 +15,54 @@ const ImageContainer = styled.div`
   animate: fadein .5s;
   transition-duration: 0.3s;
   transition-timing-function: ease; */
+  .imageButtonContainer {
+    position: absolute;
+    top: 75%;
+    left: 0%;
+    width: 228px;
+  }
+
+  .imageLeft, .imageRight {
+    position: absolute;
+    top: 0%;
+    height: 40px;
+    width: 23px;
+    z-index: 1;
+    background: none;
+    outline: none;
+    border: none;
+  }
+
+  .imageLeft {
+    left: -1%;
+  }
+
+  .imageRight {
+    right: -1%;
+  }
+
+  .imageLeftSVG {
+    transform: scale(.3) rotate(-180deg);
+    fill: white;
+    left: -65%;
+    top: -20%;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .imageRightSVG {
+    transform: scale(.3);
+    fill: white;
+    right: -65%;
+    top: -20%;
+    position: absolute;
+    z-index: -1;
+  }
 
   .carouselContainer{
     position: absolute;
-    top: 75%;
-    left: 7.5%;
+    top: 71%;
+    left: 8.5%;
     overflow: auto;
     overflow-x: hidden;
     overflow-y: hidden;
