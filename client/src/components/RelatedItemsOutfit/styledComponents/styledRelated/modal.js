@@ -22,6 +22,7 @@ const Modal = styled.div`
   .compareBox{
     height: 200px;
     overflow: auto;
+    text-align: center;
   }
 `;
 

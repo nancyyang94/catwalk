@@ -12,6 +12,10 @@ const TitleContainer = styled.div`
   font-family: Arial, Helvetica, sans-serif;
   font-size: 100%;
   overflow: auto;
+  text-align: center;
+  div{
+    text-align:center;
+  }
 `;
 
 export default TitleContainer;
