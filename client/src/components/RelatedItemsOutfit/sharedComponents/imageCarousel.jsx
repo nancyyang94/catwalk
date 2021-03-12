@@ -60,11 +60,14 @@ const ImageCarousel = ({ photos, setPhoto, id, trackInteraction }) => {
     const thumbnailsSlider = document.getElementById(`${unique}`);
     trackInteraction(event, 'RelatedOutfit');
     thumbnailsSlider.scrollLeft -= 48;
-    if (thumbnailsSlider.scrollLeft < 48) {
+    if (thumbnailsSlider.scrollLeft < 96) {
       thumbnailsSlider.scrollLeft = 0;
+      sethasNextPhotos(true);
       sethasPreviousPhotos(false);
+      return null;
     }
-    updateButton();
+    sethasNextPhotos(true);
+    return null;
   };
 
   const right = (event) => {
@@ -74,12 +77,15 @@ const ImageCarousel = ({ photos, setPhoto, id, trackInteraction }) => {
     trackInteraction(event, 'RelatedOutfit');
     thumbnailsSlider.scrollLeft += 48;
     if (
-      thumbnailsSlider.scrollLeft > thumbnailsSlider.scrollWidth - thumbnailsSlider.clientWidth - 48
+      thumbnailsSlider.scrollLeft > thumbnailsSlider.scrollWidth - thumbnailsSlider.clientWidth - 96
     ) {
       thumbnailsSlider.scrollLeft = thumbnailsSlider.scrollWidth;
       sethasNextPhotos(false);
+      sethasPreviousPhotos(true);
+      return null;
     }
-    updateButton();
+    sethasPreviousPhotos(true);
+    return null;
   };
 
   return (

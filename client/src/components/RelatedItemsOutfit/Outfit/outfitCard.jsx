@@ -14,6 +14,7 @@ const OutfitCard = ({
       photos={productInfo.photos}
       category={productInfo.category}
       trackInteraction={trackInteraction}
+      id={productInfo.styleId}
     />
     <Descriptions productInfo={productInfo} />
   </ProductContainer>
