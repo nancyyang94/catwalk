@@ -7,7 +7,7 @@ const NextButtonR = styled.button`
   top: 50%;
   right: 30px;
   margin-top: -25px;
-  display: flex;
+  display: ${(props) => (props.shouldButtonsDisplay ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
   background-color: ${(props) => (props.windowWidth < 981 ? 'transparent' : '#fff')};

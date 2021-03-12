@@ -40,6 +40,7 @@ const AddToCart = ({ styleId, skus }) => {
   }, [styleId]);
 
   const currentSizes = makeSizeTuples();
+
   return (
     <InnerContainer>
       <SelectorContainer>

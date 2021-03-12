@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import ImageGallery from './ImageGallery/ImageGallery';
 import OverviewContainer from './StyledComponents/OverviewContainer';
 import GalleryContainer from './StyledComponents/GalleryContainer';
-import LoadingDiv from './StyledComponents/LoadingDiv';
 import AltWindowWidthContainer from './StyledComponents/AltWindowWidthContainer';
 import StyleSelector from './StyleSelector/StyleSelector';
 import AddToCart from './AddToCart/AddToCart';
 import AddToCartContainer from './StyledComponents/AddToCartContainer';
 import DescriptionContainer from './StyledComponents/DescriptionContainer';
+import ImageGalleryContainer from './StyledComponents/ImageGallery/ImageGalleryContainer';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -55,14 +55,25 @@ class Overview extends React.Component {
     const { currentStyle, updateCurrentStyle, windowWidth } = this.props;
 
     if (styles.length < 1 || Object.keys(currentStyle).length === 0) {
-      return (<LoadingDiv>loading...</LoadingDiv>);
+      return (
+        <ImageGalleryContainer
+          isLoading={styles.length < 1 || Object.keys(currentStyle).length === 0}
+        />
+      );
     }
     const { photos, skus, style_id: styleId } = currentStyle;
-    const { product } = this.props;
+    const { product, trackInteraction } = this.props;
     const { slogan, description } = product;
 
     return (
-      <OverviewContainer>
+      <OverviewContainer
+        onClick={(event) => trackInteraction(event, 'Overview')}
+        onKeyPress={(event) => trackInteraction(event, 'Overview')}
+        role="button"
+        tabIndex={0}
+        style={{ outline: 'none' }}
+        windowWidth={windowWidth}
+      >
         <GalleryContainer>
           <ImageGallery photos={photos} windowWidth={windowWidth} />
         </GalleryContainer>
@@ -113,6 +124,7 @@ Overview.propTypes = {
   }),
   updateCurrentStyle: PropTypes.func,
   windowWidth: PropTypes.number,
+  trackInteraction: PropTypes.func,
 };
 
 Overview.defaultProps = {
@@ -120,6 +132,7 @@ Overview.defaultProps = {
   currentStyle: {},
   updateCurrentStyle: null,
   windowWidth: 0,
+  trackInteraction: null,
 };
 
 export default Overview;

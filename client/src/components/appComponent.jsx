@@ -116,6 +116,7 @@ const AppComponent = () => {
       <AllContainer>
         <MainContainer>
           <Overview
+            trackInteraction={trackInteraction}
             windowWidth={windowWidth}
             product={product}
             currentStyle={currentStyle}
@@ -139,6 +140,7 @@ const AppComponent = () => {
           </div>
         </MainContainer>
         <Sidebar
+          trackInteraction={trackInteraction}
           windowWidth={windowWidth}
           product={product}
           currentStyle={currentStyle}

@@ -6,7 +6,6 @@ const OnSaleText = styled.h1`
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 700;
   letter-spacing: 1.5px;
-  color: red;
   text-decoration: line-through;
   padding-right: 5px;
 
