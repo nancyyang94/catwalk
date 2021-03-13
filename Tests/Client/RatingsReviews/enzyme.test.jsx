@@ -25,11 +25,4 @@ describe('BreakdownAndList', () => {
     const wrapper = shallow(<RatingsReviews />);
     expect(wrapper.find('.reviews')).not.toBeNull();
   });
-
-describe('ButtonClick', () => {
-  it('loads two more reviews upon clicking load more', () => {
-    const wrapper = shallow()
-  })
-})
-
 });
