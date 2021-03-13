@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Nav from './Nav';
 import ImageGalleryContainer from '../StyledComponents/ImageGallery/ImageGalleryContainer';
@@ -12,6 +12,9 @@ const ImageGallery = ({ photos, windowWidth }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isZoomed, setIsZoomed] = useState(false);
+  const [imgLeft, setImgLeft] = useState(0);
+
+  const imgRef = useRef();
 
   const mouseEnter = () => {
     setIsHovering(true);
@@ -30,6 +33,9 @@ const ImageGallery = ({ photos, windowWidth }) => {
   };
 
   const handleExpand = () => {
+    if (isExpanded) {
+      setIsZoomed(false);
+    }
     setIsExpanded(!isExpanded);
   };
 
@@ -79,6 +85,32 @@ const ImageGallery = ({ photos, windowWidth }) => {
     );
   };
 
+  useEffect(() => {
+    if (!isZoomed) {
+      imgRef.current.style.setProperty('top', 'initial');
+      imgRef.current.style.setProperty('left', 'initial');
+    }
+  }, [isZoomed]);
+
+  useEffect(() => {
+    if (isZoomed) {
+      setImgLeft(imgRef.current.offsetLeft);
+    }
+  }, [windowWidth]);
+
+  const mouseMove = (e) => {
+    const xMiddle = imgLeft + (imgRef.current.offsetWidth / 2);
+    const yMiddle = 0 + (imgRef.current.offsetHeight / 2);
+
+    const newLeft = -(((e.clientX - xMiddle) * 2.5) / 2);
+    const newTop = -((e.clientY - yMiddle) * 2.5);
+
+    if (isZoomed) {
+      imgRef.current.style.setProperty('top', `${newTop}px`);
+      imgRef.current.style.setProperty('left', `${newLeft}px`);
+    }
+  };
+
   return (
     <ImageGalleryContainer
       isExpanded={isExpanded}
@@ -91,14 +123,14 @@ const ImageGallery = ({ photos, windowWidth }) => {
       <NextButtonL
         onClick={prevSlide}
         windowWidth={windowWidth}
-        shouldButtonsDisplay={photos.length > 2}
+        shouldButtonsHide={photos.length < 2 || isZoomed}
       >
         <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd">
           <path d="M2.117 12l7.527 6.235-.644.765-9-7.521 9-7.479.645.764-7.529 6.236h21.884v1h-21.883z" />
         </svg>
       </NextButtonL>
       <NextButtonR
-        shouldButtonsDisplay={photos.length > 2}
+        shouldButtonsHide={photos.length < 2 || isZoomed}
         onClick={nextSlide}
         windowWidth={windowWidth}
       >
@@ -111,7 +143,7 @@ const ImageGallery = ({ photos, windowWidth }) => {
         const key = index;
         if (index === current) {
           return (
-            <GalleryViewerImg isZoomed={isZoomed} isExpanded={isExpanded} onClick={imgExpandHandler} key={key} src={url} alt="active img" />
+            <GalleryViewerImg onMouseMove={mouseMove} ref={imgRef} isZoomed={isZoomed} isExpanded={isExpanded} onClick={imgExpandHandler} key={key} src={url} alt="active img" />
           );
         }
         return null;

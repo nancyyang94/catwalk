@@ -7,7 +7,11 @@ const GalleryViewerImg = styled.img`
   object-fit: contain;
   background-color: #edeff0;
   transition: transform .4s;
-  cursor: ${(props) => (props.isExpanded ? 'crosshair' : 'zoom-in')}
+  cursor: ${(props) => (props.isExpanded ? 'crosshair' : 'zoom-in')};
+  position: absolute;
+  top: 0px;
+  left: null;
+  transition: 0s ease;
 `;
 
 export default GalleryViewerImg;

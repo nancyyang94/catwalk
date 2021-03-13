@@ -21,7 +21,7 @@ const ImageGalleryContainer = styled.div`
   background-color: #edeff0;
   justify-content: center;
   align-items: center;
-  overflow: scroll;
+  overflow: hidden;
   transition-duration: 0.5s;
   animation: ${({ isLoading }) => (isLoading ? css`${pulse} 1.5s ease-in-out infinite` : 'none')};
 
