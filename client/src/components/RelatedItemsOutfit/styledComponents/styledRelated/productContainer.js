@@ -13,7 +13,6 @@ const ProductContainer = styled(Link)`
   position: relative;
   text-decoration: inherit;
   color: inherit;
-  /* box-shadow: 3px 3px 3px #999999; */
   border-radius: 1%;
   background-color: white;
   cursor: pointer;

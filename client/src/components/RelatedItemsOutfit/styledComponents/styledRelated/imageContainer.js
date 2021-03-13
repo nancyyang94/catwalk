@@ -112,5 +112,5 @@ const ImageContainer = styled.div`
     border-radius: 10%;
   }
 `;
-
+ImageContainer.displayName = 'imageContainer';
 export default ImageContainer;

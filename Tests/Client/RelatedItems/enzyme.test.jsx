@@ -1,14 +1,19 @@
 /* eslint-disable no-undef */
 import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import { shallow } from 'enzyme';
-import RelatedItemsOutfit from '../../../client/src/components/RelatedItemsOutfit/RelatedItemsOutfit';
 import Overview from '../../../client/src/components/Overview/Overview';
 import RatingsReviews from '../../../client/src/components/RatingsReviews/RatingsReviews';
 import AppComponent from '../../../client/src/components/appComponent';
 import App from '../../../client/src/components/app';
 import ProductCard from '../../../client/src/components/RelatedItemsOutfit/RelatedItems/productCard';
 import ImageGallery from '../../../client/src/components/RelatedItemsOutfit/RelatedItems/imageGallery';
+import RelatedItemsList from '../../../client/src/components/RelatedItemsOutfit/RelatedItems/relatedItemsList';
 
+const photo = {
+  url: '',
+  thumbnail_url: '',
+};
 const props = {
   category: 'Skirt',
   defaultPrice: '473.00',
@@ -20,7 +25,7 @@ const props = {
   style: '',
   salePrice: '222.00',
   default: true,
-  photos: [],
+  photos: [photo],
 };
 
 describe('AppComponent', () => {
@@ -64,7 +69,7 @@ describe('RelatedItemsOutfit Component', () => {
 describe('ProductCard Component', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<ProductCard productInfo={props} />);
+    wrapper = mount(<MemoryRouter><ProductCard productInfo={props} /></MemoryRouter>);
   });
   test('it renders', () => {
     expect(wrapper).not.toBeNull();
@@ -80,5 +85,53 @@ describe('ProductCard Component', () => {
   });
   test('it renders ImageGallery', () => {
     expect(wrapper.find('imageGallery')).toHaveLength(1);
+  });
+  test('to have correct props', () => {
+    expect(wrapper.find('productCard')).toHaveProp('productInfo');
+    expect(wrapper.find('productCard')).toHaveProp('getProduct');
+    expect(wrapper.find('productCard')).toHaveProp('comparisonModal');
+    expect(wrapper.find('productCard')).toHaveProp('trackInteraction');
+  });
+});
+
+describe('RelateditemsList Component', () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<RelatedItemsList related={[props]} />);
+  });
+  test('it renders', () => {
+    expect(wrapper).not.toBeNull();
+  });
+  test('it renders related items carousel when provided related products', () => {
+    expect(wrapper).toContainMatchingElement('#slider');
+  });
+  test('it renders related product card when provided related products', () => {
+    expect(wrapper).toContainMatchingElement('.product');
+  });
+});
+
+describe('Image Gallery', () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = mount(<ImageGallery photos={[photo]} category="sample" />);
+  });
+  test('it renders', () => {
+    expect(wrapper).not.toBeNull();
+  });
+  test('to have correct props', () => {
+    expect(wrapper).toHaveProp('category');
+    expect(wrapper).toHaveProp('photos');
+    expect(wrapper).toHaveProp('trackInteraction');
+    expect(wrapper).toHaveProp('productId');
+  });
+  test('to have correct states', () => {
+    expect(wrapper).toHaveState('imageFocus');
+    expect(wrapper).toHaveState('photo');
+  });
+  test('renders Image Container', () => {
+    expect(wrapper).toContainMatchingElement('imageContainer');
+  });
+  test('renders Image', () => {
+    expect(wrapper).toContainMatchingElement('image');
   });
 });

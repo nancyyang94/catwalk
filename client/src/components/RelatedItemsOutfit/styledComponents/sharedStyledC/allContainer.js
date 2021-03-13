@@ -12,6 +12,9 @@ const AllContainer = styled.div`
     .right {
       right: 0%;
     }
+    .addOutfit {
+      position: relative;
+    }
   }
 
   @media (min-width: 320px) and (max-width: 479px) {
@@ -23,6 +26,9 @@ const AllContainer = styled.div`
     }
     .right {
       right: 0%;
+    }
+    .addOutfit {
+      position: relative;
     }
   }
 
@@ -36,6 +42,9 @@ const AllContainer = styled.div`
     .right {
       right: 0%;
     }
+    .addOutfit {
+      position: relative;
+    }
   }
 
   @media (min-width: 640px) and (max-width: 767px) {
@@ -48,14 +57,17 @@ const AllContainer = styled.div`
     .right {
       right: 0%;
     }
+    .addOutfit {
+      position: relative;
+    }
   }
 
   @media (min-width: 1800px) and (max-width: 2000px) {
     transition: transform 1s;
-    #carousel1, #carousel2{
+    #carousel1, #carousel2 {
       margin-left: 4%;
     }
-    .buttonContainer{
+    .buttonContainer {
       padding-left: 20%;
       padding-right: 0%;
       right: 0%;
