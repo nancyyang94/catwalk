@@ -10,6 +10,20 @@ const RatingsReviewContainer = styled.div`
   font-family: Arial, sans-serif;
   color: #ffffff;
 
+  @keyframes slideInFromBottom {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+  }
+
+  .ratings, .reviews {
+  animation: 1.5s ease-out 0s 1 slideInFromBottom;
+  }
+
+
   @media only screen and (max-width: 960px) {
     grid-template-columns: 1fr;
     margin-bottom: 5%;
