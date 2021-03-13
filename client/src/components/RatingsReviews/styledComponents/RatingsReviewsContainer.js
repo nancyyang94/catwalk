@@ -11,25 +11,6 @@ const RatingsReviewContainer = styled.div`
   color: #ffffff;
 
 
-.ratings, .reviews {
-  animation-duration: 3.5s;
-  animation-name: slidein;
-}
-
-
-@keyframes slidein {
-  from {
-    margin-top: 100%;
-    height: 300%;
-  }
-
-  to {
-    margin-top: 0%;
-    height: 100%;
-    }
-  }
-
-
   @media only screen and (max-width: 960px) {
     grid-template-columns: 1fr;
     margin-bottom: 5%;
