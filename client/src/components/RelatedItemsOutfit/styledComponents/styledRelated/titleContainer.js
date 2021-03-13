@@ -17,5 +17,5 @@ const TitleContainer = styled.div`
     text-align:center;
   }
 `;
-
+TitleContainer.displayName = 'titleContainer';
 export default TitleContainer;

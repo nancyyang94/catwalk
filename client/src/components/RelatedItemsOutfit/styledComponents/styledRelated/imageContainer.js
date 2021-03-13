@@ -60,7 +60,7 @@ const ImageContainer = styled.div`
     }
   animation: fadein .5s;
     &:hover {
-      fill: black;
+      fill: #45da70;
     }
   }
 

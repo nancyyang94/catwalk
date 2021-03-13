@@ -127,7 +127,6 @@ const OutfitList = ({
 export default OutfitList;
 
 OutfitList.propTypes = {
-  // related: PropTypes.arrayOf(PropTypes.object),
   getProduct: PropTypes.func,
   currentStyle: PropTypes.shape({
     style_id: PropTypes.number,
@@ -161,3 +160,5 @@ OutfitList.defaultProps = {
   updateButton: PropTypes.func,
   trackInteraction: PropTypes.func,
 };
+
+PropTypes.checkPropTypes(PropTypes.updateButton);

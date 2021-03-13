@@ -20,6 +20,7 @@ const OutfitCard = ({
   </ProductContainer>
 );
 
+OutfitCard.displayName = 'outfitCard';
 export default OutfitCard;
 
 OutfitCard.propTypes = {

@@ -13,5 +13,5 @@ const ModalContainer = styled.div`
   z-index: 100000;
   backdrop-filter:blur(5px);
 `;
-
+ModalContainer.displayName = 'modalContainer';
 export default ModalContainer;

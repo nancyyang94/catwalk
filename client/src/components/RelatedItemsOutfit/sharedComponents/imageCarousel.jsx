@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-// import Left from '../styledComponents/styledRelated/left';
-// import Right from '../styledComponents/styledRelated/right';
 
-const ImageCarousel = ({ photos, setPhoto, id, trackInteraction }) => {
+const ImageCarousel = ({
+  photos, setPhoto, id, trackInteraction,
+}) => {
   const [thumbnails] = useState(photos);
   const placeHolder = 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80';
   const [hasPreviousPhotos, sethasPreviousPhotos] = useState(false);
@@ -37,7 +37,10 @@ const ImageCarousel = ({ photos, setPhoto, id, trackInteraction }) => {
 
   useEffect(() => {
     if (id !== undefined) {
-      updateButton();
+      const thumbnailsSlider = document.getElementById(`${unique}`);
+      if (thumbnailsSlider) {
+        updateButton();
+      }
     }
   }, [id]);
 
@@ -100,7 +103,7 @@ const ImageCarousel = ({ photos, setPhoto, id, trackInteraction }) => {
     </div>
   );
 };
-
+ImageCarousel.displayName = 'imageCarousel';
 export default ImageCarousel;
 
 ImageCarousel.propTypes = {

@@ -32,6 +32,7 @@ const StarReviews = ({ reviews }) => {
   );
 };
 
+StarReviews.displayName = 'starReviews';
 export default StarReviews;
 
 StarReviews.propTypes = {

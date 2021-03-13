@@ -12,5 +12,5 @@ const CompareContainer = styled.div`
   z-index: 1000;
   font-family: Arial, Helvetica, sans-serif;
 `;
-
+CompareContainer.displayName = 'compareContainer';
 export default CompareContainer;

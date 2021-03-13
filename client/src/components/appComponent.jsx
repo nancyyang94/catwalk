@@ -6,7 +6,7 @@ import Overview from './Overview/Overview';
 import RelatedItemsOutfit from './RelatedItemsOutfit/RelatedItemsOutfit';
 import RatingsReviews from './RatingsReviews/RatingsReviews';
 import AllContainer from './RelatedItemsOutfit/styledComponents/sharedStyledC/allContainer';
-import ComparissonModal from './RelatedItemsOutfit/RelatedItems/comparissonModal';
+import ComparisonModal from './RelatedItemsOutfit/RelatedItems/comparisonModal';
 import Sidebar from './Sidebar';
 import MainContainer from './Overview/SharedComponents/MainContainer';
 import useWindowSize from './Overview/useWindowSize';
@@ -105,7 +105,7 @@ const AppComponent = () => {
   return (
     <div>
       {isPressed ? (
-        <ComparissonModal
+        <ComparisonModal
           combinedFeatures={combinedFeatures}
           product1={product.name}
           product2={relatedName}
@@ -151,7 +151,7 @@ const AppComponent = () => {
     </div>
   );
 };
-
+AppComponent.displayName = 'appComponent';
 export default AppComponent;
 
 AppComponent.propTypes = {
