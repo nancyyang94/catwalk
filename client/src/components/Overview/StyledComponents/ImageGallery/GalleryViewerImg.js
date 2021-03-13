@@ -11,7 +11,7 @@ const GalleryViewerImg = styled.img`
   position: absolute;
   top: 0px;
   left: null;
-  transition: .1s ease;
+  transition: .3s ease;
 `;
 
 export default GalleryViewerImg;

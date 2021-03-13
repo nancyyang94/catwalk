@@ -16,7 +16,7 @@ const ImageGalleryContainer = styled.div`
   position: relative;
   z-index: 10;
   display:flex;
-  height: ${({ isExpanded }) => (isExpanded ? '600px' : '600px')};
+  height: ${({ isExpanded }) => (isExpanded ? '100vh' : '600px')};
   width: ${({ isExpanded }) => (isExpanded ? '100vw' : '100%')};
   background-color: #edeff0;
   justify-content: center;
