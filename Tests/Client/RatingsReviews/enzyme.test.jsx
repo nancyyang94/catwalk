@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React from 'react';
-// import { shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 // import App from '../../../client/src/components/app';
 import RatingsReviews from '../../../client/src/components/RatingsReviews/RatingsReviews';
 
@@ -11,5 +11,17 @@ describe('RatingsReviews', () => {
   });
   test('it renders the ratings and reviews module', () => {
     expect(wrapper).not.toBeNull();
+  });
+});
+
+describe('RatingsBreakdown', () => {
+  it('renders the ratings breakdown column', () => {
+    const wrapper = shallow(<RatingsReviews />);
+    expect(wrapper.find('.ratings')).not.toBeNull();
+  });
+
+  it('renders the reviews list column', () => {
+    const wrapper = shallow(<RatingsReviews />);
+    expect(wrapper.find('.reviews')).not.toBeNull();
   });
 });
