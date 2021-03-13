@@ -12,7 +12,7 @@ const RatingsReviewContainer = styled.div`
 
 
 .ratings, .reviews {
-  animation-duration: 2s;
+  animation-duration: 3.5s;
   animation-name: slidein;
 }
 
