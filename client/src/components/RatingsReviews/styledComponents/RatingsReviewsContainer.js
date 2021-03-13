@@ -10,17 +10,23 @@ const RatingsReviewContainer = styled.div`
   font-family: Arial, sans-serif;
   color: #ffffff;
 
-  @keyframes slideInFromBottom {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
+
+.ratings, .reviews {
+  animation-duration: 2s;
+  animation-name: slidein;
+}
+
+
+@keyframes slidein {
+  from {
+    margin-top: 100%;
+    height: 300%;
   }
 
-  .ratings, .reviews {
-  animation: 1.5s ease-out 0s 1 slideInFromBottom;
+  to {
+    margin-top: 0%;
+    height: 100%;
+    }
   }
 
 
