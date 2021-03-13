@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import Overview from '../../../client/src/components/Overview/Overview';
 import RatingsReviews from '../../../client/src/components/RatingsReviews/RatingsReviews';
 import AppComponent from '../../../client/src/components/appComponent';
