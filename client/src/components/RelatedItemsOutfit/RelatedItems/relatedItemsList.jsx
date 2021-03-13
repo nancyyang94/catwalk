@@ -18,7 +18,7 @@ const RelatedItemsList = ({
               productInfo={productInfo}
               getProduct={getProduct}
               comparisonModal={comparisonModal}
-              className="slide"
+              className="product"
               trackInteraction={trackInteraction}
             />
           );
