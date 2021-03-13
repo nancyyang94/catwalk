@@ -6,7 +6,7 @@ const OutfitItemsContainer = styled.div`
   display: flex;
   flex-direction: row;
   transition: 1s;
-  max-width: 965px;
+  max-width: 958px;
   overflow-x: hidden;
   margin-left: 14.5%;
   padding: 0;
@@ -16,6 +16,7 @@ const OutfitItemsContainer = styled.div`
     border: 1px solid black;
     transition: 1s;
   }
+  position: relative;
 `;
 
 export default OutfitItemsContainer;

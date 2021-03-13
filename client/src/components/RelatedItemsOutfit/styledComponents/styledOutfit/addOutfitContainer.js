@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 
 const AddOutfitContainer = styled.div`
-  flex-basis: 20%
-  height: 100%;
+  height: auto;
   width: 230px;
   border: 1px solid #d3d3d3;
   flex-shrink: 0;
   flex-grow: 0;
   margin-bottom: 5px;
-  margin-left: 5px;
+  margin-left: 0;
   margin-right: 5px;
   position: relative;
   text-align: center;
@@ -20,8 +19,10 @@ const AddOutfitContainer = styled.div`
   background-color: none;
   border-radius: 1%;
   cursor: pointer;
-  position: relative;
+  position: sticky;
   background:#d3d3d3;
+  left: 0;
+  z-index: 50;
 
   &:hover {
   .add {
