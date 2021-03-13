@@ -6,11 +6,13 @@ import NextRowContainer from '../StyledComponents/AddToCart/NextRowContainer';
 import SizeSelector from './SizeSelector';
 import QuantitySelector from './QuantitySelector';
 import Bag from './Bag';
+import SelectWarning from '../StyledComponents/AddToCart/SelectWarning';
 
 const AddToCart = ({ styleId, skus }) => {
   // const [currentSizes, setCurrentSizes] = useState([]);
   const [currentSelectedId, setCurrentSelectedId] = useState('default');
   const [currentCount, setCurrentCount] = useState(1);
+  const [flagged, setFlagged] = useState(false);
 
   const handleSizeClick = (num) => {
     setCurrentSelectedId(num);
@@ -39,12 +41,27 @@ const AddToCart = ({ styleId, skus }) => {
     setCurrentSelectedId('default');
   }, [styleId]);
 
+  useEffect(() => {
+    if (currentSelectedId !== 'default') {
+      setFlagged(false);
+    }
+  });
+
   const currentSizes = makeSizeTuples();
 
   return (
     <InnerContainer>
       <SelectorContainer>
-        <SizeSelector currentSizes={currentSizes} handleSizeClick={handleSizeClick} />
+        {flagged ? (
+          <SelectWarning>
+            Select a size first!
+          </SelectWarning>
+        ) : null}
+        <SizeSelector
+          flagged={flagged}
+          currentSizes={currentSizes}
+          handleSizeClick={handleSizeClick}
+        />
         <QuantitySelector
           currentSelectedId={currentSelectedId}
           skus={skus}
@@ -58,6 +75,7 @@ const AddToCart = ({ styleId, skus }) => {
           currentSelectedId={currentSelectedId}
           setCurrentSelectedId={setCurrentSelectedId}
           currentCount={currentCount}
+          setFlagged={setFlagged}
         />
       </NextRowContainer>
     </InnerContainer>

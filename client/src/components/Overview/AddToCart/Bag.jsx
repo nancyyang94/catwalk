@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import BagContainer from '../StyledComponents/AddToCart/BagContainer';
 
-const Bag = ({ currentSelectedId, currentSizes }) => {
+const Bag = ({ currentSelectedId, currentSizes, setFlagged }) => {
   if (currentSizes.length === 0) {
     return null;
   }
 
   const handleClick = () => {
     if (currentSelectedId === 'default') {
-      // eslint-disable-next-line no-console
-      console.log('u gotta add a size!');
+      setFlagged(true);
     } else {
       const styleNumber = Number(currentSelectedId);
       axios.post('/cart', { styleNumber })
@@ -40,11 +39,13 @@ Bag.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]),
+  setFlagged: PropTypes.func,
 };
 
 Bag.defaultProps = {
   currentSizes: [],
   currentSelectedId: 'default',
+  setFlagged: null,
 };
 
 export default Bag;

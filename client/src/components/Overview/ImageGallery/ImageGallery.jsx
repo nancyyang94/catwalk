@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Nav from './Nav';
 import ImageGalleryContainer from '../StyledComponents/ImageGallery/ImageGalleryContainer';
@@ -12,6 +12,9 @@ const ImageGallery = ({ photos, windowWidth }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isZoomed, setIsZoomed] = useState(false);
+  const [zoomLeftTop, setZoomLeftTop] = useState(false);
+
+  const imgRef = useRef();
 
   const mouseEnter = () => {
     setIsHovering(true);
@@ -30,6 +33,9 @@ const ImageGallery = ({ photos, windowWidth }) => {
   };
 
   const handleExpand = () => {
+    if (isExpanded) {
+      setIsZoomed(false);
+    }
     setIsExpanded(!isExpanded);
   };
 
@@ -79,6 +85,25 @@ const ImageGallery = ({ photos, windowWidth }) => {
     );
   };
 
+  const mouseMove = (e) => {
+    const newLeft = e.clientX - imgRef.current.offsetLeft;
+    const newTop = e.clientY - imgRef.current.offsetTop;
+
+    if (isZoomed) {
+      imgRef.current.style.setProperty('top', `${newTop}px`);
+      imgRef.current.style.setProperty('left', `${newLeft}px`);
+    }
+
+    // imgRef.current.style.setProperty('top', `${newTop}px`);
+    // imgRef.current.style.setProperty('left', `${newLeft}px`);
+    // if (newLeft && newTop) {
+    //   setZoomLeftTop({
+    //     left: `${newLeft}px`,
+    //     top: `${newTop}px`,
+    //   });
+    // }
+  };
+
   return (
     <ImageGalleryContainer
       isExpanded={isExpanded}
@@ -111,7 +136,7 @@ const ImageGallery = ({ photos, windowWidth }) => {
         const key = index;
         if (index === current) {
           return (
-            <GalleryViewerImg isZoomed={isZoomed} isExpanded={isExpanded} onClick={imgExpandHandler} key={key} src={url} alt="active img" />
+            <GalleryViewerImg onMouseMove={mouseMove} ref={imgRef} isZoomed={isZoomed} isExpanded={isExpanded} zoomLeftTop={zoomLeftTop} onClick={imgExpandHandler} key={key} src={url} alt="active img" />
           );
         }
         return null;
