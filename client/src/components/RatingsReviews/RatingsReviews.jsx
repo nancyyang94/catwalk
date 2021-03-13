@@ -15,8 +15,16 @@ class RatingsReviews extends React.Component {
     const { product } = this.props;
     return (
       <RatingsReviewsContainer>
-        <Ratings product={product} reviews={product.reviews} id={product.id} />
-        <ReviewsList product={product} productName={product.name} />
+        {product && (
+        <div className="ratings">
+          <Ratings product={product} reviews={product.reviews} id={product.id} />
+        </div>
+        )}
+        {product && (
+        <div className="reviews">
+          <ReviewsList product={product} productName={product.name} />
+        </div>
+        )}
       </RatingsReviewsContainer>
     );
   }
