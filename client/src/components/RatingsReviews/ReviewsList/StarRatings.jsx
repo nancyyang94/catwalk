@@ -66,7 +66,9 @@ function getStars(value) {
 
 const StarRating = (rating) => (
   <StarRatingContainer>
-    {getStars(rating).map((star) => <IndividualStarContainer key={`${rating}_${Math.random()}`}>{star}</IndividualStarContainer>)}
+    <div className="individual-stars">
+      {getStars(rating).map((star) => <div className="single-star"><IndividualStarContainer key={`${rating}_${Math.random()}`}>{star}</IndividualStarContainer></div>)}
+    </div>
   </StarRatingContainer>
 );
 

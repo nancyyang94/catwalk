@@ -22,7 +22,7 @@ function ProductBreakdownContainer({ id }) {
   }, [id]);
 
   const allRatings = featureNames.map((name, index) => (
-    <div key={`${Math.random()}`}>
+    <div className="factors" key={`${Math.random()}`}>
       {featureNames.length > 0 && values[index]
       && (
       <IndividualFactor
@@ -38,7 +38,9 @@ function ProductBreakdownContainer({ id }) {
 
   return (
     <ProductBreakdownWrapper>
-      {allRatings}
+      <div className="all-ratings">
+        {allRatings}
+      </div>
     </ProductBreakdownWrapper>
   );
 }
