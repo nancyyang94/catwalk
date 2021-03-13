@@ -30,5 +30,5 @@ const DescriptionsContainer = styled.div`
     margin-bottom: 5.5%;
   }
 `;
-
+DescriptionsContainer.displayName = 'descriptionsContainer';
 export default DescriptionsContainer;

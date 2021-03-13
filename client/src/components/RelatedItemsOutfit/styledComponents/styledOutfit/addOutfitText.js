@@ -21,5 +21,5 @@ const AddOutfitText = styled.div`
     background: white;
   }
 `;
-
+AddOutfitText.displayName = 'addOutfitText';
 export default AddOutfitText;

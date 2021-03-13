@@ -21,7 +21,7 @@ const ComparisonModal = ({
       </TitleContainer>
       <div className="compareBox">
         <CompareContainer>
-          {combinedFeatures.map((element, i) => <div key={`modal${i}`}>{element}</div>)}
+          {combinedFeatures.map((element, i) => <div key={`modal${i}`} className="features">{element}</div>)}
         </CompareContainer>
       </div>
     </Modal>

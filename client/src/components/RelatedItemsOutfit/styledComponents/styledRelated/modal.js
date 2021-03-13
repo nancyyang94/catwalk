@@ -25,5 +25,5 @@ const Modal = styled.div`
     text-align: center;
   }
 `;
-
+Modal.displayName = 'modal';
 export default Modal;

@@ -25,6 +25,8 @@ const AddOutfitContainer = styled.div`
   z-index: 50;
 
   &:hover {
+  border: 1px solid black;
+
   .add {
     color: black;
     transition: 1s;

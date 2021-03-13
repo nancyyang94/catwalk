@@ -22,5 +22,5 @@ const OutfitAction = styled.button`
     transition: .5s;
   }
 `;
-
+OutfitAction.displayName = 'outfitAction';
 export default OutfitAction;
