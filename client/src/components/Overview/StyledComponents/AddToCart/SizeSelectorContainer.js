@@ -9,7 +9,8 @@ const SizeSelectorContainer = styled.select`
   font-size: 16px;
   color: white;
   background-color: black;
-  border: 1px solid black;
+  border: ${({ flagged }) => (flagged ? '3px solid white' : '1px solid black')};
+  outline: ${({ flagged }) => (flagged ? '1px solid red' : 'initial')};
   cursor: pointer;
 
   :focus {
@@ -22,5 +23,3 @@ const SizeSelectorContainer = styled.select`
 `;
 
 export default SizeSelectorContainer;
-
-// #edeff0;
