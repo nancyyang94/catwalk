@@ -9,6 +9,26 @@ const RatingsContainer = styled.div`
   .lineBreak {
     margin-top: 20%;
   }
+
+  .p {
+    font-size: smaller;
+  }
+
+  h3 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: left;
+    font-size: larger;
+  }
+
+  .number-percent {
+    color: black;
+    font-size: 2em;
+    font-weight: bold;
+
+  }
 `;
 
 export default RatingsContainer;

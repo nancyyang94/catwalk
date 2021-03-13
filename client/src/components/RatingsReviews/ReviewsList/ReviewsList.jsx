@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import IndividualReview from './IndividualReview';
 import ReviewListContainer from '../styledComponents/ReviewListContainer';
 import ReviewListButtonsContainer from '../styledComponents/ReviewListButtons';
-import NewReview from './NewReview';
 
 function ReviewsList({ product }) {
   const { reviews } = product;
