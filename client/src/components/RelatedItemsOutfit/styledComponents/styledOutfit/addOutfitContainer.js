@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const AddOutfitContainer = styled.div`
-  height: 100%;
+  height: auto;
   width: 230px;
   border: 1px solid #d3d3d3;
   flex-shrink: 0;
