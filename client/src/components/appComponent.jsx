@@ -151,7 +151,7 @@ const AppComponent = () => {
     </div>
   );
 };
-
+AppComponent.displayName = 'appComponent';
 export default AppComponent;
 
 AppComponent.propTypes = {

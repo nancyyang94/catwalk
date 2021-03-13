@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import Overview from '../../../client/src/components/Overview/Overview';
 import RatingsReviews from '../../../client/src/components/RatingsReviews/RatingsReviews';
 import AppComponent from '../../../client/src/components/appComponent';
@@ -40,6 +40,9 @@ describe('AppComponent', () => {
     expect(wrapper.find('relatedItemsOutfit')).toHaveLength(1);
     expect(wrapper.find(Overview)).toHaveLength(1);
     expect(wrapper.find(RatingsReviews)).toHaveLength(1);
+  });
+  test('to have correct props', () => {
+    expect(wrapper.find('appComponent')).toHaveProp('location');
   });
 });
 
@@ -97,16 +100,48 @@ describe('ProductCard Component', () => {
 describe('RelateditemsList Component', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<RelatedItemsList related={[props]} />);
+    wrapper = mount(<MemoryRouter><RelatedItemsList related={[props]} /></MemoryRouter>);
   });
   test('it renders', () => {
-    expect(wrapper).not.toBeNull();
+    expect(wrapper.find('relatedItemsList')).not.toBeNull();
   });
   test('it renders related items carousel when provided related products', () => {
     expect(wrapper).toContainMatchingElement('#slider');
   });
   test('it renders related product card when provided related products', () => {
     expect(wrapper).toContainMatchingElement('.product');
+  });
+  test('to have correct props', () => {
+    expect(wrapper.find('relatedItemsList')).toHaveProp('related');
+    expect(wrapper.find('relatedItemsList')).toHaveProp('getProduct');
+    expect(wrapper.find('relatedItemsList')).toHaveProp('comparisonModal');
+    expect(wrapper.find('relatedItemsList')).toHaveProp('trackInteraction');
+  });
+});
+
+describe('Image Gallery', () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = mount(<ImageGallery photos={[photo]} category="sample" />);
+  });
+  test('it renders', () => {
+    expect(wrapper).not.toBeNull();
+  });
+  test('to have correct props', () => {
+    expect(wrapper).toHaveProp('category');
+    expect(wrapper).toHaveProp('photos');
+    expect(wrapper).toHaveProp('trackInteraction');
+    expect(wrapper).toHaveProp('productId');
+  });
+  test('to have correct states', () => {
+    expect(wrapper).toHaveState('imageFocus');
+    expect(wrapper).toHaveState('photo');
+  });
+  test('renders Image Container', () => {
+    expect(wrapper).toContainMatchingElement('imageContainer');
+  });
+  test('renders Image', () => {
+    expect(wrapper).toContainMatchingElement('image');
   });
 });
 

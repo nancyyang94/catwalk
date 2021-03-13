@@ -6,7 +6,7 @@ import TitleContainer from '../styledComponents/styledRelated/titleContainer';
 import ModalContainer from '../styledComponents/styledRelated/modalContainer';
 import Modal from '../styledComponents/styledRelated/modal';
 
-const ComparissonModal = ({
+const ComparisonModal = ({
   combinedFeatures, product1, product2, comparisonModal,
 }) => (
   <ModalContainer onClick={(event) => { event.stopPropagation(); comparisonModal(event); }}>
@@ -28,16 +28,17 @@ const ComparissonModal = ({
   </ModalContainer>
 );
 
-export default ComparissonModal;
+ComparisonModal.displayName = 'comparisonModal';
+export default ComparisonModal;
 
-ComparissonModal.propTypes = {
+ComparisonModal.propTypes = {
   combinedFeatures: PropTypes.arrayOf(PropTypes.string),
   product1: PropTypes.string,
   product2: PropTypes.string,
   comparisonModal: PropTypes.func,
 };
 
-ComparissonModal.defaultProps = {
+ComparisonModal.defaultProps = {
   combinedFeatures: PropTypes.arrayOf(PropTypes.string),
   product1: PropTypes.string,
   product2: PropTypes.string,

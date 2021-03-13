@@ -28,6 +28,7 @@ const RelatedItemsList = ({
     </RelatedItemsContainer>
   );
 };
+RelatedItemsList.displayName = 'relatedItemsList';
 export default RelatedItemsList;
 
 RelatedItemsList.propTypes = {
