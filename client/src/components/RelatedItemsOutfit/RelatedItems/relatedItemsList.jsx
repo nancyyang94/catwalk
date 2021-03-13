@@ -5,20 +5,29 @@ import RelatedItemsContainer from '../styledComponents/styledRelated/relatedItem
 
 const RelatedItemsList = ({
   related, getProduct, comparisonModal, trackInteraction,
-}) => (
-  <RelatedItemsContainer id="slider">
-    {related.map((productInfo) => (
-      <ProductCard
-        key={productInfo.styleId}
-        productInfo={productInfo}
-        getProduct={getProduct}
-        comparisonModal={comparisonModal}
-        className="slide"
-        trackInteraction={trackInteraction}
-      />
-    ))}
-  </RelatedItemsContainer>
-);
+}) => {
+  const items = {};
+  return (
+    <RelatedItemsContainer id="slider">
+      {related.map((productInfo) => {
+        if (items[productInfo.styleId] === undefined) {
+          items[productInfo.styleId] = productInfo.styleId;
+          return (
+            <ProductCard
+              key={productInfo.styleId}
+              productInfo={productInfo}
+              getProduct={getProduct}
+              comparisonModal={comparisonModal}
+              className="product"
+              trackInteraction={trackInteraction}
+            />
+          );
+        }
+        return null;
+      })}
+    </RelatedItemsContainer>
+  );
+};
 export default RelatedItemsList;
 
 RelatedItemsList.propTypes = {

@@ -8,7 +8,7 @@ margin: 5px;
 border: none;
 border-bottom: ${(props) => (props.current === props.index ? '3px solid #000' : '1px solid #000')};
 position: relative;
-// bottom: 0px;
+bottom: 0px;
 cursor: pointer;
 transition-duration: 0.3s;
 transition-timing-function: ease;

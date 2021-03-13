@@ -99,7 +99,7 @@ const OutfitList = ({
     <OutfitItemsContainer id="slider2">
       {outfits.map((outfit) => (
         outfit.isOutfitCard ? (
-          <AddOutfitContainer className="productContainer" key="addOutfit" onClick={(event) => addOutfit(event)}>
+          <AddOutfitContainer className="addOutfit" key="addOutfit" onClick={(event) => addOutfit(event)}>
             <AddOutfitText>
               <div className="plus">
                 +
@@ -111,6 +111,7 @@ const OutfitList = ({
           </AddOutfitContainer>
         ) : (
           <OutfitCard
+            className="productContainer"
             productInfo={outfit}
             key={outfit.styleId}
             getProduct={getProduct}

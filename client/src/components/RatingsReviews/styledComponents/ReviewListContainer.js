@@ -8,10 +8,6 @@ const ReviewListContainer = styled.div`
   grid-column: 1fr;
   align-content: center;
   padding: 25px;
-
-  .sort {
-    display: flex;
-  }
 `;
 
 export default ReviewListContainer;

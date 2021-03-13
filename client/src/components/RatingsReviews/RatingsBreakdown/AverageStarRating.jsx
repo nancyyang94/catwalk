@@ -68,7 +68,7 @@ function getStars(value) {
 const AverageStarRating = ({ avg }) => (
   <StarRatingContainer className="average">
     {getStars(avg).map((star) => <AverageStarContainer key={`${avg}_${Math.random()}`}>{star}</AverageStarContainer>)}
-    <h3 className="number-rating">{avg}</h3>
+    <h3 className="number-rating">{Number.parseFloat(avg).toFixed(2)}</h3>
   </StarRatingContainer>
 );
 

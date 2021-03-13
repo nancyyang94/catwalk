@@ -29,9 +29,9 @@ const RatingSummary = ({ reviews }) => {
   }, [reviews]);
 
   return (
-    <>
+    <div className="stars">
       <AverageStarRating avg={averageRating} />
-    </>
+    </div>
   );
 };
 

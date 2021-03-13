@@ -5,5 +5,5 @@ const Image = styled.img`
   width: 100%;
   object-fit: cover;
 `;
-
+Image.displayName = 'image';
 export default Image;
