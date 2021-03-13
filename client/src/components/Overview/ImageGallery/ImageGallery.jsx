@@ -103,7 +103,7 @@ const ImageGallery = ({ photos, windowWidth }) => {
     const yMiddle = 0 + (imgRef.current.offsetHeight / 2);
 
     const newLeft = -(((e.clientX - xMiddle) * 2.5) / 2);
-    const newTop = -(((e.clientY - yMiddle) * 2.5) / 2);
+    const newTop = -((e.clientY - yMiddle) * 2.5);
 
     if (isZoomed) {
       imgRef.current.style.setProperty('top', `${newTop}px`);
@@ -123,14 +123,14 @@ const ImageGallery = ({ photos, windowWidth }) => {
       <NextButtonL
         onClick={prevSlide}
         windowWidth={windowWidth}
-        shouldButtonsDisplay={photos.length > 2}
+        shouldButtonsHide={photos.length < 2 || isZoomed}
       >
         <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd">
           <path d="M2.117 12l7.527 6.235-.644.765-9-7.521 9-7.479.645.764-7.529 6.236h21.884v1h-21.883z" />
         </svg>
       </NextButtonL>
       <NextButtonR
-        shouldButtonsDisplay={photos.length > 2}
+        shouldButtonsHide={photos.length < 2 || isZoomed}
         onClick={nextSlide}
         windowWidth={windowWidth}
       >
