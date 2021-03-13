@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import IndividualReview from './IndividualReview';
 import ReviewListContainer from '../styledComponents/ReviewListContainer';
 import ReviewListButtonsContainer from '../styledComponents/ReviewListButtons';
-import NewReview from './NewReview';
 
 function ReviewsList({ product }) {
   const { reviews } = product;
@@ -33,10 +32,12 @@ function ReviewsList({ product }) {
         <br />
       </ReviewListContainer>
       <ReviewListButtonsContainer>
-        {reviews && (reviews.length > 2) && (lastIndex < reviews.length) && <div className="plop"><button type="button" onClick={setIndex}>More Reviews</button></div>}
+        {reviews && (reviews.length > 2) && (lastIndex < reviews.length) && <div className="more-reviews"><button type="button" onClick={setIndex}>Load More + </button></div>}
         <br />
-        <div className="plop">
-          <NewReview productName={product.name} />
+        <div className="new-review">
+          <button type="button">
+            Write a Review +
+          </button>
         </div>
       </ReviewListButtonsContainer>
     </div>
