@@ -11,10 +11,6 @@ class RatingsReviews extends React.Component {
     };
   }
 
-  componentDidUpdate() {
-    // const { product } = this.props;
-  }
-
   render() {
     const { product } = this.props;
     return (

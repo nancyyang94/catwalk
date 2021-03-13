@@ -6,26 +6,20 @@ const ReviewListButtonsContainer = styled.div`
   justify-content: flex-start;
   margin-top: -3%;
   margin-bottom: 10%;
-  margin-left: 5%;
+  margin-left: 3%;
   margin-right: 3%;
   width: 90%;
 
-  .plop, .plop2 {
-    display: flex;
-    flex-direction: row;
+  .more-reviews, .new-review {
     width: 100%;
     max-height: 50%;
     max-width: 50%;
     margin-right: 2%;
   }
 
-  .plop2 {
-    justify-content: flex-start;
-  }
-
   button {
     width: 100%;
-    height: 100%;
+    height: 75%;
     padding: 10%;
     text-transform: uppercase;
     text-align: left;
@@ -34,6 +28,12 @@ const ReviewListButtonsContainer = styled.div`
     border-color: #000;
     border-style: solid;
     border-width: 1px;
+    margin-bottom: 5%;
+  }
+
+  button:hover {
+    opacity: 0.5;
+    cursor: pointer;
   }
 
 `;

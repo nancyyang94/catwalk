@@ -33,12 +33,11 @@ function ReviewsList({ product }) {
         <br />
       </ReviewListContainer>
       <ReviewListButtonsContainer>
-        {reviews && (reviews.length > 2) && (lastIndex < reviews.length) && <div className="plop"><button type="button" onClick={setIndex}>Load More</button></div>}
+        {reviews && (reviews.length > 2) && (lastIndex < reviews.length) && <div className="more-reviews"><button type="button" onClick={setIndex}>Load More + </button></div>}
         <br />
-        <div className="plop2">
-          {/* <NewReview productName={product.name} /> */}
+        <div className="new-review">
           <button type="button">
-            Write a Review
+            Write a Review +
           </button>
         </div>
       </ReviewListButtonsContainer>
