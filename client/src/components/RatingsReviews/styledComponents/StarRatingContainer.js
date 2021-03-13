@@ -5,7 +5,7 @@ const StarRatingContainer = styled.div`
   color: black;
   padding: ${(props) => (props.className ? '18px' : '0px')};
   height: 40px;
-  width: ${(props) => (props.className ? '250px' : 'auto')};
+  width: ${(props) => (props.className ? '100%' : 'auto')};
   display: flex;
   justify-content: flex-start;
   flex-direction: row;

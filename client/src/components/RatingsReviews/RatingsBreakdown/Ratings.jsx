@@ -40,13 +40,15 @@ class Ratings extends React.Component {
           <p>
             {reviews.length}
             {' '}
-            Reviews
+            REVIEWS
           </p>
-          <p>
-            {this.getPercentage(reviews)}
+          <div className="recommendations">
+            <div className="number-percent">
+              {this.getPercentage(reviews)}
+            </div>
             {' '}
             of reviews recommend this product
-          </p>
+          </div>
           <RatingsBreakdownContainer reviews={reviews} total={reviews.length} id={id} />
           <div className="lineBreak">
             <hr />
