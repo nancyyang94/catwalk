@@ -91,7 +91,7 @@ const AppComponent = () => {
   useEffect(() => {
     if (location) {
       if (!location.pathname.split('/')[2]) {
-        getProduct('14931');
+        getProduct('23145');
       } else {
         getProduct(`${location.pathname.split('/')[2]}`);
       }
