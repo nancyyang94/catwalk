@@ -63,6 +63,6 @@ The related items & Outfits module is composed of two carousels displaying relat
 <div style="text-align:center"><img src="https://user-images.githubusercontent.com/73146132/115306693-0bdba680-a11d-11eb-9b6e-e6480d3f90e7.gif" width="1000" height="700"></div><br/>
 
 **Authors**<br/>
-Mikey Perez<br/>
+Mikey Perez - Related Items and Outfit <br/>
 Michael Moriarty<br/>
 Nancy Yang - Ratings and Reviews Module<br/>
